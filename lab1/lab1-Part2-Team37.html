@@ -1,0 +1,185 @@
+<!--Mony Thach 500695151
+
+
+
+
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Electronics-Center</title>
+        <link href="./styles/lab1-Part1-Team37.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="./scripts/index.js"></script>
+    </head>
+    <body>
+        <!--textbox and dropdown lists-->
+        <div class="title">
+            <label for="textbox">Textbox:</label>
+            <input type="text" name="textbox"> 
+        </div>
+        <div class="dropdown">
+            <label for="action">Action:</label>
+            <select name="action" id="tableActions">
+                <option value="0">Archive</option>
+                <option value="1">Edit</option>
+                <option value="2">Delete</option>
+                <option value="3">Collection</option>
+            </select>
+            <label for="type">Type:</label>
+            <select name="type" id="deviceTypes">
+                <option value="0">LapTop</option>
+                <option value="1">NoteBook</option>
+                <option value="2">Tablet</option>
+                <option value="3">CellPhone</option>
+            </select>
+        </div>
+        <div>
+            <input type="radio" id="infoIn" name="info">
+            <label for="infoIn">Show information</label>
+            <input type="radio" id="infoOut" name="info">
+            <label for="infoOut">Hide information</label>
+        </div>
+        <div class="animate">
+            <button>Animate</button>
+        </div>
+        <!--table-->
+        <table class="devices">
+            <!--table headers-->
+            <tr class="categories">
+                <th>Device</th>
+                <!--information class used to hide extra info-->
+                <th class="information">Name</th>
+                <th class="information">Company</th>
+                <th class="information">Year</th>
+                <th class="information">Type</th>
+                <th class="information">Actions</th>
+            </tr>
+            <!--samsung galaxy row-->
+            <tr>
+                <td class="images">
+                    <img id="phoneImg" src="./images/phone.png">
+                    <div>
+                        <input type="radio" id="galaxys7In" name="galaxy" value="CellPhone">
+                        <label for="galacys7In">Fade in</label><br>
+                        <input type="radio" id="galaxys7Out" name="galaxy" value="CellPhone">
+                        <label for="galacys7Out">Fade out</label>
+                    </div>
+                </td>
+                <!--extra info-->
+                <td class="information">
+                    <p>Samsung Galaxy S7</p>
+                </td>
+                <td class="information">
+                    <p>Samsung</p>
+                </td>
+                <td class="information">
+                    <p>2016</p>
+                </td>
+                <td class="information">
+                    <p>Smartphone</p>
+                </td>
+                <td class="information">
+                    <ul>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                    </ul> 
+                </td>
+            </tr>
+            <!--surface pro row-->
+            <tr>
+                <td class="images">
+                    <img id="compImg" src="./images/computer.jpg">
+                    <div>
+                        <input type="radio" id="surfaceIn" name="surface" value="LapTop">
+                        <label for="surfaceIn">Fade in</label><br>
+                        <input type="radio" id="surfaceOut" name="surface" value="LapTop">
+                        <label for="surfaceOut">Fade out</label>
+                    </div>
+                </td>
+                <!--extra info-->
+                <td class="information">
+                    <p>Surface Pro X</p>
+                </td>
+                <td class="information">
+                    <p>Microsoft</p>
+                </td>
+                <td class="information">
+                    <p>2019</p>
+                </td>
+                <td class="information">
+                    <p>Laptop</p>
+                </td>
+                <td class="information">
+                    <ul>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                    </ul> 
+                </td>
+            </tr>
+            <!--macbook row-->
+            <tr>
+                <td class="images">
+                    <img id="noteImg" src="./images/notebook.jpg">
+                    <div>
+                        <input type="radio" id="macbookIn" name="macbook" value="NoteBook">
+                        <label for="macbookIn">Fade in</label><br>
+                        <input type="radio" id="macbookOut" name="macbook" value="NoteBook">
+                        <label for="macbookOut">Fade out</label>
+                    </div> 
+                </td>
+                <!--extra info-->
+                <td class="information">
+                    <p>MacBook Pro</p>
+                </td>
+                <td class="information">
+                    <p>Apple</p>
+                </td>
+                <td class="information">
+                    <p>2020</p>
+                </td>
+                <td class="information">
+                    <p>Notebook</p>
+                </td>
+                <td class="information">
+                    <ul>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                    </ul> 
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

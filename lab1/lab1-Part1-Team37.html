@@ -1,0 +1,155 @@
+<!--Mony Thach 500695151
+
+
+
+
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Electronics-Center</title>
+        <link href="./styles/lab1-Part1-Team37.css" rel="stylesheet">
+    </head>
+    <body>
+        <!--textbox and dropdown lists-->
+        <div class="title">
+            <label for="textbox">Textbox:</label>
+            <input type="text" name="textbox"> 
+        </div>
+        <div class="dropdown">
+            <label for="action">Action:</label>
+            <select name="action" id="tableActions">
+                <option value="0">Archive</option>
+                <option value="1">Edit</option>
+                <option value="2">Delete</option>
+                <option value="3">Collection</option>
+            </select>
+            <label for="type">Type:</label>
+            <select name="type" id="deviceTypes">
+                <option value="0">LapTop</option>
+                <option value="1">NoteBook</option>
+                <option value="2">Tablet</option>
+                <option value="3">CellPhone</option>
+            </select>
+        </div>
+        <!--table-->
+        <table class="devices">
+            <!--table headers-->
+            <tr class="categories">
+                <th>Device</th>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Year</th>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            <!--samsung galaxy row-->
+            <tr>
+                <td class="images">
+                    <input type="radio" id="galaxys7" value="CellPhone">
+                    <img src="./images/phone.png">
+                </td>
+                <td>
+                    <p>Samsung Galaxy S7</p>
+                </td>
+                <td>
+                    <p>Samsung</p>
+                </td>
+                <td>
+                    <p>2016</p>
+                </td>
+                <td>
+                    <p>Smartphone</p>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                    </ul> 
+                </td>
+            </tr>
+            <!--surface pro row-->
+            <tr>
+                <td class="images">
+                    <input type="radio" id="surface" value="LapTop">
+                    <img src="./images/computer.jpg">
+                </td>
+                <td>
+                    <p>Surface Pro X</p>
+                </td>
+                <td>
+                    <p>Microsoft</p>
+                </td>
+                <td>
+                    <p>2019</p>
+                </td>
+                <td>
+                    <p>Laptop</p>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                    </ul> 
+                </td>
+            </tr>
+            <!--macbook row-->
+            <tr>
+                <td class="images">
+                    <input type="radio" id="macbook" value="NoteBook">
+                    <img src="./images/notebook.jpg">
+                </td>
+                <td>
+                    <p>MacBook Pro</p>
+                </td>
+                <td>
+                    <p>Apple</p>
+                </td>
+                <td>
+                    <p>2020</p>
+                </td>
+                <td>
+                    <p>Notebook</p>
+                </td>
+                <td>
+                    <ul>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                        <li>
+                            <button type="submit" formaction="">Submit</button>
+                        </li>
+                    </ul> 
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

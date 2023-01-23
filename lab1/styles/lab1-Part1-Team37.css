@@ -1,0 +1,22 @@
+/*Mony Thach 500695151
+
+
+
+*/
+table, th, td {
+    border: 1px solid black;
+}
+
+td:not(.images) {
+  padding: 0em 2.5em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}  
+
+img {
+    max-height: 10em;
+    max-width: 10em;
+}
