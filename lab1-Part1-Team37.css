@@ -1,0 +1,92 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+select {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.deviceImage {
+    height: auto;
+    width: 250px;
+}
+
+header {
+    width: auto;
+    height: auto;
+    background-color: #004C9B;
+}
+
+p.headerText {
+    font-weight: bold;
+    font-size: 2.5em;
+    text-align: center;
+    color: white;
+
+    padding: 15px;
+    margin: 0;
+}
+
+.secondHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    background-color: #FFDC00;
+    padding: 15px;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+div.tables {
+    padding-top: 25px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+table {
+    text-align: center;
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+tr.titles {
+    font-weight: bold;
+    background-color: gray;
+}
+
+tr {
+    border: 1px solid;
+}
+
+div.actionButtons {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+td {
+    padding: 0px 10px 0px;
+}
+
+td.radioButtonBorder {
+    border-right: 1px solid;
+}
+
+div.fadeInfadeOut {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+}
+
+div.infoColumn {
+    width: fit-content;
+    margin: 0 auto;
+}
