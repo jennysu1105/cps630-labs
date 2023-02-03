@@ -1,0 +1,94 @@
+<!--Mony Thach 500695151
+	Jenny Su 500962385
+    Tiffany Tran 500886609
+    Kevin Tran 500967982
+    Michael Widianto 501033366
+-->
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Art Work</title>
+        <link href="./styles/lab2-Team37.css" rel="stylesheet">
+	</head>
+	
+	<body>
+		<!-- Dropdown Menu: Made into a table *nicer to look at* -->
+		<div class="dropdown">
+			<hr>
+			<table class="dropdown">
+				<!-- Genre dropdown -->
+				<tr>
+					<th class="dropdown"><label for="genre" id="inputs">Genre</label></th>
+					<td class="dropdown">
+						<select for="genre" id="inputs">
+							<option>Abstract</option>
+							<option>Baroque</option>
+							<option>Gothic</option>
+							<option>Renaissance</option>
+						</select>
+					</td>
+				</tr>
+				<!-- Type dropdown -->
+				<tr>
+					<th class="dropdown"><label for="type" id="inputs">Type</label></th>
+					<td class="dropdown">
+						<select for="type" id="inputs">
+							<option>Painting</option>
+							<option>Sculpture</option>
+						</select>
+					</td>
+				</tr>
+				<!-- Subject dropdown -->
+				<tr>
+					<th class="dropdown"><label for="subject">-- Subject</label></th>
+					<td class="dropdown">
+						<select for="subject">
+							<option>Landscape</option>
+							<option>Portrait</option>
+						</select>
+					</td>
+				</tr>
+				<!-- Specifications dropdown -->
+				<tr>
+					<th class="dropdown"><label for="specifications" id="inputs">Specifications</label></th>
+					<td class="dropdown">
+						<select for="specifications" id="inputs">
+							<option>Commercial</option>
+							<option>Non-Commercial</option>
+							<option>Derivative Work</option>
+							<option>Non-Derivative Work</option>
+						</select>
+					</td>
+				</tr>
+				<!-- Year dropdown -->
+				<tr>
+					<th class="dropdown"><label for="year" id="inputs">Year</label></th>
+					<td class="dropdown"><input type="text" id="inputs"></td>
+				</tr>
+				<!-- Museum dropdown -->
+				<tr>
+					<th class="dropdown"><label for="museum" id="inputs">Museum</label></th>
+					<td class="dropdown"><input type="text" id="inputs"></td>
+				</tr>
+			</table>
+			<hr>
+			<!-- Save and clear buttons -->
+			<!-- Jenny: Siad we can change the UI if we want. I think it would be nicer here -->
+			<button type="submit" style="left:15%">Save Record</button>
+			<button type="submit" style="right:20%">Clear Record</button>
+			<br><hr>
+		</div>
+		<!-- Body of the webpage: id=body used to align the left side with the dropdown  -->
+		<!-- Title division -->
+		<div class="title" id="body">
+			<h1>Art Work Database</h1>
+		</div>
+		<!-- Description division -->
+		<div class="description" id="body">
+			<!-- Jenny: I don't know what to right, wip. -->
+			<p>Collection of artwork. idk...</p>
+		</div>
+	</body>
+</html>

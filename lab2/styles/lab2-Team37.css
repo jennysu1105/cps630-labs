@@ -1,0 +1,114 @@
+/*Mony Thach 500695151
+  Jenny Su 500962385
+  Tiffany Tran 500886609
+  Kevin Tran 500967982
+  Michael Widianto 501033366	
+*/
+/*
+ * Align body to be away from dropdown menu
+ */
+#body {
+	margin-left: 340px;
+}
+
+/*
+ * Input styling
+ */
+#inputs {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+/*
+ * Table styling
+ */
+table{
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+/*
+ * For the image database section
+ */
+td.database {
+    border: 1px solid black;
+}
+
+th.database {
+	background-color: black;
+	color: white;
+	font-size: 18px;
+}
+/*
+ * For the dropdown menu table
+ */
+td.dropdown{
+	padding: 0px;
+	margin:0px;
+	width: 20px
+}
+th.dropdown{
+	text-align:left;
+	font-size:13px;
+}
+
+button{
+	margin: 0;
+	position: absolute;
+}
+/*
+ * Title division
+ */
+div.title {
+	text-align: center;
+	padding: 10px;
+	font-size: 24px;
+	background-color: black;
+	color: white;
+}
+/*
+ * Dropdown menu division
+ */
+div.dropdown {
+	position: fixed;
+	padding: 10px;
+	font-size: 14px;
+	height: 100%;
+	background-color: #EEEEEE;
+}
+
+/*
+ * Description Devision
+ */
+div.description {
+	text-align: center;
+	padding: 3px;
+	margin-top: 1px;
+	font-size: 12px;
+	background-color: black;
+	color: white;
+}
+
+div.toggleInfo {
+	border: 1px solid black;
+	padding: 10px;
+}
+
+div.animate {
+	padding: 10px;
+}
+
+td:not(.images) {
+  padding: 0em 2.5em;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}  
+
+img {
+    max-height: 10em;
+    max-width: 10em;
+}
