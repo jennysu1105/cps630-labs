@@ -11,8 +11,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Art Work</title>
         <link href="./styles/lab2-Team37.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+			// Hides sub-menu of "Painting" option depending on if it's selected
+			$(document).ready(
+				function() {
+					$("#topMenu").on("click", function(e){
+						if ($("#topMenu option:selected").val() == "1"){
+							document.getElementById("subMenu").hidden = false;
+						} else if ($("#topMenu option:selected").val() == "2"){
+							document.getElementById("subMenu").hidden = true;
+						}
+				});
+			});
+		</script>
 	</head>
-	
 	<body>
 		<!-- Dropdown Menu: Made into a table *nicer to look at* -->
 		<div class="dropdown">
@@ -20,9 +33,9 @@
 			<table class="dropdown">
 				<!-- Genre dropdown -->
 				<tr>
-					<th class="dropdown"><label for="genre" id="inputs">Genre</label></th>
+					<th class="dropdown inputs"><p>Genre</p></th>
 					<td class="dropdown">
-						<select for="genre" id="inputs">
+						<select class="inputs">
 							<option>Abstract</option>
 							<option>Baroque</option>
 							<option>Gothic</option>
@@ -32,19 +45,19 @@
 				</tr>
 				<!-- Type dropdown -->
 				<tr>
-					<th class="dropdown"><label for="type" id="inputs">Type</label></th>
+					<th class="dropdown inputs">Type</th>
 					<td class="dropdown">
-						<select for="type" id="inputs">
-							<option>Painting</option>
-							<option>Sculpture</option>
+						<select class="inputs" id="topMenu">
+							<option value="1">Painting</option>
+							<option value="2">Sculpture</option>
 						</select>
 					</td>
 				</tr>
 				<!-- Subject dropdown -->
-				<tr>
-					<th class="dropdown"><label for="subject">-- Subject</label></th>
+				<tr id="subMenu">
+					<th class="dropdown">-- Subject</th>
 					<td class="dropdown">
-						<select for="subject">
+						<select>
 							<option>Landscape</option>
 							<option>Portrait</option>
 						</select>
@@ -52,9 +65,9 @@
 				</tr>
 				<!-- Specifications dropdown -->
 				<tr>
-					<th class="dropdown"><label for="specifications" id="inputs">Specifications</label></th>
+					<th class="dropdown">Specifications</th>
 					<td class="dropdown">
-						<select for="specifications" id="inputs">
+						<select class="inputs">
 							<option>Commercial</option>
 							<option>Non-Commercial</option>
 							<option>Derivative Work</option>
@@ -64,13 +77,13 @@
 				</tr>
 				<!-- Year dropdown -->
 				<tr>
-					<th class="dropdown"><label for="year" id="inputs">Year</label></th>
-					<td class="dropdown"><input type="text" id="inputs"></td>
+					<th class="dropdown inputs">Year</th>
+					<td class="dropdown inputs"><input type="text"></td>
 				</tr>
 				<!-- Museum dropdown -->
 				<tr>
-					<th class="dropdown"><label for="museum" id="inputs">Museum</label></th>
-					<td class="dropdown"><input type="text" id="inputs"></td>
+					<th class="dropdown inputs">Museum</th>
+					<td class="dropdown inputs"><input type="text"></td>
 				</tr>
 			</table>
 			<hr>
@@ -82,11 +95,11 @@
 		</div>
 		<!-- Body of the webpage: id=body used to align the left side with the dropdown  -->
 		<!-- Title division -->
-		<div class="title" id="body">
+		<div class="title body">
 			<h1>Art Work Database</h1>
 		</div>
 		<!-- Description division -->
-		<div class="description" id="body">
+		<div class="description body">
 			<!-- Jenny: I don't know what to right, wip. -->
 			<p>Collection of artwork. idk...</p>
 		</div>
