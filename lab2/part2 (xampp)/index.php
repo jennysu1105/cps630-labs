@@ -50,6 +50,12 @@
                     <input type="text" name="field" placeholder="Field"><br>
                     <button type="submit" name="submit">Update Record</button>
                 </form>
+                <!-- Show Column-->
+                <form action="includes/displayspecific.php" method="POST">
+                    <label>Show specific Column(s)<br>
+                    <input type="text" name="field" placeholder="Field"><br>
+                    <button type="submit" name="submit">Show Record</button>
+                </form>
             </div>
             <div class="display">
                 <?php include "includes/display.php";?>
