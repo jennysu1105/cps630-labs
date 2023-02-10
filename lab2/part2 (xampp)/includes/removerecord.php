@@ -10,6 +10,12 @@
     }else{
         $sql = "DELETE FROM strec WHERE strec.id = '$id'";
     }
-    mysqli_query($conn, $sql);
+    try{
+        mysqli_query($conn, $sql);
+        header("Location: ../index.php?signup=success");
+    }catch(Exception $e){
+        echo 'Message: ' .$e->getMessage();
+        echo '<form method="POST" action="../index.php"><button type="submit"/>Return to index.php</button></form>';
+    }
     header("Location: ../index.php?signup=success");
 ?>

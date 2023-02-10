@@ -1,12 +1,11 @@
 <?php
-    include_once 'dbh.inc.php';
+    include_once "dbh.inc.php";
 
-    $f_name = $_POST['f_name'];
-    $l_name = $_POST['l_name'];
-    $study_year = $_POST['study_year'];
+    $id = $_POST['id'];
     $gpa = $_POST['gpa'];
+    $study_year = $_POST['study_year'];
 
-    $sql = "INSERT INTO strec(f_name, l_name, study_year, gpa) VALUES('$f_name', '$l_name', '$study_year', '$gpa');";
+    $sql = "UPDATE POSTS SET gpa='$gpa',study_year='$study_year' WHERE id='$id'";
     try{
         mysqli_query($conn, $sql);
         header("Location: ../index.php?signup=success");

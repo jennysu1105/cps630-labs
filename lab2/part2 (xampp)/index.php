@@ -1,7 +1,3 @@
-<?php
-    include_once "includes/dbh.inc.php";
-?>
-
 <!DOCTYPE html> 
 <html>
     <head>
@@ -16,7 +12,7 @@
                     <label>Add Student Record:</label><br>
                     <input type="text" name="f_name" placeholder="First Name"><br>
                     <input type="text" name="l_name" placeholder="Last Name"><br>
-                    <input type="number" name="year" placeholder="Current Year"><br>
+                    <input type="number" name="study_year" placeholder="Current Year"><br>
                     <input type="text" name="gpa" placeholder="GPA"><br>
                     <button type="submit" name="submit">Add</button>
                 </form>
@@ -33,14 +29,30 @@
                     <input type="number" name="id" placeholder="ID"><br>
                     <button type="submit" name="submit">Remove by ID</button>
                 </form>
+                <!-- Update Record -->
+                <form action="includes/updaterecord.php" method="POST">
+                    <label>Update Student Record:</label><br>
+                    <input type="number" name="id" placeholder="ID"><br>
+                    <input type="text" name="gpa" placeholder="Updated GPA"><br>
+                    <input type="number" name="study_year" placeholder="Updated Year"><br>
+                    <button type="submit" name="submit">Update Record</button>
+                </form>
+                <!-- Add Column -->
+                <form action="includes/addfield.php" method="POST">
+                    <label>Add Field to Record:</label><br>
+                    <input type="text" name="field" placeholder="Field"><br>
+                    <input type="text" name="type" placeholder="Type"><br>
+                    <button type="submit" name="submit">Update Record</button>
+                </form>
+                <!-- Delete Column -->
+                <form action="includes/deletefield.php" method="POST">
+                    <label>Delete Field from Record:</label><br>
+                    <input type="text" name="field" placeholder="Field"><br>
+                    <button type="submit" name="submit">Update Record</button>
+                </form>
             </div>
             <div class="display">
-                <?php
-                    $qry = mysqli_query($conn, "SELECT * FROM strec");
-                    while($result = mysqli_fetch_array($qry)){
-                        echo "First name: "."<strong>".$result["f_name"]."</strong> Last name: <strong>".$result["l_name"]."</strong> Year of study: <strong>".$result["study_year"]."</strong> GPA: <strong>".$result["gpa"]."</strong><br>";
-                    };
-                ?>
+                <?php include "includes/display.php";?>
             </div>
         </wrap>
     </body>
