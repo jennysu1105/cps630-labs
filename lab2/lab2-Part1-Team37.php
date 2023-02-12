@@ -66,7 +66,21 @@
 		$info_diff = array_values(array_diff($info, $data));
 		// update cookie with new array
 		setcookie("data", json_encode($info_diff));
-	
+		// update table by refreshing
+		header("Refresh:0");
+	}
+	// Part e display to index
+	if(isset($_POST['index'])){
+		// get jump value
+		$index = $_POST['jump'];
+		// if it is all set the cookie as all
+		if ($index == "all"){
+			setcookie("index", "all");
+		}
+		// if it is an index, set cook as the record
+		else{
+			setcookie("index", json_decode($_COOKIE['data'], true)[intval($index) + 3]);
+		}
 		// update table by refreshing
 		header("Refresh:0");
 	}
@@ -168,6 +182,33 @@
 				<button type="submit" name="save" id="update" style="left:15%">Save Record</button>
 				<button type="submit" name="clear" id="update" style="right:20%">Clear Record</button>
 				<br><hr>
+			<!-- part e? not sure what it means. I think it might be represented in the table?-->
+			</form>
+			<form method="POST" action="">
+				Index: <select name="jump">
+					<option value="all">All</option>
+					<?php
+						// get cookie
+						//		no cookie, then it is an empty array
+						if(!isset($_COOKIE['data'])){
+							$info = array();
+						}
+						//		retreive and decode cookie data
+						else{
+							$info = json_decode($_COOKIE['data'], true);
+						}
+						// add options
+						// not sure why, but there are always 4 nulls in the table?
+						for ($i = 4; $i < count($info); $i += 1){
+							echo "<option value=\"";
+							echo $i -3;
+							echo "\">";
+							echo $i -3;
+							echo "</option>";
+						}
+					?>
+				</select>
+				<button type="submit" name="index">Show</button>
 			</form>
 		</div>
 		<!-- Database Table -->
@@ -184,26 +225,48 @@
 				</tr>
 				<!-- data -->
 				<?php
-					// get cookie
-					//		no cookie, then it is an empty array
-					if(!isset($_COOKIE['data'])){
-						$info = array();
+					// if the cookie index doesn't exist, make it all
+					if(!isset($_COOKIE['index'])){
+						$index = "all";
 					}
-					//		retreive and decode cookie data
+					// if the cookie does exist, make it the value
 					else{
-						$info = json_decode($_COOKIE['data'], true);
+						$index = $_COOKIE['index'];
 					}
-					// make rows with info
-					for ($i = 0; $i < count($info); $i += 1){
+					// if the cookie is not all, use the record as the display
+					if ($index <> "all"){
 						echo "<tr>";
-						$record = json_decode($info[$i],true);
-						// place each information into it's place
+						$info = json_decode($_COOKIE['index'], true);
 						for ($y = 0; $y < 6; $y += 1){
 							echo "<td>";
-							echo $record[$y];
+							echo $info[$y];
 							echo "</td>";
 						}
 						echo "</tr>";
+					}
+					// if it is all, display everything
+					else{
+						// get cookie
+						//		no cookie, then it is an empty array
+						if(!isset($_COOKIE['data'])){
+							$info = array();
+						}
+						//		retreive and decode cookie data
+						else{
+							$info = json_decode($_COOKIE['data'], true);
+						}
+						// make rows with info
+						for ($i = 0; $i < count($info); $i += 1){
+							echo "<tr>";
+							$record = json_decode($info[$i],true);
+							// place each information into it's place
+							for ($y = 0; $y < 6; $y += 1){
+								echo "<td>";
+								echo $record[$y];
+								echo "</td>";
+							}
+							echo "</tr>";
+						}
 					}
 				?>
 			</table>
