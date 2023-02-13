@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-
-<html>
-
-<head>
-    <title>Artwork Record</title>
-    <meta charset="utf-8">
-</head>
-
 <?php
 $artwork;
 $record = array();
@@ -32,24 +23,41 @@ if (empty($record) != 1) {
         setcookie('database', json_encode($cookieData));
     }
 }
-
-print_r($artwork);
-
 ?>
-<!--
-print("
-    <label for='index'>Index: </label>
-    <select name='index' id='index'>
-    <option value='' selected hidden></option>
-");
-for ($i = 0; $i < count($artwork); $i++) {
-    print("<option value=$i>$i</option>");
-}
-?>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Artwork Record</title>
+    <meta charset="utf-8">
+</head>
 
 <body>
-    <div>HELLO</div>
+    <table>
+        <tr>
+            <th>Genre</th>
+            <th>Type</th>
+            <th>Specification</th>
+            <th>Year</th>
+            <th>Museum</th>
+        </tr>
+    <?php
+        for($i=0; $i<sizeof($artwork);++$i) {
+            $record = $artwork[$i];
+            print("<tr>");
+            foreach($record as $key => $value) {
+                print("<th>$value</th>");
+            }
+            print("</tr>");
+        }
+        print("</table>");
+        print(" <form method='POST' action='lab2,3-Part1-Team37.php'>
+            <button type='submit'/>Return to main page</button>
+        </form>"
+        );
+    ?>
 </body>
 
 </html>
--->

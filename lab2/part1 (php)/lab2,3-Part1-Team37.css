@@ -1,0 +1,78 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    width: auto;
+    height: auto;
+    background-color: #004C9B;
+}
+
+p.headerText {
+    font-weight: bold;
+    font-size: 2.5em;
+    text-align: center;
+    color: white;
+
+    padding: 15px;
+    margin: 0;
+}
+
+div.secondaryHeader {
+    background-color: #FFDC00;
+}
+
+p.descriptionText {
+    margin: 0px;
+    padding: 15px;
+    text-align: center;
+}
+
+.partBD {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.partB {
+    padding: 50px 0px 0px 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.partD {
+    padding: 50px 100px 0px 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.partC {
+    margin: 0 auto;
+    height: 500px;
+    width: 40%;
+    border: 2px solid black;
+    border-radius: 20px;
+
+}
+
+div.inputReview {
+    display: flex;
+    flex-direction: row;
+}
+
+#pGenre::before {
+    content: "Genre: "
+}
+#pType::before {
+    content: "Type: "
+}
+#pSpecification::before {
+    content: "Specification: "
+}
+#pYear::before {
+    content: "Year: "
+}
+#pMuseum::before {
+    content: "Museum: "
+}
