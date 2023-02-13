@@ -1,3 +1,9 @@
+<!--Jenny Su 500962385
+    Tiffany Tran 500886609
+    Kevin Tran 500967982
+    Michael Widianto 501033366
+-->
+
 <?php
 include_once "dbConnection.php";
 function typeIdentifier($type, $value, $last) {
@@ -42,12 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 $sqlString = "UPDATE strec SET ".$setString." WHERE ".$_POST['updateKey']." = ".$_POST['Value'];
 $sql = $sqlString;
-echo $sql;
 
-if ($connect->query($sql) === TRUE) {
+try {
+    $connect->query($sql);
     echo "Record updated created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $connect->error;
+}
+catch (Exception $e) {
+    echo "Error updating record: ".$e->getMessage();
 }
 $connect->close();
 
@@ -55,19 +62,4 @@ print(" <form method='POST' action='index.php'>
             <button type='submit'/>Return to main page</button>
         </form>"
 );
-
-/* PDO Method
-$valuesString = "(";
-for ($i = 0; $i < sizeof($columnNames)-1; $i++) {
-    $valuesString.="?, ";
-}
-$valuesString.="?)";
-
-$statement = $pdo->prepare($sql);
-for ($i = 0; $i < sizeof($columnNames); $i++) {
-    $value = $columnNames[$i];
-    $statement->bindValue($i+1, $_POST[$value]);
-}
-$statement->executed();
-*/
 ?> 

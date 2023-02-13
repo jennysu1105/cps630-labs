@@ -1,3 +1,9 @@
+<!--Jenny Su 500962385
+    Tiffany Tran 500886609
+    Kevin Tran 500967982
+    Michael Widianto 501033366
+-->
+
 <?php
 include_once "dbConnection.php";
 
@@ -27,20 +33,25 @@ if (sizeof($selectedField) == sizeof($columnNames)) {
     }
     print("</tr>");
 
-    $result = mysqli_query($connect, $sql);
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            print("<tr>");
-            for ($i = 0; $i < sizeof($selectedField); $i++) {
-                $data = $row[$selectedField[$i]];
-                print("<th>$data</th>");
+    try {
+        $result = mysqli_query($connect, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                print("<tr>");
+                for ($i = 0; $i < sizeof($selectedField); $i++) {
+                    $data = $row[$selectedField[$i]];
+                    print("<th>$data</th>");
+                }
+                print("</tr>");
             }
-            print("</tr>");
+        } else {
+            echo "No results.";
         }
-    } else {
-        echo "No results.";
+        print("</table>");
     }
-    print("</table>");
+    catch (Exception $e) {
+        echo "Error showing record: ".$e->getMessage();
+    }
     mysqli_close($connect);
 }
 ?>
