@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<head>
+    <Title>how to detect browser using Javascript</Title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const userAgent = navigator.userAgent;
+            /*
+                Microsoft Edge: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.50
+                Firefox: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/110.0
+                Google Chrome: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36
+            */
+            var browser = "Browser: ";
+            $("#userAgent").html(userAgent);
+
+            if(userAgent.includes("Edg")) {
+                browser += "Microsoft Edge";
+            }
+            else if(userAgent.includes("Firefox")){
+                browser += "Firefox";
+            }
+            else if(userAgent.includes("Chrome")){
+                browser += "Google Chrome";
+            }
+            else {
+                browser += "Unknown";
+            }
+
+            $("#browser").html(browser);
+            console.log(browser);
+        });
+    </script>
+</head>
+
+<body>
+    <h1> Display Cross Browsers Compatibility Issues line1</h1>
+    <p> Display Cross Browsers Compatibility Issues line2</p>
+    
+    <p id="userAgent"></p>
+    <p id="browser"></p>
+</body>
+
+</html>
