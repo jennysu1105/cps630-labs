@@ -1,0 +1,53 @@
+<!DOCTYPE html> 
+<HTML>
+    <head>
+        <title>Add Map</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <style>
+            #map{
+                height: 500px;
+                width:100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            function initMap(){
+                let chinatown = { lat: 43.652596, lng: -79.399626 };
+                let secondcup = { lat: 43.657545, lng: -79.403233 };
+                let map = new google.maps.Map(document.getElementById('map'),{zoom: 15, center: chinatown});
+                let marker = new google.maps.Marker({position: chinatown, map: map, title:"Chinatown"});
+                var marker2 = new google.maps.Marker({position: secondcup, map: map, title:"Second Cup"});   
+                const contentString =
+                    '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    "</div>" +
+                    '<h1 id="firstHeading" class="firstHeading">Toronto Chinatown</h1>' +
+                    '<div id="bodyContent">' +
+                    "<p>The present neighbourhood was the result of the government expropriating Toronto's first Chinatown in" +
+                    "the late 1950s to make way for a new city hall and public square. As a result of the expropriations, a" +
+                    "number of businesses and residents based in the city's first Chinatown moved west towards Spadina" +
+                    "Avenue during the 1950s and 1960s, later joined by other Chinese immigrants during the 1960s. The" + 
+                    "neighbourhood is one of several Chinatowns in Toronto that developed during the latter half of the 20th century</p>" +
+                    '<p>Attribution: Chinatown, <a href="https://en.wikipedia.org/wiki/Chinatown,_Toronto">' +
+                    "https://en.wikipedia.org/wiki/Chinatown,_Toronto</a> " +
+                    "(last visited June 22, 2009).</p>" +
+                    "</div>" +
+                    "</div>";
+                    const infowindow = new google.maps.InfoWindow({
+                        content: contentString
+                    });
+
+                    const infowindow2 = new google.maps.InfoWindow({
+                        content: "<h1> A Coffee Shop named Second Cup </h1>"
+                    })
+
+                    marker.addListener("click", () => {infowindow.open({anchor: marker, map,});});
+                    marker2.addListener("click", () => {infowindow2.open({anchor: marker2, map,});});
+            }
+            window.initMap = initMap;
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLherBXiXAewyPuGAs-5Hs47p0-_D7VcQ&callback=initMap"></script>
+    </body>
+</HTML>
