@@ -8,19 +8,19 @@
 				document.getElementById("userinfo").innerHTML += userAgent;
 				browser = document.getElementById("browser");
 				
-				if (userAgent.includes("Edg")){
+				if (userAgent.indexOf("Edg") != -1){
 					browser.innerHTML += "Microsoft Edge";
 				}
-				else if (userAgent.includes("Chrome")){
+				else if (userAgent.indexOf("Chrome")!= -1){
 					browser.innerHTML += "Google Chrome";
 				}
-				else if (userAgent.includes("FireFox")){
+				else if (userAgent.indexOf("FireFox")!= -1){
 					browser.innerHTML += "Mobzilla Firefox";
 				}
-				else if (userAgent.includes("Safari")){
+				else if (userAgent.indexOf("Safari")!= -1){
 					browser.innerHTML += "Safari";
 				}
-				else if (userAgent.includes("Trident")){
+				else if (userAgent.indexOf("Trident")!= -1){
 					browser.innerHTML += "Internet Explorer";
 				}
 				else {
