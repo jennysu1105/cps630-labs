@@ -1,28 +1,42 @@
+<!--Jenny Su 500962385
+    Tiffany Tran 500886609
+    Kevin Tran 500967982
+    Michael Widianto 501033366
+-->
 <!DOCTYPE html>
 	<head>
 		<title>how to detect browser using Javascript</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 		<script>
 			$(document).ready(function () {
+				<!-- get user agent information --> 
 				const userAgent = navigator.userAgent;
+				
+				<!-- add information to body in the useragent paragraph area --> 
 				document.getElementById("userinfo").innerHTML += userAgent;
 				browser = document.getElementById("browser");
 				
+				<!-- identify Microsoft Edge --> 
 				if (userAgent.indexOf("Edg") != -1){
 					browser.innerHTML += "Microsoft Edge";
 				}
+				<!-- identify Google Chrome --> 
 				else if (userAgent.indexOf("Chrome")!= -1){
 					browser.innerHTML += "Google Chrome";
 				}
+				<!-- identify Mobzilla FireFox --> 
 				else if (userAgent.indexOf("FireFox")!= -1){
 					browser.innerHTML += "Mobzilla Firefox";
 				}
+				<!-- identify Safari --> 
 				else if (userAgent.indexOf("Safari")!= -1){
 					browser.innerHTML += "Safari";
 				}
+				<!-- identify internet Explorer --> 
 				else if (userAgent.indexOf("Trident")!= -1){
 					browser.innerHTML += "Internet Explorer";
 				}
+				<!-- anything else is unknown --> 
 				else {
 					browser.innerHTML += "Unknown";
 				}
@@ -32,7 +46,9 @@
 	<body>
 		<h1> Display Cross Browsers Compatibility Issues line1</h1>
 		<p> Display Cross Browsers Compatibility Issues line2</p>
+		<!-- UserAgent information paragraph --> 
 		<p id="userinfo"><b>UserAgent information:</b> </p>
+		<!-- Broswer identification paragraph --> 
 		<p id="browser"><b>Browser:</b> </p>
 	</body>
 
