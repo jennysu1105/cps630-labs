@@ -12,13 +12,41 @@
     </head>
     <body>
         <div id="map"></div>
+        <button onclick="getLocation()">Try It</button>
+        <p id="lnglat"></p>
+
         <script>
+
+            // Part 1
+
+            var x = document.getElementById("lnglat");
+            var url;
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.watchPosition(showPosition);
+                } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position){
+                x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+                var lng = position.coords.longitude;
+                var lat = position.coords.latitude;
+                url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCLherBXiXAewyPuGAs-5Hs47p0-_D7VcQ`
+            }
+
+            // Part 2
+
             function initMap(){
                 let chinatown = { lat: 43.652596, lng: -79.399626 };
                 let secondcup = { lat: 43.657545, lng: -79.403233 };
+
                 let map = new google.maps.Map(document.getElementById('map'),{zoom: 15, center: chinatown});
                 let marker = new google.maps.Marker({position: chinatown, map: map, title:"Chinatown"});
                 var marker2 = new google.maps.Marker({position: secondcup, map: map, title:"Second Cup"});   
+
                 const contentString =
                     '<div id="content">' +
                     '<div id="siteNotice">' +
