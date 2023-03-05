@@ -1,6 +1,8 @@
-h2, h3 {
+h3,
+h4,
+h5,
+h6 {
     text-align: center;
-    padding: 20px 0 10px 0;
 }
 
 .card {
@@ -24,4 +26,18 @@ h2, h3 {
 .card_container {
     padding: 2px 16px;
     text-align: center;
+}
+
+.shopping_item {
+    font-weight: bold;
+    font-size: large;
+}
+
+#shopping_cart {
+    height: 100%;
+    border: 1px solid gray;
+    position: relative;
+    text-align: center;
+    overflow: auto;
+    padding-bottom: 10px;
 }
