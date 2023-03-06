@@ -1,3 +1,9 @@
+<!--Jenny Su 500962385
+    Tiffany Tran 500886609
+    Kevin Tran 500967982
+    Michael Widianto 501033366
+-->
+
 <!DOCTYPE html> 
 <HTML>
     <head>
@@ -14,27 +20,72 @@
         <div id="map"></div>
         <button onclick="getLocation()">Try It</button>
         <p id="lnglat"></p>
+        <p id="address"></p>
+        <input id="latlng" type="text"/>
+        <input id="submit" type="button" value="Reverse Geocode"/><br>
+        <input id="address2" type="text"/>
+        <input id="submit2" type="button" value="Geocode"/>
 
         <script>
 
             // Part 1
 
-            var x = document.getElementById("lnglat");
-            var url;
+            var lnglatp = document.getElementById("lnglat");
+            var addressp = document.getElementById("address");
+            
+            document.getElementById("submit").addEventListener("click", () => {
+                var geocoder = new google.maps.Geocoder();
+                const input = document.getElementById("latlng").value;
+                const latlngStr = input.split(",", 2);
+                const latlngObj = {
+                    lat: parseFloat(latlngStr[0]),
+                    lng: parseFloat(latlngStr[1]),
+                };
+                geocodeLatLng(geocoder, latlngObj);
+            });
+
+            document.getElementById("submit2").addEventListener("click", () => {
+                var geocoder = new google.maps.Geocoder();
+                const input = document.getElementById("address2").value;
+                geocodeReverse(geocoder, {address: input});
+            });
+
 
             function getLocation() {
                 if (navigator.geolocation) {
                     navigator.geolocation.watchPosition(showPosition);
                 } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
+                    lnglatp.innerHTML = "Geolocation is not supported by this browser.";
                 }
             }
 
             function showPosition(position){
-                x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-                var lng = position.coords.longitude;
-                var lat = position.coords.latitude;
-                url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyCLherBXiXAewyPuGAs-5Hs47p0-_D7VcQ`
+                lnglatp.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+            }
+
+            function geocodeLatLng(geocoder, latlngObj){
+                geocoder
+                    .geocode({location: latlngObj})
+                    .then((response) => {
+                        if(response.results[0]){
+                            addressp.innerHTML = response.results[0].formatted_address;
+                        }else{
+                            window.alert("No results found");
+                        }
+                    });
+            }
+
+            function geocodeReverse(geocoder, location){
+                geocoder
+                    .geocode(location)
+                    .then((response) => {
+                        if(response.results[0]){
+                            var theJson = JSON.parse(JSON.stringify(response, null, 2))
+                            addressp.innerHTML = "lat: " + theJson.results[0].geometry.location.lat + " lng: " + theJson.results[0].geometry.location.lng;
+                        }else{
+                            window.alert("No results found");
+                        }
+                    });
             }
 
             // Part 2
@@ -74,6 +125,7 @@
                     marker.addListener("click", () => {infowindow.open({anchor: marker, map,});});
                     marker2.addListener("click", () => {infowindow2.open({anchor: marker2, map,});});
             }
+
             window.initMap = initMap;
         </script>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLherBXiXAewyPuGAs-5Hs47p0-_D7VcQ&callback=initMap"></script>
