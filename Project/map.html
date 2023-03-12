@@ -21,7 +21,25 @@
         <div class="row gx-0">
           <div>First name:</div><input type="text" name="fname"><br>
           <div>Last name:</div><input type="text" name="lname" ><br>
-          <div>Address:</div><input type="text" name="address" id="end"><br>
+          <div>Phone number:</div><input type="text" name="phone-number"><br>
+          <div>Provines & Territories:</div>
+          <select name="province" id="province" onchange="changeProvince()">
+            <option value="Alberta">Alberta</option>
+            <option value="British Columbia">British Columbia</option>
+            <option value="Manitoba">Manitoba</option>
+            <option value="New Brunswick">New Brunswick</option>
+            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+            <option value="Nova Scotia">Nova Scotia</option>
+            <option value="Northwest Territories">Northwest Territories</option>
+            <option value="Nunavut">Nunavut</option>
+            <option value="Ontario">Ontario</option>
+            <option value="Prince Edward Island">Prince Edward Island</option>
+            <option value="Quebec">Quebec</option>
+            <option value="Saskatchewan">Saskatchewan</option>
+            <option value="Yukon">Yukon</option>
+          </select>
+          <div>City: </div><input type="text" name="city" id="city" onchange="changeCity()"><br>
+          <div>Delivery Address:</div><input type="text" name="address" id="end"><br>
         </div>
         <div>Branch:</div>
         <select id="start">
@@ -29,6 +47,7 @@
           <option value="MJ39+QP Toronto, Ontario">Eatons</option>
           <option value="MH47+8P Toronto, Ontario">Dufferin Mall</option>
         </select>
+        <input type="submit">
         <!-- <b>Delivered To: </b>
         <select id="end">
           <option value="MG98+65 Toronto, Ontario">TEST1</option>
@@ -62,23 +81,71 @@
     <!-- Map -->
 
     <script>
-      function initMap() {
-          const directionsService = new google.maps.DirectionsService();
-          const directionsRenderer = new google.maps.DirectionsRenderer();
-          const map = new google.maps.Map(document.getElementById("map"), {
-              zoom: 13,
-              center: { lat: 43.671916, lng: -79.427061 },
-          });
+      const directionsService = new google.maps.DirectionsService();
+      const directionsRenderer = new google.maps.DirectionsRenderer();
+      var theMap = new google.maps.Map();
+      var province = "";
+      var city = "";
 
-          directionsRenderer.setMap(map);
-
-          const onChangeHandler = function () {
-              calculateAndDisplayRoute(directionsService, directionsRenderer);
-          };
-
-          document.getElementById("start").addEventListener("change", onChangeHandler);
-          document.getElementById("end").addEventListener("change", onChangeHandler);
+      function initMap(){
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 3,
+            center: { lat: 59.105890, lng: -102.005848}
+        });
+        theMap = map;
       }
+
+      function changeProvince(){
+        var geocoder = new google.maps.Geocoder();
+        province = document.getElementById("province").value;
+        geocoder.geocode({address: province}).then((response) => {
+            if(response.results[0]){
+                var theJson = JSON.parse(JSON.stringify(response, null, 2))
+                theMap.panTo({lat: theJson.results[0].geometry.location.lat, lng: theJson.results[0].geometry.location.lng });
+                theMap.setZoom(5);
+                city = ""; 
+                document.getElementById("city").value = "";
+            }else{
+                window.alert("No results found");
+            }
+        });
+      }
+      
+      function changeCity(){
+        var geocoder = new google.maps.Geocoder();
+        city = document.getElementById("city").value;
+        var provCity = province + " " + city;
+        console.log(provCity);
+        geocoder.geocode({address: provCity}).then((response) => {
+            if(response.results[0]){
+                var theJson = JSON.parse(JSON.stringify(response, null, 2))
+                console.log(theJson);
+                theMap.panTo({lat: theJson.results[0].geometry.location.lat, lng: theJson.results[0].geometry.location.lng });
+                theMap.setZoom(11);
+            }else{
+                window.alert("No results found");
+            }
+        });
+      }
+
+
+      // function initMap() {
+      //     const directionsService = new google.maps.DirectionsService();
+      //     const directionsRenderer = new google.maps.DirectionsRenderer();
+          // const map = new google.maps.Map(document.getElementById("map"), {
+          //     zoom: 13,
+          //     center: { lat: 43.671916, lng: -79.427061 },
+          // });
+
+      //     directionsRenderer.setMap(map);
+
+      //     const onChangeHandler = function () {
+      //         calculateAndDisplayRoute(directionsService, directionsRenderer);
+      //     };
+
+      //     document.getElementById("start").addEventListener("change", onChangeHandler);
+      //     document.getElementById("end").addEventListener("change", onChangeHandler);
+      // }
 
       function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         console.log(document.getElementById('end').value.length == 0)
@@ -102,9 +169,9 @@
         }
       }
 
-      function getLocation(){
-        calculateAndDisplayRoute(directionsService, directionsRenderer);
-      }
+      // function getLocation(){
+      //   calculateAndDisplayRoute(directionsService, directionsRenderer);
+      // }
 
       window.initMap = initMap;
     </script>
