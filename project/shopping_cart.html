@@ -10,10 +10,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="scripts/nav.js"></script>
+    <script>
+		$(document).ready(function () {
+			var items = document.cookie.substring(5).split("]");
+			var cart = document.getElementById("cart");
+			for (let i = 0; i < items.length-1; i++){
+				var item = items[i].split(",");
+				cart.innerHTML += "<div class=\"p-3 mb-2 bg-light text-dark\">" + item[0] + " - $" + item[1] + "</div>";
+			}
+		});
+    </script>
 </head>
 
 <body style="background-color: #b2edc2;">
     <nav-bar></nav-bar>
+    <div class="row mt-4">
+		<h3>Shopping Cart</h3>
+		<h6>View your current shopping cart:</h6>
+    </div>
+    <div id="cart" class="container">
+		
+    </div>
 </body>
 
 </html>
