@@ -10,7 +10,7 @@ Michael Widianto 501033366
 <head>
   <title>CPS630 Lab 6</title>
   <link href="css/styles.css" rel="stylesheet">
-  <script src="https://code.angularjs.org/1.5.0/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script>
     var myapp = angular.module('demo', []);
 
@@ -23,7 +23,14 @@ Michael Widianto 501033366
       $http.get(url)
         // if successful save retrieved country data in our model
         .then(function (response) {
-          $scope.countries = response.data;
+          // $scope.countries = response.data;
+          $scope.countries = [];
+          response.data.forEach(element =>
+            $scope.countries.push({
+              "name": element.name.common,
+              "population": element.population,
+              "capital": element.capital.at(0)
+            }));
         });
       // some additional model data variable to handle sorting in table
       $scope.sortField = 'name';
@@ -40,7 +47,7 @@ Michael Widianto 501033366
   <table>
     <tr>
       <th>
-        <a href="" ng-click="sortField='name.common';
+        <a href="" ng-click="sortField='name';
                           reverse=!reverse">
           Country</a>
       </th>
@@ -57,9 +64,9 @@ Michael Widianto 501033366
     </tr>
     <tr ng-repeat="country in countries | filter:search |
                       orderBy:sortField:reverse">
-      <td>{{country.name.common}}</td>
+      <td>{{country.name}}</td>
       <td>{{country.population | number}}</td>
-      <td>{{country.capital.at(0)}}</td>
+      <td>{{country.capital}}</td>
     </tr>
   </table>
 </body>
