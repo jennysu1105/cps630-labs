@@ -14,10 +14,17 @@
 		$(document).ready(function () {
 			var items = document.cookie.substring(5).split("]");
 			var cart = document.getElementById("cart");
+			var total = 0.0;
 			for (let i = 0; i < items.length-1; i++){
 				var item = items[i].split(",");
-				cart.innerHTML += "<div class=\"p-3 mb-2 bg-light text-dark\">" + item[0] + " - $" + item[1] + "</div>";
+				total += Number(item[1]);
+				var img = "images/shirt.jpg";
+				var img_tag = "<img src=\"" + img + "\" height=\"50px\" style=\"margin-right:10px\">";
+				var item_tag = item[0] + " - $" + item[1];
+				cart.innerHTML += "<div class=\"col-sm-12 p-3 mb-2 bg-light text-dark\">" + img_tag + item_tag + "</div>";
 			}
+			var cart = document.getElementById("total");
+			cart.innerHTML = items.length-1 + " Items | Total: $" + total;
 		});
     </script>
 </head>
@@ -28,8 +35,13 @@
 		<h3>Shopping Cart</h3>
 		<h6>View your current shopping cart:</h6>
     </div>
-    <div id="cart" class="container">
-		
+    <div class="container">
+		<div class="row">
+			<div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light">0 Items | Total: $0.0</div>
+			<div type="button" class="col-sm-3 p-3 mb-2 btn btn-secondary" style="border-radius: 0;" >Checkout</div>
+		</div>
+	</div>
+    <div id="cart" class="container"> 
     </div>
 </body>
 

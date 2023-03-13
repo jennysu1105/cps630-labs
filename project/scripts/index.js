@@ -28,5 +28,4 @@ function drop(ev) {
     
     var cookie = document.cookie.substring(5) + item.innerHTML + "," + item_price.innerHTML + "]";
     document.cookie = "item=" + cookie + "; path=/;";
-    alert(document.cookie);
 }
