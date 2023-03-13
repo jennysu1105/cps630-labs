@@ -1,0 +1,40 @@
+<!--
+Jenny Su 500962385
+Tiffany Tran 500886609
+Kevin Tran 500967982
+Michael Widianto 501033366
+-->
+
+<!doctype html>
+<html ng-app="test10">
+
+<head>
+    <title>AngularJS MVC Architecture</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script type>
+        var app = angular.module('test10', []);
+        app.controller('fullName', function ($scope) {
+            $scope.Student =
+            {
+                'FName': 'John',
+                'LName': 'Smith'
+            }
+        }); 
+    </script>
+</head>
+
+<body>
+    <div ng-controller="fullName">
+        <p>{{Student.FName}}</p>
+    </div>
+</body>
+
+</html>
+
+<!--
+----------------------------------
+Output:
+
+    John
+
+-->
