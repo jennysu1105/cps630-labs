@@ -5,7 +5,7 @@
 -->
 
 <?php
-include_once "dbConnection.php";
+include_once "../dbConnection.php";
 $shoppingTable = "CREATE TABLE shoppingTable ( 
     receipt_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     store_code INT NOT NULL,
@@ -57,7 +57,7 @@ $userTable = "CREATE TABLE userTable(
     home_address VARCHAR(50) NOT NULL,
     city_code VARCHAR(3) NOT NULL,
     login_id VARCHAR(50) NOT NULL,
-    user_password VARCHAR(5) NOT NULL,
+    user_password VARCHAR(16) NOT NULL,
     balance DECIMAL(9, 2) NOT NULL
     /* For city_code, im assuming its area code like 416 647 437*/
 )";

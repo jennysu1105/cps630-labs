@@ -5,7 +5,7 @@
 -->
 
 <?php
-include_once "dbConnection.php";
+include_once "../dbConnection.php";
 $sql = "DROP TABLE orderTable, itemTable, userTable, tripTable, truckTable, shoppingTable";
 
 if ($connect->query($sql) === TRUE) {
