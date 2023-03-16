@@ -5,6 +5,7 @@ table, td, th {
 
 table {
     border-collapse: collapse;
+    margin: 0 auto;
 }
 
 th {
@@ -21,6 +22,7 @@ label {
 
 h2.table {
     margin-top: 0;
+    text-align: center;
 }
 
 div.table {
