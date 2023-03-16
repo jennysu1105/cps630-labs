@@ -15,6 +15,14 @@ interface Database
      * Can be called if the object is made from database (id != null). No effect if called by object that is made from user input (id == null).
      */
     public function delete();
+    /**
+     * Return a string of HTML code for row of properties name (column name)
+     */
+    public function printColumn();
+    /**
+     * Return a string of HTML code for row of properties values 
+     */
+    public function printRow();
 }
 
 class Shopping implements Database
@@ -72,6 +80,22 @@ class Shopping implements Database
             $deleteShopping = "DELETE FROM shoppingTable WHERE receipt_id=$this->receipt_id";
             return submitQuery($deleteShopping);
         }
+    }
+
+    public function printColumn() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$key</th>";
+        }
+        return $str."</tr>";
+    }
+
+    public function printRow() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$value</th>";
+        }
+        return $str."</tr>";
     }
 
     public function getReceipt_id()
@@ -155,6 +179,22 @@ class Truck implements Database
             $deleteTruck = "DELETE FROM truckTable WHERE truck_id=$this->truck_id";
             return submitQuery($deleteTruck);
         }
+    }
+
+    public function printColumn() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$key</th>";
+        }
+        return $str."</tr>";
+    }
+
+    public function printRow() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$value</th>";
+        }
+        return $str."</tr>";
     }
 
     public function getTruck_id()
@@ -247,6 +287,22 @@ class Trip implements Database
             $deleteTrip = "DELETE FROM tripTable WHERE trip_id=$this->trip_id";
             return submitQuery($deleteTrip);
         }
+    }
+
+    public function printColumn() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$key</th>";
+        }
+        return $str."</tr>";
+    }
+
+    public function printRow() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$value</th>";
+        }
+        return $str."</tr>";
     }
 
     public function getTrip_id()
@@ -373,6 +429,22 @@ class User implements Database
             $deleteUser = "DELETE FROM userTable WHERE user_id=$this->user_id";
             return submitQuery($deleteUser);
         }
+    }
+
+    public function printColumn() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$key</th>";
+        }
+        return $str."</tr>";
+    }
+
+    public function printRow() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$value</th>";
+        }
+        return $str."</tr>";
     }
 
     public function getUser_id()
@@ -516,6 +588,22 @@ class Item implements Database
         }
     }
 
+    public function printColumn() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$key</th>";
+        }
+        return $str."</tr>";
+    }
+
+    public function printRow() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$value</th>";
+        }
+        return $str."</tr>";
+    }
+
     public function getItem_id()
     {
         return $this->item_id;
@@ -628,6 +716,22 @@ class Order implements Database
             $deleteOrder = "DELETE FROM orderTable WHERE order_id=$this->order_id";
             return submitQuery($deleteOrder);
         }
+    }
+
+    public function printColumn() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$key</th>";
+        }
+        return $str."</tr>";
+    }
+
+    public function printRow() {
+        $str = "<tr>";
+        foreach ($this as $key => $value) {
+            $str = $str."<th>$value</th>";
+        }
+        return $str."</tr>";
     }
 
     public function getOrder_id()

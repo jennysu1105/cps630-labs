@@ -1,17 +1,6 @@
 <?php
     include_once "../dbConnection.php";
-    function submitSelectQuery($query) {
-        global $connect; //from "dbConnection.php"
-        $records = array();
-
-        $result = mysqli_query($connect, $query);
-        if (mysqli_num_rows($result) > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                array_push($records, $row);
-            }
-        }         
-        return $records;
-    }
+    include_once "submitQuery.php";
     /**
      * Return an associative array of Shopping objects where the key is the receipt_id (PRIMARY KEY) and the value is the Shopping object
      */
