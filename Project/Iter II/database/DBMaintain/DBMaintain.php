@@ -17,7 +17,7 @@
     <script>
         $(document).ready(function() {
             $("#operations").change(function (){
-                var link = $("select#operations").val();
+                var link = $(this).val();
                 window.location = link;
             })
         })
