@@ -9,7 +9,7 @@ include_once "../dbConnection.php";
 $shoppingTable = "CREATE TABLE shoppingTable ( 
     receipt_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     store_code INT NOT NULL,
-    total_price DECIMAL(6,2) NOT NULL
+    total_price DECIMAL(4,2) NOT NULL
     /* DECIMAL(4,2) -> 0000.00 */
 )";
 
@@ -36,9 +36,9 @@ $tripTable = "CREATE TABLE tripTable (
     trip_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     source_code VARCHAR(6) NOT NULL,
     destination_code VARCHAR(6) NOT NULL,
-    distance DECIMAL(5, 2) NOT NULL,
+    distance DECIMAL(3, 2) NOT NULL,
     truck_id INT(6) UNSIGNED,
-    price DECIMAL(6, 2) NOT NULL,
+    price DECIMAL(4, 2) NOT NULL,
     FOREIGN KEY (truck_id) REFERENCES truckTable(truck_id)
     /* For source_code and destination_code, im assuming its like postal code, so i set the char to 6 */
 )";
@@ -58,7 +58,7 @@ $userTable = "CREATE TABLE userTable(
     city_code VARCHAR(3) NOT NULL,
     login_id VARCHAR(50) NOT NULL,
     user_password VARCHAR(16) NOT NULL,
-    balance DECIMAL(11, 2) NOT NULL
+    balance DECIMAL(9, 2) NOT NULL
     /* For city_code, im assuming its area code like 416 647 437*/
 )";
 
@@ -71,7 +71,7 @@ if ($connect->query($userTable) === TRUE) {
 $itemTable = "CREATE TABLE itemTable ( 
     item_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     item_name VARCHAR(30) NOT NULL,
-    item_price DECIMAL(6, 2) NOT NULL,
+    item_price DECIMAL(4, 2) NOT NULL,
     made_in VARCHAR(30) NOT NULL,
     department_code VARCHAR(10)
 )";
@@ -86,7 +86,7 @@ $orderTable = "CREATE TABLE orderTable (
     order_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     date_issued DATE NOT NULL,
     date_received DATE NOT NULL,
-    total_price DECIMAL(6, 2) NOT NULL,
+    total_price DECIMAL(4, 2) NOT NULL,
     payment_code VARCHAR(10) NOT NULL,
     user_id INT(6) UNSIGNED,
     trip_id INT(6) UNSIGNED,

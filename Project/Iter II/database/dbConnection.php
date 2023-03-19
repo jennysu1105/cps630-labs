@@ -7,9 +7,9 @@
 <?php
 
 /* Dont forget to change these stuff */
-$hostname = "localhost:3307";
+$hostname = "localhost:3306";
 $username = "root";
-$password = "cps630Lab2,3";
+$password = "";
 $database = "project";
 
 $connect = new mysqli(
