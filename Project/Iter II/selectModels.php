@@ -2,7 +2,7 @@
     include_once "../dbConnection.php";
     include_once "submitQuery.php";
     /**
-     * Return an associative array of Shopping objects where the key is the receipt_id (PRIMARY KEY) and the value is the Shopping object
+     * Return an associative array of Shopping objects where the key is the receipt_id (PRIMARY KEY) in string, and the value is the Shopping object
      */
     function selectShopping () {
         $selectShopping="SELECT * FROM shoppingTable";
@@ -17,7 +17,7 @@
     }
     
     /**
-     * Return an associative array of Truck objects where the key is the truck_id (PRIMARY KEY) and the value is the Truck object
+     * Return an associative array of Truck objects where the key is the truck_id (PRIMARY KEY) in string, and the value is the Truck object
      */
     function selectTruck () {
         $selectTruck="SELECT * FROM truckTable";
@@ -32,7 +32,7 @@
     }
 
     /**
-     * Return an associative array of Trip objects where the key is the trip_id (PRIMARY KEY) and the value is the Trip object
+     * Return an associative array of Trip objects where the key is the trip_id (PRIMARY KEY) in string, and the value is the Trip object
      */
     function selectTrip () {
         $selectTrip="SELECT * FROM tripTable";
@@ -47,7 +47,7 @@
     }
 
     /**
-     * Return an associative array of User objects where the key is the user_id (PRIMARY KEY) and the value is the User object
+     * Return an associative array of User objects where the key is the user_id (PRIMARY KEY) in string, and the value is the User object
      */
     function selectUser () {
         $selectUser="SELECT * FROM userTable";
@@ -62,7 +62,7 @@
     }
 
     /**
-     * Return an associative array of Item objects where the key is the item_id (PRIMARY KEY) and the value is the Item object
+     * Return an associative array of Item objects where the key is the item_id (PRIMARY KEY) in string, and the value is the Item object
      */
     function selectItem () {
         $selectItem="SELECT * FROM itemTable";
@@ -77,7 +77,7 @@
     }
 
     /**
-     * Return an associative array of Order objects where the key is the order_id (PRIMARY KEY) and the value is the Order object
+     * Return an associative array of Order objects where the key is the order_id (PRIMARY KEY) in string, and the value is the Order object
      */
     function selectOrder () {
         $selectOrder="SELECT * FROM orderTable";

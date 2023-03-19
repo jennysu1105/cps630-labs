@@ -7,6 +7,9 @@
 </head>
 
 <body>
+    <?php
+        include_once "DBMaintain.php";
+    ?>
     <h1>Choose Table</h1>
     <input type="checkbox" id="shopping" name="shopping">
     <label for="shopping">Shopping Table</label>
@@ -75,32 +78,15 @@
 
     <?php
         include_once "../dbConnection.php";
-        include_once "../selectModels.php";
-        include_once "../Models.php";
+        include_once "DBMaintainFunctions.php";
 
-        function createHTMLTable($table, $title, $id) {
-            print("<div id='$id' class='table'><h2 class='table'>$title</h2><table>");
-            print($table[array_key_first($table)]->printColumn());
-            foreach($table as $row) {
-                print($row->printRow());
-            }
-            print("</table></div>");
-        }
-
-        $shoppingList = selectShopping(); 
-        $truckList = selectTruck(); 
-        $tripList = selectTrip(); 
-        $userList = selectUser();
-        $itemList = selectItem();
-        $orderList = selectOrder();
-
-        print("<div hidden class='mainContainer'>");
-        createHTMLTable($shoppingList, "Shopping Table", "shopping");
-        createHTMLTable($truckList, "Truck Table", "truck");
-        createHTMLTable($tripList, "Trip Table", "trip");
-        createHTMLTable($userList, "User Table", "user");
-        createHTMLTable($itemList, "Item Table", "item");
-        createHTMLTable($orderList, "Order Table", "order");
+        print("<div class='mainContainer'>");
+        createSelectHTMLTable("shopping");
+        createSelectHTMLTable("truck");
+        createSelectHTMLTable("trip");
+        createSelectHTMLTable("user");
+        createSelectHTMLTable("item");
+        createSelectHTMLTable("order");
         print("</div>");
     ?>
 </body>
