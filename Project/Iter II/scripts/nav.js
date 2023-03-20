@@ -36,6 +36,9 @@ class Navigation extends HTMLElement {
                         <li class="nav-item">
                             <a class="nav-link" href="shopping_cart.php">Shopping cart</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="database/DBMaintain/DBMaintain.php">DBMaintain</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
