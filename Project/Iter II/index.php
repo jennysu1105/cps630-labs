@@ -18,7 +18,6 @@
 			var data = ev.dataTransfer.getData("text");
 			var item = document.getElementById("item_" + data);
 			var item_price = document.getElementById("price_" + data);
-
 			ev.preventDefault();
 			ev.target.append(item.innerHTML + " - $" + item_price.innerHTML);
 			ev.target.appendChild(linebreak);
@@ -68,11 +67,11 @@
 							}
 							echo '<div class="col">';
 							echo '<div class="card">';
-                            echo '<img id="1" src="images/1.jpg" draggable="true" ondragstart="drag(event)">';
+                            echo '<img id="' . $i .'" src="images/1.jpg" draggable="true" ondragstart="drag(event)">';
                             echo '<hr>';
                             echo '<div class="card_container">';
-                            echo '<p id="item_1" class="shopping_item">'. $name . '</p>';
-                            echo '<p id="price_1">' . $price . '</p>';
+                            echo '<p id="item_' . $i .'" class="shopping_item">'. $name . '</p>';
+                            echo '<p id="price_' . $i .'">' . $price . '</p>';
                             echo '</div>';
                             echo '</div>';
                             echo '</div>';
