@@ -95,7 +95,7 @@
 						if(isset($_COOKIE['items'])){
 							$items = json_decode($_COOKIE['items'], true);
 							$total = 0;
-							for ($i = 0; $i <= count($items); $i++){
+							for ($i = 0; $i < count($items); $i++){
 								$item = $items[$i];
 								$query = "select * from itemTable where item_id=" . $item;
 								$result = submitSelectQuery($query);

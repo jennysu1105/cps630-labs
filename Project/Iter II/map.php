@@ -54,6 +54,33 @@
       <div class="col-md-8" style="background-color:lavenderblush;">
         <div id="map"></div>
       </div>
+      <div id="cart" class="container"> 
+        <!-- cookie is stored in $_COOKIE['items'] and contains a list of encoded item_ids-->
+        <?php
+          include_once "database/submitQuery.php";
+          if(isset($_COOKIE['items'])){
+            $items = json_decode($_COOKIE['items'], true);
+            $total = 0;
+            for ($i = 0; $i < count($items); $i++){
+              $item = $items[$i];
+              $query = "select * from itemTable where item_id=" . $item;
+              $result = submitSelectQuery($query);
+              $name = $result[0]['item_name'];
+              $price = $result[0]['item_price'];
+              
+              $item_tag = $name . " - $ " . $price;
+              $item_img = "images/" . 1 . ".jpg";
+              $img_tag = "<img src=\"" . $item_img . "\" height=\"50px\" style=\"margin-right:10px\">";
+              
+              $total += $price;
+              
+              echo "<div class=\"col-sm-12 p-3 mb-2 bg-light text-dark\">" . $img_tag . $item_tag . "</div>";
+              echo '<script>var cart_total = document.getElementById("items"); cart_total.innerHTML = ' . count($items) .';</script>';
+              echo '<script>var cart_total = document.getElementById("price"); cart_total.innerHTML = ' . $total .';</script>';
+            }
+          }
+        ?>
+        </div>
     </div>
   </div>
 
