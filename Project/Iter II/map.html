@@ -50,35 +50,12 @@
           <option value="MH47+8P Toronto, Ontario">Dufferin Mall</option>
         </select>
         <input type="submit" onclick="generatePath()">
-        <!-- <b>Delivered To: </b>
-        <select id="end">
-          <option value="MG98+65 Toronto, Ontario">TEST1</option>
-          <option value="PG5G+CJ Toronto, Ontario">TEST2</option>
-          <option value="PFCQ+XG North York, Toronto, ON">TEST3</option>
-        </select>  -->
       </div>
       <div class="col-md-8" style="background-color:lavenderblush;">
         <div id="map"></div>
       </div>
     </div>
   </div>
-
-  
-    <!-- <div id="floating-panel">
-        <b>Start: </b>
-        <select id="start">
-          <option value="1768 St. Clair Avenue West">Pho Xua</option>
-          <option value="MG3M+G6 Toronto, Ontario">St Louis</option>
-          <option value="MHV3+C3 York, Toronto, ON">Joplin, MO</option>
-        </select>
-        <b>End: </b>
-        <select id="end">
-          <option value="PGGX+54 Toronto, Ontario">Yorkdale</option>
-          <option value="MJ39+QP Toronto, Ontario">Eatons Centre</option>
-          <option value="MH47+8P Toronto, Ontario">Dufferin Mall</option>
-        </select>
-      </div>
-    <div id="map"></div> -->
 
     <!-- Map -->
 
@@ -176,47 +153,6 @@
           alert("No delivery address added!")
         }
       }
-
-      // function initMap() {
-      //     const directionsService = new google.maps.DirectionsService();
-      //     const directionsRenderer = new google.maps.DirectionsRenderer();
-          // const map = new google.maps.Map(document.getElementById("map"), {
-          //     zoom: 13,
-          //     center: { lat: 43.671916, lng: -79.427061 },
-          // });
-
-      //     directionsRenderer.setMap(map);
-
-      //     const onChangeHandler = function () {
-      //         calculateAndDisplayRoute(directionsService, directionsRenderer);
-      //     };
-
-      //     document.getElementById("start").addEventListener("change", onChangeHandler);
-      //     document.getElementById("end").addEventListener("change", onChangeHandler);
-      // }
-
-      // function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-      //   if(document.getElementById('end').value.length !== 0){
-      //     directionsService
-      //     .route({
-      //       origin: {
-      //         query: document.getElementById("start").value,
-      //       },
-      //       destination: {
-      //         query: document.getElementById("end").value,
-      //       },
-      //       travelMode: google.maps.TravelMode.DRIVING,
-      //     })
-      //     .then((response) => {
-      //       console.log("here");
-      //       directionsRenderer.setDirections(response);
-      //     })
-      //     .catch((e) => window.alert("Directions request failed due to " + status));
-      //   }else{
-      //     alert("No delivery address added!")
-      //   }
-      // }
-
       window.initMap = initMap;
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLherBXiXAewyPuGAs-5Hs47p0-_D7VcQ&callback=initMap"></script>
