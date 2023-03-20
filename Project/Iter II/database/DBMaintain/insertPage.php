@@ -7,6 +7,9 @@
 </head>
 
 <body>
+    <?php
+    include_once "DBMaintain.php";
+    ?>
     <h1>Insert Page</h1><br>
     <?php
         include_once "DBMaintainFunctions.php";
