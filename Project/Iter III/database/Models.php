@@ -540,6 +540,11 @@ class Item extends Table implements Database
         }
     }
 
+    public function createReview($rating, $review) {
+        $reviewObj = new Review($this->item_id, $rating, $review);
+        $reviewObj->insert();
+    }
+
     public function getItem_id()
     {
         return $this->item_id;
