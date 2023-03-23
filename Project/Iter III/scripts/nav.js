@@ -22,22 +22,30 @@ class Navigation extends HTMLElement {
                             <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about_us.html">About us</a>
+                            <a class="nav-link" href="about_us.php">About us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact_us.html">Contact us</a>
+                            <a class="nav-link" href="contact_us.php">Contact us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="types_of_services.html">Types of services</a>
+                            <a class="nav-link" href="types_of_services.php">Types of services</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="reviews.html">Reviews</a>
+                            <a class="nav-link" href="reviews.php">Reviews</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="shopping_cart.php">Shopping cart</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="database/DBMaintain/DBMaintain.php">DBMaintain</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                DBMaintain
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="database/DBMaintain/selectPage.php">Select</a></li>
+                                <li><a class="dropdown-item" href="database/DBMaintain/insertPage.php">Insert</a></li>
+                                <li><a class="dropdown-item" href="database/DBMaintain/updatePage.php">Update</a></li>
+                                <li><a class="dropdown-item" href="database/DBMaintain/deletePage.php">Delete</a></li>
+                            </ul>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
