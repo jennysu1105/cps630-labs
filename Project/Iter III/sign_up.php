@@ -1,3 +1,7 @@
+<?php
+	include_once "browserDetection.php";
+?>
+
 <!DOCTYPE html>
 <html>
 

@@ -49,5 +49,5 @@ print(" <form method='POST' action='deletePage.php'>
         </form>"
 );
 
-
+include_once "../../browserDetection.php";
 ?>

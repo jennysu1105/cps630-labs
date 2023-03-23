@@ -1,3 +1,8 @@
+<?php
+	include_once "browserDetection.php";
+?>
+
+
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +17,7 @@
     <script src="scripts/nav.js"></script>
     <script src="scripts/index.js"></script>
     <script type="text/javascript">
-		<!-- drag drop --> 
+		//drag drop
 		function drop(ev) {
 			var linebreak = document.createElement("br");
 			var data = ev.dataTransfer.getData("text");
@@ -32,7 +37,7 @@
 				cart_total.innerHTML = price;
 			}
 			
-			<!-- cookie contains item_ids -->
+			//cookie contains item_ids
 			$.ajax({
 				url: 'setCookie.php',
 				type: 'GET',

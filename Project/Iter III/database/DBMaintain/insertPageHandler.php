@@ -44,5 +44,5 @@ print(" <form method='POST' action='insertPage.php'>
         </form>"
 );
 
-
+include_once "../../browserDetection.php";
 ?>

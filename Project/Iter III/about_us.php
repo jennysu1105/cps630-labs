@@ -1,8 +1,12 @@
+<?php
+	include_once "browserDetection.php";
+?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>Contact us</title>
+    <title>About us</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="styles/style.css" rel="stylesheet">
@@ -16,7 +20,7 @@
     <nav-bar></nav-bar>
     <div class="container">
         <div class="row mt-4">
-            <h3>Team 37 - Contact us</h3>
+            <h3>Team 37 - About us</h3>
         </div>
         <div class="row mt-4 mb-5">
             <div class="col">
@@ -25,7 +29,7 @@
                     <hr>
                     <div class="card_container">
                         <h4>Jenny Su</h4>
-                        <p>j10su@torontomu.ca</p>
+                        <p>500962385</p>
                     </div>
                 </div>
             </div>
@@ -35,7 +39,7 @@
                     <hr>
                     <div class="card_container">
                         <h4>Tiffany Tran</h4>
-                        <p>tiffany.tran@torontomu.ca</p>
+                        <p>500886609</p>
                     </div>
                 </div>
             </div>
@@ -47,7 +51,7 @@
                     <hr>
                     <div class="card_container">
                         <h4>Kevin Tran</h4>
-                        <p>kevin.huy.tran@torontomu.ca</p>
+                        <p>500967982</p>
                     </div>
                 </div>
             </div>
@@ -57,7 +61,7 @@
                     <hr>
                     <div class="card_container">
                         <h4>Michael Widianto</h4>
-                        <p>michael.r.widianto@torontomu.ca</p>
+                        <p>501033366</p>
                     </div>
                 </div>
             </div>

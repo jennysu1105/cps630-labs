@@ -162,6 +162,8 @@
             </form>"
     );
     createHTMLTable("order");
+
+    include_once "../../browserDetection.php";
     ?>
 </body>
 

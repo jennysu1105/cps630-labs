@@ -144,3 +144,6 @@ print(" <form method='POST' action='updatePage.php'>
             <button type='submit'/>Return to main page</button>
         </form>"
 );
+
+include_once "../../browserDetection.php";
+?>

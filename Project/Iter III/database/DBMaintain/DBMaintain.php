@@ -22,6 +22,10 @@
             })
         })
     </script>
+
+    <?php
+        include_once "../../browserDetection.php";
+    ?>
 </body>
 
 </html>
