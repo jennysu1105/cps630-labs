@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Smart Customer Services</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="styles/map.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="scripts/nav.js"></script>
+    <script src="scripts/index.js"></script>
+</head>
+
+<body style="background-color: #b2edc2;">
+  <nav-bar></nav-bar>
+  <div class="container">
+    <div class="row mt-4" >
+      <div class="col-md-4" style="background-color:lavender;">
+        <div class="row gx-0">
+          <div>First name:</div><input type="text" name="fname"><br>
+          <div>Last name:</div><input type="text" name="lname" ><br>
+          <div>Phone number:</div><input type="text" name="phone-number"><br>
+          <div>Provines & Territories:</div>
+          <select name="province" id="province" onchange="changeProvince()">
+            <option value="empty"></option>
+            <option value="Alberta">Alberta</option>
+            <option value="British Columbia">British Columbia</option>
+            <option value="Manitoba">Manitoba</option>
+            <option value="New Brunswick">New Brunswick</option>
+            <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+            <option value="Nova Scotia">Nova Scotia</option>
+            <option value="Northwest Territories">Northwest Territories</option>
+            <option value="Nunavut">Nunavut</option>
+            <option value="Ontario">Ontario</option>
+            <option value="Prince Edward Island">Prince Edward Island</option>
+            <option value="Quebec">Quebec</option>
+            <option value="Saskatchewan">Saskatchewan</option>
+            <option value="Yukon">Yukon</option>
+          </select>
+          <div>City: </div><input type="text" name="city" id="city" onchange="changeCity()"><br>
+          <div>Delivery Address:</div><input type="text" name="address" id="end" onchange="changeAddress()"><br>
+        </div>
+        <div>Branch:</div>
+        <select id="start" onchange="changeBranch()">
+          <option value="empty"></option>
+          <option value="PGGX+54 Toronto, Ontario">Yorkdale</option>
+          <option value="MJ39+QP Toronto, Ontario">Eatons</option>
+          <option value="MH47+8P Toronto, Ontario">Dufferin Mall</option>
+        </select>
+        <input type="submit" onclick="generatePath()">
+      </div>
+      <div class="col-md-8" style="background-color:lavenderblush;">
+        <div id="map"></div>
+      </div>
+      <div id="cart" class="container"> 
+        <!-- cookie is stored in $_COOKIE['items'] and contains a list of encoded item_ids-->
+        <?php
+          include_once "database/submitQuery.php";
+          if(isset($_COOKIE['items'])){
+            $items = json_decode($_COOKIE['items'], true);
+            $total = 0;
+            for ($i = 0; $i < count($items); $i++){
+              $item = $items[$i];
+              $query = "select * from itemTable where item_id=" . $item;
+              $result = submitSelectQuery($query);
+              $name = $result[0]['item_name'];
+              $price = $result[0]['item_price'];
+              
+              $item_tag = $name . " - $ " . $price;
+              $item_img = "images/" . 1 . ".jpg";
+              $img_tag = "<img src=\"" . $item_img . "\" height=\"50px\" style=\"margin-right:10px\">";
+              
+              $total += $price;
+              
+              echo "<div class=\"col-sm-12 p-3 mb-2 bg-light text-dark\">" . $img_tag . $item_tag . "</div>";
+              echo '<script>var cart_total = document.getElementById("items"); cart_total.innerHTML = ' . count($items) .';</script>';
+              echo '<script>var cart_total = document.getElementById("price"); cart_total.innerHTML = ' . $total .';</script>';
+            }
+          }
+        ?>
+        </div>
+    </div>
+  </div>
+
+    <!-- Map -->
+
+    <script>
+      var theMap = new google.maps.Map();
+      var theRenderer = new google.maps.DirectionsRenderer();
+      var province = "";
+      var city = "";
+      var address = "";
+      var branch = "";
+
+      function initMap(){
+        const directionsService = new google.maps.DirectionsService();
+        const directionsRenderer = new google.maps.DirectionsRenderer();
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 3,
+            center: { lat: 59.105890, lng: -102.005848}
+        });
+        theMap = map;
+        theRenderer = directionsRenderer;
+        theRenderer.setMap(map);
+      }
+
+      function changeProvince(){
+        var geocoder = new google.maps.Geocoder();
+        province = document.getElementById("province").value;
+        if(province !== "empty"){
+          geocoder.geocode({address: province}).then((response) => {
+            if(response.results[0]){
+                var theJson = JSON.parse(JSON.stringify(response, null, 2));
+                theMap.panTo({lat: theJson.results[0].geometry.location.lat, lng: theJson.results[0].geometry.location.lng });
+                theMap.setZoom(5);
+                city = ""; 
+                address = "";
+                document.getElementById("city").value = "";
+                document.getElementById("end").value = "";
+                document.getElementById("start").value = "empty";
+            }else{
+                window.alert("No results found");
+            }});
+        }
+      }
+      
+      function changeCity(){
+        var geocoder = new google.maps.Geocoder();
+        city = document.getElementById("city").value;
+        var provCity = province + " " + city;
+        geocoder.geocode({address: provCity}).then((response) => {
+            if(response.results[0]){
+                var theJson = JSON.parse(JSON.stringify(response, null, 2));
+                theMap.panTo({lat: theJson.results[0].geometry.location.lat, lng: theJson.results[0].geometry.location.lng });
+                theMap.setZoom(11);
+            }else{
+                window.alert("No results found");
+            }
+        });
+      }
+
+      function changeAddress(){
+        var geocoder = new google.maps.Geocoder();  
+        address = document.getElementById("end").value;
+        var provCityAddress = province + " " + city + " " + address;
+        geocoder.geocode({address: provCityAddress}).then((response) => {
+          if(response.results[0]){
+            var theJson = JSON.parse(JSON.stringify(response, null, 2));
+            theMap.panTo({lat: theJson.results[0].geometry.location.lat, lng: theJson.results[0].geometry.location.lng });
+            theMap.setZoom(14);
+          }else{
+            window.alert("No results found");
+          }
+        });
+      }
+
+      function changeBranch(){if(document.getElementById("start").value !== "empty"){branch = document.getElementById("start").value;}}
+
+      function generatePath(){
+        if(document.getElementById("start").value !== "empty" && document.getElementById("end").value.length !== 0){
+          const directionsService = new google.maps.DirectionsService();
+          const directionsRenderer = new google.maps.DirectionsRenderer();
+          directionsService
+          .route({
+            origin: {
+              query: document.getElementById("start").value,
+            },
+            destination: {
+              query: document.getElementById("end").value,
+            },
+            travelMode: google.maps.TravelMode.DRIVING,
+          })
+          .then((response) => {
+            theRenderer.setDirections(response);
+          })
+          .catch((e) => window.alert("Directions request failed due to " + status));
+        }else{
+          alert("No delivery address added!")
+        }
+      }
+      window.initMap = initMap;
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLherBXiXAewyPuGAs-5Hs47p0-_D7VcQ&callback=initMap"></script>
+</body>
+
+</html>
