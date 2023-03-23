@@ -1,4 +1,5 @@
 <?php
+
 include_once "submitQuery.php";
 
 interface Database
@@ -540,6 +541,11 @@ class Item extends Table implements Database
         }
     }
 
+    public function makeSale($sale_price, $expiration_date) {
+        $saleItem = new ItemSale($this->item_id, $sale_price, $expiration_date);
+        $saleItem->insert();
+    }
+
     public function createReview($rating, $review) {
         $reviewObj = new Review($this->item_id, $rating, $review);
         $reviewObj->insert();
@@ -584,6 +590,102 @@ class Item extends Table implements Database
     public function setDepartment_code($department_code)
     {
         $this->department_code = $department_code;
+    }
+}
+
+class ItemSale extends Table implements Database
+{
+    public $item_sale_id;
+    public $item_id;
+    public $sale_price;
+    public $expiry_time;
+
+    /**
+     * Enter 3 parameter ($item_id, $sale_price, $expiry_time) for creating the object from user input.
+     * Enter 4 parameter ($item_sale_id, $item_id, $sale_price, $expiry_time) for creating the obejct from database.
+     */
+    public function __construct()
+    {
+        $arguments = func_get_args();
+        $numberOfArguments = func_num_args();
+
+        if (method_exists($this, $function = '__construct' . $numberOfArguments)) {
+            call_user_func_array(array($this, $function), $arguments);
+        }
+    }
+
+    public function __construct3($item_id, $sale_price, $expiry_time)
+    {
+        $this->item_id = $item_id;
+        $this->sale_price = $sale_price;
+        $this->expiry_time = $expiry_time;
+    }
+
+    public function __construct4($item_sale_id, $item_id, $sale_price, $expiry_time)
+    {
+        $this->item_sale_id = $item_sale_id;
+        $this->item_id = $item_id;
+        $this->sale_price = $sale_price;
+        $this->expiry_time = $expiry_time;
+    }
+
+    public function insert()
+    {
+        if ($this->item_sale_id == null) {
+            $insertReview = "INSERT INTO itemSaleTable (item_id, sale_price, expiry_time) VALUES ($this->item_id, $this->sale_price, '$this->expiry_time')";
+            return submitQuery($insertReview);
+        }
+    }
+
+    public function update()
+    {
+        if ($this->item_sale_id != null) {
+            $updateReview = "UPDATE itemSaleTable SET item_id=$this->item_id, sale_price=$this->sale_price, expiry_time='$this->expiry_time' WHERE item_sale_id=$this->item_sale_id";
+            return submitQuery($updateReview);
+        }
+    }
+
+    public function delete()
+    {
+        if ($this->item_sale_id != null) {
+            $deleteReview = "DELETE FROM itemSaleTable WHERE item_sale_id=$this->item_sale_id";
+            return submitQuery($deleteReview);
+        }
+    }
+
+    public function getItem_sale_id()
+    {
+        return $this->item_sale_id;
+    }
+
+    public function getItem_id()
+    {
+        return $this->item_id;
+    }
+
+    public function setItem_id($item_id)
+    {
+        $this->item_id = $item_id;
+    }
+
+    public function getSale_price()
+    {
+        return $this->sale_price;
+    }
+
+    public function setSale_price($sale_price)
+    {
+        $this->sale_price = $sale_price;
+    }
+
+    public function getExpiry_time()
+    {
+        return $this->expiry_time;
+    }
+
+    public function setExpiry_time($expiry_time)
+    {
+        $this->expiry_time = $expiry_time;
     }
 }
 

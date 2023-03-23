@@ -76,6 +76,14 @@ $itemTable = "CREATE TABLE itemTable (
     department_code VARCHAR(10) NOT NULL
 )";
 
+$itemSaleTable = "CREATE TABLE itemSaleTable ( 
+    item_sale_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    item_id INT(6) UNSIGNED,
+    sale_price DECIMAL(6, 2) NOT NULL,
+    expiry_time DATE NOT NULL,
+    FOREIGN KEY (item_id) REFERENCES itemTable(item_id)
+)";
+
 if ($connect->query($itemTable) === TRUE) {
     echo "Item Table created successfully <br>";
 } else {
