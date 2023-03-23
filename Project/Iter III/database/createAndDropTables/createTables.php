@@ -76,6 +76,12 @@ $itemTable = "CREATE TABLE itemTable (
     department_code VARCHAR(10) NOT NULL
 )";
 
+if ($connect->query($itemTable) === TRUE) {
+    echo "Item Table created successfully <br>";
+} else {
+    echo "Error creating Item Table: " . $connect->error . "<br>";
+}
+
 $itemSaleTable = "CREATE TABLE itemSaleTable ( 
     item_sale_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     item_id INT(6) UNSIGNED,
@@ -84,10 +90,10 @@ $itemSaleTable = "CREATE TABLE itemSaleTable (
     FOREIGN KEY (item_id) REFERENCES itemTable(item_id)
 )";
 
-if ($connect->query($itemTable) === TRUE) {
-    echo "Item Table created successfully <br>";
+if ($connect->query($itemSaleTable) === TRUE) {
+    echo "Item Sale Table created successfully <br>";
 } else {
-    echo "Error creating Item Table: " . $connect->error . "<br>";
+    echo "Error creating Item Sale Table: " . $connect->error . "<br>";
 }
 
 $reviewTable = "CREATE TABLE reviewTable (
