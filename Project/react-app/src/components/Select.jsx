@@ -80,7 +80,7 @@ const Select = () => {
     return (
         <div class="container">
             <div class="row">
-                <h3 class="mt-4">Choose Table</h3>
+                <h3 class="mt-4 mb-4">Select Table</h3>
             </div>
             <input type="checkbox" id="shopping" name="shopping" />
             <label for="shopping">&nbsp;Shopping Table</label>
