@@ -34,7 +34,7 @@ include_once "browserDetection.php";
                 <img src="images/delivery_icon.png" alt="delivery_icon" style="width:60%; margin: 10px 0 5px 0;">
                 <div>
                     <h5 class="mt-5">Delivery</h5>
-                    <a href="map.php" class="btn btn-success" role="button">To delivery</a>
+                    <a href="fire_sale.php" class="btn btn-success" role="button">To delivery</a>
                 </div>
             </div>
         </div>

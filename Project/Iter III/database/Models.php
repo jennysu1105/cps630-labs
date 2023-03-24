@@ -541,9 +541,9 @@ class Item extends Table implements Database
         }
     }
 
-    public function makeSale($sale_price, $expiration_date) {
-        $saleItem = new ItemSale($this->item_id, $sale_price, $expiration_date);
-        $saleItem->insert();
+    public function makeSale($item_id, $sale_price, $expiration_date) {
+        $addSale = "INSERT INTO itemsaletable (item_id, sale_price, expiry_time) VALUES ($item_id, $sale_price, '$expiration_date')";
+        return submitQuery($addSale);
     }
 
     public function createReview($rating, $review) {
