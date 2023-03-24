@@ -8,6 +8,7 @@ import Contact_us from './components/Contact_us';
 import Types_of_Services from './components/Types_of_Services';
 import Shopping_Cart from './components/Shopping_Cart';
 import Map from './components/Map';
+import Select from './components/Select'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/types_of_services" element={<Types_of_Services/>}></Route>
           <Route path="/shopping_cart" element={<Shopping_Cart/>}></Route>
           <Route path="/map" element={<Map/>}></Route>
+          <Route path="/select" element={<Select/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
