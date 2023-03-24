@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import $ from 'jquery';
+import '../static/css/DBMaintain.css';
 
 const Select = () => {
     const [data, setData] = useState("");
@@ -11,7 +13,69 @@ const Select = () => {
         });
     }, []);
 
-    
+    $("input#shopping").change(function () {
+        if (this.checked) {
+            $("div#shopping").css('display', 'block');
+        } else {
+            $("div#shopping").css('display', 'none');
+        }
+    })
+
+    $("input#truck").change(function () {
+        if (this.checked) {
+            $("div#truck").css('display', 'block');
+        } else {
+            $("div#truck").css('display', 'none');
+        }
+    })
+
+    $("input#trip").change(function () {
+        if (this.checked) {
+            $("div#trip").css('display', 'block');
+        } else {
+            $("div#trip").css('display', 'none');
+        }
+    })
+
+    $("input#user").change(function () {
+        if (this.checked) {
+            $("div#user").css('display', 'block');
+        } else {
+            $("div#user").css('display', 'none');
+        }
+    })
+
+    $("input#item").change(function () {
+        if (this.checked) {
+            $("div#item").css('display', 'block');
+        } else {
+            $("div#item").css('display', 'none');
+        }
+    })
+
+    $("input#review").change(function () {
+        if (this.checked) {
+            $("div#review").css('display', 'block');
+        } else {
+            $("div#review").css('display', 'none');
+        }
+    })
+
+    $("input#payment").change(function () {
+        if (this.checked) {
+            $("div#payment").css('display', 'block');
+        } else {
+            $("div#payment").css('display', 'none');
+        }
+    })
+
+    $("input#order").change(function () {
+        if (this.checked) {
+            $("div#order").css('display', 'block');
+        } else {
+            $("div#order").css('display', 'none');
+        }
+    })
 
     return (
         <div class="container">
@@ -19,21 +83,21 @@ const Select = () => {
                 <h3 class="mt-4">Choose Table</h3>
             </div>
             <input type="checkbox" id="shopping" name="shopping" />
-            <label for="shopping">Shopping Table</label>
+            <label for="shopping">&nbsp;Shopping Table</label>
             <input type="checkbox" id="truck" name="truck" />
-            <label for="truck">Truck Table</label>
+            <label for="truck">&nbsp;Truck Table</label>
             <input type="checkbox" id="trip" name="trip" />
-            <label for="trip">Trip Table</label>
+            <label for="trip">&nbsp;Trip Table</label>
             <input type="checkbox" id="user" name="user" />
-            <label for="user">User Table</label>
+            <label for="user">&nbsp;User Table</label>
             <input type="checkbox" id="item" name="item" />
-            <label for="item">Item Table</label>
+            <label for="item">&nbsp;Item Table</label>
             <input type="checkbox" id="review" name="review" />
-            <label for="review">Review Table</label>
+            <label for="review">&nbsp;Review Table</label>
             <input type="checkbox" id="payment" name="payment" />
-            <label for="payment">Payment Table</label>
+            <label for="payment">&nbsp;Payment Table</label>
             <input type="checkbox" id="order" name="order" />
-            <label for="order">Order Table</label>
+            <label for="order">&nbsp;Order Table</label>
             <div
                 dangerouslySetInnerHTML={{ __html: data }}
             />
