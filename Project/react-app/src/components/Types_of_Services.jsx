@@ -13,14 +13,14 @@ const Types_of_Services = () => {
                     <img src={shopping} alt="shopping_icon" id="shopping_icon" />
                     <div>
                         <h5 class="mt-5">Online shopping</h5>
-                        <a href="index.php" class="btn btn-success" role="button">To shopping</a>
+                        <a href="/" class="btn btn-success" role="button">To shopping</a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <img src={delivery} alt="delivery_icon" id="delivery_icon" />
                     <div>
                         <h5 class="mt-5">Delivery</h5>
-                        <a href="map.php" class="btn btn-success" role="button">To delivery</a>
+                        <a href="/map" class="btn btn-success" role="button">To delivery</a>
                     </div>
                 </div>
             </div>
