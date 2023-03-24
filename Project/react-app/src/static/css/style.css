@@ -1,3 +1,8 @@
+.background {
+    background-color: #b2edc2;
+    height: 100vh;
+}
+
 h3,
 h4,
 h5,
@@ -41,4 +46,14 @@ h6 {
     text-align: center;
     overflow: auto;
     padding-bottom: 10px;
+}
+
+#shopping_icon {
+    width: 50%;
+    mix-blend-mode: multiply;
+}
+
+#delivery_icon {
+    width: 60%;
+    margin: 10px 0 5px 0;
 }
