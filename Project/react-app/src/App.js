@@ -1,7 +1,7 @@
 import './App.css';
 import './static/css/style.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from './components/Navbar';
+import Navigation from './components/Navigation'
 import Index from './components/Index';
 import About_us from './components/About_us';
 import Contact_us from './components/Contact_us';
@@ -12,7 +12,7 @@ import Map from './components/Map';
 function App() {
   return (
     <div className="App">
-      <Navbar></Navbar>
+      <Navigation></Navigation>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index/>}></Route>
