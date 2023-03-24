@@ -55,10 +55,10 @@ $userTable = "CREATE TABLE userTable(
     telephone VARCHAR(10) NOT NULL,
     email VARCHAR(50) NOT NULL,
     home_address VARCHAR(50) NOT NULL,
-    city_code VARCHAR(3) NOT NULL,
+    city_code VARCHAR(3),
     login_id VARCHAR(50) NOT NULL,
     user_password VARCHAR(16) NOT NULL,
-    balance DECIMAL(11, 2) NOT NULL
+    balance DECIMAL(11, 2)
     /* For city_code, im assuming its area code like 416 647 437*/
 )";
 
