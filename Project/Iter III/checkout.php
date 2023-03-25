@@ -28,13 +28,33 @@
       </div>
       <div class = "col-md-6">
         <form method="post" action="reviewOrder.php">
+          <button type="submit" class="bg-light text-dark">Place Order</button><hr>
           <p><b>Payment Details</b></p>
-          Card Number: <input type="text" name="card_num" style="width:450px"></input>
-          <br><br>Name: <input type="text" name="card_name" style="width:150px"></input>
-          <br><br>Expiry Date: MM/DD <input type="text" name="card_expiry" style="width:100px"></input>
-          CVV: <input type="text" name="cvv" style="width:50px"></input>
-          <br><br><input type="checkbox" name="save_card" name="save_card" value="save">
-          <label for="save_card">Save this card</label><br>
+          <?php
+          include_once "database/submitQuery.php";
+            # This will be user based when users are implemented
+            $query = "SELECT * FROM paymentTable";
+            $result = submitSelectQuery($query);
+            for ($i = 0; $i < count($result) ; $i++){
+              $id = $result[$i]['payment_id'];
+              $num = substr($result[$i]['card_number'], 12);
+              $name = $result[$i]['cardholder_name'];
+              $expire = $result[$i]['expiration_date'];
+
+              echo '<input type="radio" id = "' . $id . '" name="payment" value="'. $id . '">';
+              echo '<label for="' . $id . '"><div class="card" style="padding:10px"> ************'. $num . '<br>' . $name . ' | ' . $expire . '</div></label><br>';
+            }
+          ?>
+          <input type="radio" id="new" name = "payment" value = "new">
+          <label for="new">
+            <div class="card" style="padding:10px">
+              Card Number: <input type="text" name="card_num" style="width:450px"></input>
+              </label>
+              Name: <input type="text" name="card_name" style="width:150px"></input>
+              Expiry Date: MM/YY <input type="text" name="card_expiry" style="width:100px"></input>
+              CVV: <input type="text" name="cvv" style="width:50px"></input>
+            </div>
+            <br><input type="checkbox" name="save_card" value="save"><label for="save_card">Save this card</label><br>
           <hr>
           <p><b>Shipping Details</b></p>
           Address Line 1: <input type="text" name="address_1" style="width:450px" style></input><br><br>
@@ -43,7 +63,6 @@
           Province: <input type="text" name="province" style="width:150px"></input>
           <br><br>
           Postal Code: <input type="text" name="postal_code" style="width:150px"></input>
-          <hr><button type="submit" class="bg-light text-dark">Place Order</button>
         </form>
       </div>
       <div class = "col-md-1">
