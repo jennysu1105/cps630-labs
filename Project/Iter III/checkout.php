@@ -27,50 +27,59 @@
       <div class = "col-md-1">
       </div>
       <div class = "col-md-6">
-        <form onsubmit="">
+        <form method="post" action="reviewOrder.php">
           <p><b>Payment Details</b></p>
-          Card Number: <input type="text" id="card_num" style="width:450px"></input>
-          <div class="row mt-1" >
-            <div class="col-1">
-              Name:
-            </div>
-            <div class="col">
-              <input type="text" id="name" style="width:150px"></input>
-            </div>
-            <div class="col">
-              Expiry Date: MM/DD
-            </div>
-            <div class="col">
-              <input type="text" id="name" style="width:100px"></input>
-            </div>
-            <div class="col">
-              CVV: <input type="text" id="cvv" style="width:50px"></input>
-            </div>
-          </div>
-          <input type="checkbox" id="save_card" name="save_card" value="save">
+          Card Number: <input type="text" name="card_num" style="width:450px"></input>
+          <br><br>Name: <input type="text" name="card_name" style="width:150px"></input>
+          <br><br>Expiry Date: MM/DD <input type="text" name="card_expiry" style="width:100px"></input>
+          CVV: <input type="text" name="cvv" style="width:50px"></input>
+          <br><br><input type="checkbox" name="save_card" name="save_card" value="save">
           <label for="save_card">Save this card</label><br>
           <hr>
           <p><b>Shipping Details</b></p>
-          Address Line 1: <input type="text" id="address_1" style="width:450px" style></input><br><br>
-          Address Line 2: <input type="text" id="address_2" style="width:450px"></input>
-          <div class="row mt-1">
-            <div class="row">
-            </div>
-            <div class="col-1">
-              City: 
-            </div>
-            <div class="col">
-              <input type="text" id="city" style="width:150px"></input>
-            </div>
-            <div class="col-2">
-              Province:
-            </div>
-            <div class="col">
-              <input type="text" id="province" style="width:150px"></input>
-            </div>
-          </div><br>
-          Postal Code:<input type="text" id="postal_code" style="width:150px"></input>
+          Address Line 1: <input type="text" name="address_1" style="width:450px" style></input><br><br>
+          Address Line 2: <input type="text" name="address_2" style="width:450px"></input>
+          <br><br>City: <input type="text" name="city" style="width:150px"></input>
+          Province: <input type="text" name="province" style="width:150px"></input>
+          <br><br>
+          Postal Code: <input type="text" name="postal_code" style="width:150px"></input>
+          <hr><button type="submit" class="bg-light text-dark">Place Order</button>
         </form>
+      </div>
+      <div class = "col-md-1">
+      </div>
+      <div class = "col">
+        <div class="row">
+          <div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light"><span id="items">0</span> Items <hr> Total: $<span id="price">0</span> <hr>
+            <div id="cart"> 
+            <!-- cookie is stored in $_COOKIE['items'] and contains a list of encoded item_ids-->
+            <?php
+              include_once "database/submitQuery.php";
+              if(isset($_COOKIE['items'])){
+                $items = json_decode($_COOKIE['items'], true);
+                $total = 0;
+                for ($i = 0; $i <= count($items); $i++){
+                  $item = $items[$i];
+                  $query = "select * from itemTable where item_id=" . $item;
+                  $result = submitSelectQuery($query);
+                  $name = $result[0]['item_name'];
+                  $price = $result[0]['item_price'];
+                  
+                  $item_tag = $name . " - $ " . $price;
+                  $item_img = "images/" . 1 . ".jpg";
+                  $img_tag = "<img src=\"" . $item_img . "\" height=\"50px\" style=\"margin-right:10px\">";
+                  
+                  $total += $price;
+                  
+                  echo "<div class=\"col p-3 mb-2 mr-2 bg-light text-dark\">" . $img_tag . $item_tag . "</div>";
+                  echo '<script>var cart_total = document.getElementById("items"); cart_total.innerHTML = ' . count($items) .';</script>';
+                  echo '<script>var cart_total = document.getElementById("price"); cart_total.innerHTML = ' . $total .';</script>';
+                }
+              }
+            ?>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 </body>
