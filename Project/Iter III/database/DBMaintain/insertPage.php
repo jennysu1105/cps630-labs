@@ -148,7 +148,7 @@
         );
         createHTMLTable("order");
 
-        include_once "../../browserDetection.php";
+        include_once "browserDetection.php";
     ?>
 </body>
 

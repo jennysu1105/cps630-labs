@@ -145,5 +145,5 @@ print(" <form method='POST' action='updatePage.php'>
         </form>"
 );
 
-include_once "../../browserDetection.php";
+include_once "browserDetection.php";
 ?>

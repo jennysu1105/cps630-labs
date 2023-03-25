@@ -76,5 +76,5 @@ print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
 );
 createHTMLTable("order");
 
-include_once "../../browserDetection.php";
+include_once "browserDetection.php";
 ?>

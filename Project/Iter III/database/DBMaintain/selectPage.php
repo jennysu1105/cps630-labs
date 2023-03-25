@@ -111,7 +111,7 @@
         createSelectHTMLTable("order");
         print("</div>");
 
-        include_once "../../browserDetection.php";
+        include_once "browserDetection.php";
     ?>
 </body>
 

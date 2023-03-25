@@ -46,5 +46,5 @@ print(" <form method='' action='http://localhost:3000/insert'>
         </form>"
 );
 
-include_once "../../browserDetection.php";
+include_once "browserDetection.php";
 ?>

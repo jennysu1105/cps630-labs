@@ -141,5 +141,5 @@ print(" <form method='' action='http://localhost:3000/update'>
         </form>"
 );
 
-include_once "../../browserDetection.php";
+include_once "browserDetection.php";
 ?>
