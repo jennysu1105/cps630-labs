@@ -5,7 +5,7 @@ header("Access-Control-Allow-Headers: *");
 include_once "dbConnection.php";
 include_once "DBMaintainFunctions.php";
 
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='shopping'>
                 <label for='store_code'>store_code: </label>
                 <input type='number' name='store_code' min='0' max='99999' required>
@@ -15,7 +15,7 @@ print("<form action='insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("shopping");
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='truck'>
                 <label for='truck_code'>truck_code: </label>
                 <input type='number' name='truck_code' min='0' max='99999' required>
@@ -25,7 +25,7 @@ print("<form action='insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("truck");
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='trip'>
                 <label for='source_code'>source_code: </label>
                 <input type='text' name='source_code' minlength='6' maxlength='6' required>
@@ -41,7 +41,7 @@ print("<form action='insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("trip");
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='user'>
                 <label for='full_name'>full_name: </label>
                 <input type='text' name='full_name' minlength='1' maxlength='50' required>
@@ -67,7 +67,7 @@ print("<form action='insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("user");
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='item'>
                 <label for='item_name'>item_name: </label>
                 <input type='text' name='item_name' minlength='1' maxlength='30' required>
@@ -83,7 +83,7 @@ print("<form action='insertPageHandler.php' method='POST'>
 );
 createHTMLTable("item");
 
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='review'>
                 <label for='item_id'>item_id: </label>
                 <input type='number' name='item_id' min='0' max='99999' required>
@@ -96,7 +96,7 @@ print("<form action='insertPageHandler.php' method='POST'>
 );
 createHTMLTable("review");
 
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='payment'>
                 <label for='cardholder_name'>cardholder_name: </label>
                 <input type='text' name='cardholder_name' minlength='0' maxlength='50' required>
@@ -112,7 +112,7 @@ print("<form action='insertPageHandler.php' method='POST'>
 );
 createHTMLTable("payment");
 
-print("<form action='insertPageHandler.php' method='POST'>
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='order'>
                 <label for='date_issued'>date_issued: </label>
                 <input type='date' name='date_issued' required>

@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: *");
 
 include_once "Models.php";
 
@@ -39,7 +41,7 @@ if(isset($_POST["identifier"])) {
     } 
 }
 
-print(" <form method='POST' action='insertPage.php'>
+print(" <form method='' action='http://localhost:3000/insert'>
             <button type='submit'/>Return to main page</button>
         </form>"
 );

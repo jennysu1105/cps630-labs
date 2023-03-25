@@ -4,12 +4,12 @@ import shirt from '../static/img/shirt.jpg';
 
 const Index = () => {
     const [items, setItems] = useState([]);
-    const [data, setData] = useState("");
+    // const [data, setData] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:8000/getItemsTest.php").then((response) => {
-            // setItems(response.data);
-            setData(response.data);
+        axios.get("http://localhost:8000/getItems.php").then((response) => {
+            setItems(response.data);
+            // setData(response.data);
             console.log(response.data);
         });
     }, []);
@@ -29,12 +29,11 @@ const Index = () => {
                             <h4>{item.item_name}</h4>
                             {item.item_price}
                         </div>
-
                     ))}
                 </div>
-                <div
+                {/* <div
                     dangerouslySetInnerHTML={{ __html: data }}
-                />
+                /> */}
                 <div class="col-md-3">
                     <div id="shopping_cart" ondrop="drop(event)" ondragover="allowDrop(event)">
                         <h5>Your Shopping Cart</h5>
