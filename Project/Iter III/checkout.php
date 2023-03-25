@@ -28,7 +28,6 @@
       </div>
       <div class = "col-md-6">
         <form method="post" action="reviewOrder.php">
-          <button type="submit" class="bg-light text-dark">Place Order</button><hr>
           <p><b>Payment Details</b></p>
           <?php
           include_once "database/submitQuery.php";
@@ -63,6 +62,8 @@
           Province: <input type="text" name="province" style="width:150px"></input>
           <br><br>
           Postal Code: <input type="text" name="postal_code" style="width:150px"></input>
+          <hr><button type="submit" class="bg-light text-dark">Place Order</button><hr>
+          <br>
         </form>
       </div>
       <div class = "col-md-1">
