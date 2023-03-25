@@ -4,15 +4,48 @@ import shirt from '../static/img/shirt.jpg';
 
 const Index = () => {
     const [items, setItems] = useState([]);
-    // const [data, setData] = useState("");
 
     useEffect(() => {
         axios.get("http://localhost:8000/getItems.php").then((response) => {
             setItems(response.data);
-            // setData(response.data);
             console.log(response.data);
         });
     }, []);
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        var linebreak = document.createElement("br");
+        var data = ev.dataTransfer.getData("text");
+        var item = document.getElementById("item_" + data);
+        var item_price = document.getElementById("price_" + data);
+        ev.preventDefault();
+        ev.target.append(item.innerHTML + " - $" + item_price.innerHTML);
+        ev.target.appendChild(linebreak);
+
+        var cart_total = document.getElementById("cart_total");
+        var price = Number(item_price.innerHTML);
+
+        try {
+            cart_total.innerHTML = Number(cart_total.innerHTML) + price;
+        }
+        catch {
+            cart_total.innerHTML = price;
+        }
+
+        //cookie contains item_ids
+        // $.ajax({
+        //     url: 'setCookie.php',
+        //     type: 'GET',
+        //     data: { name: item.innerHTML }
+        // });
+    }
 
     return (
         <div class="container">
@@ -22,21 +55,18 @@ const Index = () => {
             </div>
             <div class="row mt-4 mb-5">
                 <div class="col-md-9">
-                    {items.map((item) => (
-                        <div class="card mb-3">
-                            <img src={shirt} draggable="true" ondragstart="drag(event)" />
+                    {items.map((item, index) => (
+                        <div class="card card_container mb-4">
+                            <img id={index} src={shirt} draggable="true" onDragStart={event => drag(event)} />
                             <hr />
-                            <h4>{item.item_name}</h4>
-                            {item.item_price}
+                            <h5 id={"item_" + index}>{item.item_name}</h5>
+                            <p id={"price_" + index}>{item.item_price}</p>
                         </div>
                     ))}
                 </div>
-                {/* <div
-                    dangerouslySetInnerHTML={{ __html: data }}
-                /> */}
                 <div class="col-md-3">
-                    <div id="shopping_cart" ondrop="drop(event)" ondragover="allowDrop(event)">
-                        <h5>Your Shopping Cart</h5>
+                    <div id="shopping_cart" onDrop={event => drop(event)} onDragOver={event => allowDrop(event)}>
+                        <h5 class="mt-3">Your Shopping Cart</h5>
                         <span>Current subtotal: $</span>
                         <span id="cart_total"></span>
                         <br />

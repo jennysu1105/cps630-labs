@@ -14,21 +14,25 @@ import Update from './components/Update';
 import Delete from './components/Delete';
 
 function App() {
+  const divStyle = {
+    backgroundColor: '#b2edc2'
+  };
+
   return (
-    <div className="App">
+    <div className="App" style={divStyle}>
       <Navigation></Navigation>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index/>}></Route>
-          <Route path="/about_us" element={<About_us/>}></Route>
-          <Route path="/contact_us" element={<Contact_us/>}></Route>
-          <Route path="/types_of_services" element={<Types_of_Services/>}></Route>
-          <Route path="/shopping_cart" element={<Shopping_Cart/>}></Route>
-          <Route path="/map" element={<Map/>}></Route>
-          <Route path="/select" element={<Select/>}></Route>
-          <Route path="/insert" element={<Insert/>}></Route>
-          <Route path="/update" element={<Update/>}></Route>
-          <Route path="/delete" element={<Delete/>}></Route>
+          <Route path="/" element={<Index />}></Route>
+          <Route path="/about_us" element={<About_us />}></Route>
+          <Route path="/contact_us" element={<Contact_us />}></Route>
+          <Route path="/types_of_services" element={<Types_of_Services />}></Route>
+          <Route path="/shopping_cart" element={<Shopping_Cart />}></Route>
+          <Route path="/map" element={<Map />}></Route>
+          <Route path="/select" element={<Select />}></Route>
+          <Route path="/insert" element={<Insert />}></Route>
+          <Route path="/update" element={<Update />}></Route>
+          <Route path="/delete" element={<Delete />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
