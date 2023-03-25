@@ -25,7 +25,7 @@
     <div class="container">
 		<div class="row">
 			<div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light"><span id="items">0</span> Items | Total: $<span id="price">0</span></div>
-			<div type="button" class="col-sm-3 p-3 mb-2 btn btn-secondary" style="border-radius: 0;" >Checkout</div>
+			<button type="submit" onclick="window.location.href = 'checkout.php'" class="col-sm-3 p-3 mb-2 btn btn-secondary" style="border-radius: 0;">Checkout</button>
 		</div>
 	</div>
     <div id="cart" class="container"> 
