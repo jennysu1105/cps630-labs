@@ -96,7 +96,9 @@ const Checkout = () => {
                             Country: <input type="text" name="country" style={{width:"150px"}} onChange={handleChange}></input>
                             Postal Code: <input type="text" name="postal_code" style={{width:"150px"}} onChange={handleChange}></input>
                         </div>
-                        <hr/><button type="submit" class="bg-light text-dark">Place Order</button>
+                        <hr/><button type="submit" class="bg-light text-dark">
+                            <Link to='/review_order' state={{data: data}} style={{ color: '#000', textDecoration: 'none' }}>Place Order</Link>
+                            </button>
                     </form>
                     <hr/><br/>
                 </div>
