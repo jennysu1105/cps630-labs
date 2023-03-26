@@ -546,8 +546,8 @@ class Item extends Table implements Database
         return submitQuery($addSale);
     }
 
-    public function createReview($rating, $review) {
-        $reviewObj = new Review($this->item_id, $rating, $review);
+    public function createReview($user_id, $rating, $review) {
+        $reviewObj = new Review($this->item_id, $user_id, $rating, $review);
         $reviewObj->insert();
     }
 
@@ -693,6 +693,7 @@ class Review extends Table implements Database
 {
     public $review_id;
     public $item_id;
+    public $user_id;
     public $RN;
     public $review;
 
@@ -710,17 +711,19 @@ class Review extends Table implements Database
         }
     }
 
-    public function __construct3($item_id, $RN, $review)
+    public function __construct4($item_id, $user_id, $RN, $review)
     {
         $this->item_id = $item_id;
+        $this->user_id = $user_id;
         $this->RN = $RN;
         $this->review = $review;
     }
 
-    public function __construct4($review_id, $item_id, $RN, $review)
+    public function __construct5($review_id, $item_id, $user_id, $RN, $review)
     {
         $this->review_id = $review_id;
         $this->item_id = $item_id;
+        $this->user_id = $user_id;
         $this->RN = $RN;
         $this->review = $review;
     }
@@ -728,7 +731,7 @@ class Review extends Table implements Database
     public function insert()
     {
         if ($this->review_id == null) {
-            $insertReview = "INSERT INTO reviewTable (item_id, RN, review) VALUES ($this->item_id, $this->RN, '$this->review')";
+            $insertReview = "INSERT INTO reviewTable (item_id, user_id, RN, review) VALUES ($this->item_id, $this->user_id, $this->RN, '$this->review')";
             return submitQuery($insertReview);
         }
     }
@@ -736,7 +739,7 @@ class Review extends Table implements Database
     public function update()
     {
         if ($this->review_id != null) {
-            $updateReview = "UPDATE reviewTable SET item_id=$this->item_id, RN=$this->RN, review='$this->review' WHERE review_id=$this->review_id";
+            $updateReview = "UPDATE reviewTable SET item_id=$this->item_id, user_id=$this->user_id, RN=$this->RN, review='$this->review' WHERE review_id=$this->review_id";
             return submitQuery($updateReview);
         }
     }
@@ -764,6 +767,16 @@ class Review extends Table implements Database
         $this->item_id = $item_id;
     }
 
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
+    }
+
     public function getRN()
     {
         return $this->RN;
@@ -788,6 +801,7 @@ class Review extends Table implements Database
 class Payment extends Table implements Database
 {
     public $payment_id;
+    public $user_id;
     public $cardholder_name;
     public $card_number;
     public $expiration_date;
@@ -807,17 +821,19 @@ class Payment extends Table implements Database
         }
     }
 
-    public function __construct4($cardholder_name, $card_number, $expiration_date, $cvv_code)
+    public function __construct5($user_id, $cardholder_name, $card_number, $expiration_date, $cvv_code)
     {
+        $this->user_id = $user_id;
         $this->cardholder_name = $cardholder_name;
         $this->card_number = $card_number;
         $this->expiration_date = $expiration_date;
         $this->cvv_code = $cvv_code;
     }
 
-    public function __construct5($payment_id, $cardholder_name, $card_number, $expiration_date, $cvv_code)
+    public function __construct6($payment_id, $user_id, $cardholder_name, $card_number, $expiration_date, $cvv_code)
     {
         $this->payment_id = $payment_id;
+        $this->user_id = $user_id;
         $this->cardholder_name = $cardholder_name;
         $this->card_number = $card_number;
         $this->expiration_date = $expiration_date;
@@ -827,7 +843,7 @@ class Payment extends Table implements Database
     public function insert()
     {
         if ($this->payment_id == null) {
-            $updateItem = "INSERT INTO paymentTable (cardholder_name, card_number, expiration_date, cvv_code) VALUES ('$this->cardholder_name', '$this->card_number', '$this->expiration_date', '$this->cvv_code')";
+            $updateItem = "INSERT INTO paymentTable (user_id, cardholder_name, card_number, expiration_date, cvv_code) VALUES ($this->user_id, '$this->cardholder_name', '$this->card_number', '$this->expiration_date', '$this->cvv_code')";
             return submitQuery($updateItem);
         }
     }
@@ -835,7 +851,7 @@ class Payment extends Table implements Database
     public function update()
     {
         if ($this->payment_id != null) {
-            $updateItem = "UPDATE paymentTable SET cardholder_name='$this->cardholder_name', card_number='$this->card_number', expiration_date='$this->expiration_date', cvv_code='$this->cvv_code' WHERE payment_id=$this->payment_id";
+            $updateItem = "UPDATE paymentTable SET user_id=$this->user_id, cardholder_name='$this->cardholder_name', card_number='$this->card_number', expiration_date='$this->expiration_date', cvv_code='$this->cvv_code' WHERE payment_id=$this->payment_id";
             return submitQuery($updateItem);
         }
     }
@@ -851,6 +867,16 @@ class Payment extends Table implements Database
     public function getPayment_id()
     {
         return $this->payment_id;
+    }
+
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
     }
 
     public function getCardholder_name()

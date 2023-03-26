@@ -16,6 +16,8 @@
             background-color: white;
             border: 1px solid black;
             padding: 5px;
+
+            z-index: 1;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

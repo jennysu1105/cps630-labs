@@ -2,6 +2,7 @@
 
 include_once "../Models.php";
 include_once "DBMaintainFunctions.php";
+include_once "../../browserDetection.php";
 
 if(isset($_POST["identifier"])) {
     $identifier = $_POST["identifier"];
@@ -48,6 +49,4 @@ print(" <form method='POST' action='deletePage.php'>
             <button type='submit'/>Return to main page</button>
         </form>"
 );
-
-include_once "browserDetection.php";
 ?>

@@ -53,4 +53,15 @@
             return "Email or login existed";
         }
     }
+
+    function getItemWithReviews() {
+        //$sql = "SELECT itemTable.item_name, reviewTable.RN, reviewTable.review FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id ORDER";
+        $itemsWithReviewSQL = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id GROUP BY itemTable.item_name";
+        $itemsWithReview = array();
+        $record = submitSelectQuery($itemsWithReviewSQL);
+        foreach ($record as $row) {
+            array_push($itemsWithReview, $row["item_name"]);
+        }
+        return $itemsWithReview;
+    }
 ?>

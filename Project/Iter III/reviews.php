@@ -1,5 +1,8 @@
 <?php
 	include_once "browserDetection.php";
+    include_once "database/Models.php";
+    include_once "database/selectModels.php";
+    include_once "database/submitQuery.php";
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +21,16 @@
 
 <body style="background-color: #b2edc2;">
     <nav-bar></nav-bar>
+    <div>
+        <!--To create reviews-->
+    </div>
+    <div>
+        <!--To view reviews-->
+        <?php
+            $reviews = selectReview();
+        ?>
+    </div>
+        
 </body>
 
 </html>

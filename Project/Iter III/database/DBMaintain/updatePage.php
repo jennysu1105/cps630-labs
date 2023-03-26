@@ -9,6 +9,8 @@
 <body>
     <?php
     include_once "DBMaintain.php";
+    include_once "../../browserDetection.php";
+
     ?>
     <h1>Update Page</h1>
     <p>Select database to update by entering the id. Leave the input blank if you don't want to update that column</p><br>
@@ -162,8 +164,6 @@
             </form>"
     );
     createHTMLTable("order");
-
-    include_once "browserDetection.php";
     ?>
 </body>
 

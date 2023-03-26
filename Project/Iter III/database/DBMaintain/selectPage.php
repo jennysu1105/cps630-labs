@@ -99,6 +99,7 @@
     <?php
         include_once "../dbConnection.php";
         include_once "DBMaintainFunctions.php";
+        include_once "../../browserDetection.php";
 
         print("<div class='mainContainer'>");
         createSelectHTMLTable("shopping");
@@ -110,8 +111,6 @@
         createSelectHTMLTable("payment");
         createSelectHTMLTable("order");
         print("</div>");
-
-        include_once "browserDetection.php";
     ?>
 </body>
 

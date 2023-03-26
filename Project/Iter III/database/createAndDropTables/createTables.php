@@ -99,9 +99,11 @@ if ($connect->query($itemSaleTable) === TRUE) {
 $reviewTable = "CREATE TABLE reviewTable (
     review_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     item_id INT(6) UNSIGNED,
+    user_id INT(6) UNSIGNED,
     RN INT(1) NOT NULL,
     review VARCHAR(250),
-    FOREIGN KEY (item_id) REFERENCES itemTable(item_id)
+    FOREIGN KEY (item_id) REFERENCES itemTable(item_id),
+    FOREIGN KEY (user_id) REFERENCES userTable(user_id)
 )";
 
 if ($connect->query($reviewTable) === TRUE) {
@@ -112,10 +114,12 @@ if ($connect->query($reviewTable) === TRUE) {
 
 $paymentTable = "CREATE TABLE paymentTable (
     payment_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT(6) UNSIGNED,
     cardholder_name VARCHAR(50),
     card_number VARCHAR(16) NOT NULL,
     expiration_date DATE NOT NULL,
-    cvv_code VARCHAR(3) NOT NULL
+    cvv_code VARCHAR(3) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES userTable(user_id)
 )";
 
 if ($connect->query($paymentTable) === TRUE) {

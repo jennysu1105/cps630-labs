@@ -9,6 +9,7 @@
 <body>
     <?php
     include_once "DBMaintain.php";
+    include_once "../../browserDetection.php";
     ?>
     <h1>Insert Page</h1><br>
     <?php
@@ -147,8 +148,6 @@
             </form>"
         );
         createHTMLTable("order");
-
-        include_once "browserDetection.php";
     ?>
 </body>
 
