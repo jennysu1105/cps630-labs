@@ -83,7 +83,8 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
     }
 }
 
-function getItemWithReviews() {
+function getItemWithReviews()
+{
     //$sql = "SELECT itemTable.item_name, reviewTable.RN, reviewTable.review FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id ORDER";
     $itemsWithReviewSQL = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id GROUP BY itemTable.item_name";
     $itemsWithReview = array();
@@ -92,5 +93,46 @@ function getItemWithReviews() {
         array_push($itemsWithReview, $row["item_name"]);
     }
     return $itemsWithReview;
+}
+
+/**
+ * Return an array of item_name of items with reviews
+ */
+function getReviewedItemNames()
+{
+    $sql = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id GROUP BY itemTable.item_name";
+    $items = array();
+    $record = submitSelectQuery($sql);
+    foreach ($record as $row) {
+        array_push($items, $row["item_name"]);
+    }
+    return $items;
+}
+
+/**
+ * Return an associative array where:
+ *    (1) key is item_name
+ *    (2) value: array containing reviews of item_name. Each review is an associative array where the keys are login_id, RN, review. 
+ */
+function getReviewsWithUserAndItem()
+{
+    $sql = "SELECT itemTable.item_name, userTable.login_id, reviewTable.RN, reviewTable.review FROM itemTable INNER JOIN reviewTable ON itemTable.item_id=reviewTable.item_id INNER JOIN userTable ON reviewTable.user_id=userTable.user_id ORDER BY itemTable.item_name";
+    $reviews = array();
+    $items = getReviewedItemNames();
+    $record = submitSelectQuery($sql);
+    foreach ($items as $item) {
+        $itemReview = array();
+        foreach ($record as $review) {
+            if ($review["item_name"] == $item) {
+                array_push($itemReview, array_slice($review, 1));
+                //Add everything other than item_name column into itemReview
+
+                $record = array_slice($record, 1);
+                //Delete to skip iteration in the next item
+            }
+        }
+        $reviews[$item] = $itemReview;
+    }
+    return $reviews;
 }
 ?>
