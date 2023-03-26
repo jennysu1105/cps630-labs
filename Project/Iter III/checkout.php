@@ -48,20 +48,21 @@
           <label for="new">
             <div class="card" style="padding:10px">
               Card Number: <input type="text" name="card_num" style="width:450px"></input>
-              </label>
               Name: <input type="text" name="card_name" style="width:150px"></input>
               Expiry Date: MM/YY <input type="text" name="card_expiry" style="width:100px"></input>
               CVV: <input type="text" name="cvv" style="width:50px"></input>
             </div>
-            <br><input type="checkbox" name="save_card" value="save"><label for="save_card">Save this card</label><br>
+          </label>
+          <br><input type="checkbox" name="save_card" value="save"><label for="save_card">Save this card</label><br>
           <hr>
           <p><b>Shipping Details</b></p>
-          Address Line 1: <input type="text" name="address_1" style="width:450px" style></input><br><br>
-          Address Line 2: <input type="text" name="address_2" style="width:450px"></input>
-          <br><br>City: <input type="text" name="city" style="width:150px"></input>
-          Province: <input type="text" name="province" style="width:150px"></input>
-          <br><br>
-          Postal Code: <input type="text" name="postal_code" style="width:150px"></input>
+          <div class="card" style="padding:10px">
+            Address Line 1: <input type="text" name="address_1" ></input>
+            Address Line 2: <input type="text" name="address_2" ></input>
+            City: <input type="text" name="city" style="width:150px"></input>
+            Province: <input type="text" name="province" style="width:150px"></input>
+            Postal Code: <input type="text" name="postal_code" style="width:150px"></input>
+          </div>
           <hr><button type="submit" class="bg-light text-dark">Place Order</button><hr>
           <br>
         </form>
