@@ -63,7 +63,7 @@ const Review_order = () => {
                         Payment Method:
                         <br/>************ {info['card_num'].substring(12)}
                         <hr/>Shipping to: <br/>
-                        <br/>{info['address_2']} - {info['address_1']}
+                        <br/>{info['address_2']} {info['address_1']}
                         <br/>{info['city']}
                         <br/>{info['region']}
                         <br/>{info['country']}

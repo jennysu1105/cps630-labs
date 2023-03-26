@@ -74,7 +74,7 @@ const Checkout = () => {
                 <div class = "col-md-1">
                 </div>
                 <div class = "col-md-6 text-start">
-                    <form method="post" action="reviewOrder.php">
+                    <form >
                         <input type="radio" id="new" name = "payment" value = "new" onChange={handleChange} checked="checked"/>
                         <label for="new">
                             <div class="card text-start" style={{padding:'10px'}}>
