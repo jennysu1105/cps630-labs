@@ -38,8 +38,8 @@ const Shopping_Cart = () => {
             </div>
             <div class="container">
                 <div class="row">
-                    <div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light text-start"><span id="items">0</span> Items | Total: $<span id="price">0</span></div>
-                    <button class="col-sm-3 p-3 mb-2 btn btn-secondary"><Link to={'/checkout'} style={{ color: '#FFF', textDecoration: 'none' }}>Checkout</Link></button>
+                    <div id="total" class="col-sm-10 p-3 mb-2 bg-dark text-light text-start"><span id="items">0</span> Items | Total: $<span id="price">0</span></div>
+                    <Link to={'/checkout'} style={{ color: '#FFF', textDecoration: 'none' }} class="col p-2"><button class="btn btn-secondary">Checkout</button></Link>
                 </div>
                 {cartItems.map((item,index) => (
                         <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
