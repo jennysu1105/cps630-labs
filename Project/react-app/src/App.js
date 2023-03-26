@@ -15,6 +15,7 @@ import Delete from './components/Delete';
 import Sign_up from './components/Sign_up';
 import Sign_in from './components/Sign_in';
 import Checkout from './components/Checkout';
+import BrowserDetection from './components/BrowserDetection';
 
 function App() {
   const divStyle = {
@@ -38,9 +39,10 @@ function App() {
           <Route path="/delete" element={<Delete />}></Route>
           <Route path="/sign_up" element={<Sign_up />}></Route>
           <Route path="/sign_in" element={<Sign_in />}></Route>
-          <Route path="/checkout" element={<Checkout/>}></Route>
+          <Route path="/checkout" element={<Checkout />}></Route>
         </Routes>
       </BrowserRouter>
+      <BrowserDetection></BrowserDetection>
     </div>
   );
 }
