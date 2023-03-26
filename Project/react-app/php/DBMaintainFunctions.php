@@ -1,7 +1,7 @@
 <?php
 
-include_once "Models.php";
-include_once "selectModels.php";
+include_once "../Models.php";
+include_once "../selectModels.php";
 
 $shopping = new Shopping();
 $truck = new Truck();
@@ -47,7 +47,7 @@ function createSelectHTMLTable($id) {
     else {
         $column = $table[array_key_first($table)];
     }
-    print("<div id='$id' class='table' style='display: none'><h4 class='table'>$title</h4><table>");
+    print("<div id='$id' class='table' style='display: none'><h2 class='table'>$title</h2><table>");
     print($column->printColumn());
     foreach($table as $row) {
         print($row->printRow());

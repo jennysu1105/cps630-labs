@@ -1,8 +1,7 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: *");
 
-include_once "Models.php";
+include_once "../Models.php";
+include_once "../../browserDetection.php";
 
 if(isset($_POST["identifier"])) {
     $identifier = $_POST["identifier"];
@@ -28,11 +27,11 @@ if(isset($_POST["identifier"])) {
         $item->insert();
     } 
     else if($identifier == "review") {
-        $review = new Review($_POST["item_id"], $_POST["RN"], $_POST["review"]);
+        $review = new Review($_POST["item_id"], $_POST["user_id"], $_POST["RN"], $_POST["review"]);
         $review->insert();
     } 
     else if($identifier == "payment") {
-        $payment = new Payment($_POST["cardholder_name"], $_POST["card_number"], $_POST["expiration_date"], $_POST["cvv_code"]);
+        $payment = new Payment($_POST["user_id"], $_POST["cardholder_name"], $_POST["card_number"], $_POST["expiration_date"], $_POST["cvv_code"]);
         $payment->insert();
     } 
     else if($identifier == "order") {
@@ -41,10 +40,8 @@ if(isset($_POST["identifier"])) {
     } 
 }
 
-print(" <form method='' action='http://localhost:3000/insert'>
+print(" <form method='POST' action='insertPage.php'>
             <button type='submit'/>Return to main page</button>
         </form>"
 );
-
-include_once "browserDetection.php";
 ?>

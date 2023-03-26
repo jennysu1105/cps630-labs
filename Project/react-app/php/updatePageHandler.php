@@ -1,9 +1,9 @@
 <?php
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: *");
 
-include_once "Models.php";
+include_once "../Models.php";
 include_once "DBMaintainFunctions.php";
+include_once "../../browserDetection.php";
+
 
 if (isset($_POST["identifier"])) {
     $identifier = $_POST["identifier"];
@@ -81,12 +81,17 @@ if (isset($_POST["identifier"])) {
                 $object->setMade_in($_POST["made_in"]);
             }
             if (!empty($_POST["department_code"])) {
-                $object->setDepartment_code($_POST["department_code"]);
+                $object->setDepartment_code($_POST["department_code"]); 
             }
             $object->update();
-        } else if ($identifier == "review") {
+        } 
+        
+        else if ($identifier == "review") {
             if (!empty($_POST["item_id"])) {
                 $object->setItem_id($_POST["item_id"]);
+            }
+            if (!empty($_POST["user_id"])) {
+                $object->setUser_id($_POST["user_id"]);
             }
             if (!empty($_POST["RN"])) {
                 $object->setRN($_POST["RN"]);
@@ -95,7 +100,12 @@ if (isset($_POST["identifier"])) {
                 $object->setReview($_POST["review"]);
             }
             $object->update();
-        } else if ($identifier == "payment") {
+        }
+
+        else if ($identifier == "payment") {
+            if (!empty($_POST["user_id"])) {
+                $object->setUser_id($_POST["user_id"]);
+            }
             if (!empty($_POST["cardholder_name"])) {
                 $object->setCardholder_name($_POST["cardholder_name"]);
             }
@@ -109,7 +119,9 @@ if (isset($_POST["identifier"])) {
                 $object->setCvv_code($_POST["cvv_code"]);
             }
             $object->update();
-        } else if ($identifier == "order") {
+        }
+
+        else if ($identifier == "order") {
             if (!empty($_POST["date_issued"])) {
                 $object->setDate_issued($_POST["date_issued"]);
             }
@@ -136,10 +148,8 @@ if (isset($_POST["identifier"])) {
     }
 }
 
-print(" <form method='' action='http://localhost:3000/update'>
+print(" <form method='POST' action='updatePage.php'>
             <button type='submit'/>Return to main page</button>
         </form>"
 );
-
-include_once "browserDetection.php";
 ?>

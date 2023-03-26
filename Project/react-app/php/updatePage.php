@@ -1,10 +1,23 @@
-<?php
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Headers: *");
+<!DOCTYPE html>
+<html>
 
-include_once "DBMaintainFunctions.php";
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="DBMaintain.css">
+</head>
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+<body>
+    <?php
+    include_once "DBMaintain.php";
+    include_once "../../browserDetection.php";
+
+    ?>
+    <h1>Update Page</h1>
+    <p>Select database to update by entering the id. Leave the input blank if you don't want to update that column</p><br>
+    <?php
+    include_once "DBMaintainFunctions.php";
+
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='shopping'>
                 <label for='shopping_id'>receipt_id: </label>
                 <input type='number' name='shopping_id' min='0' max='99999' required>
@@ -14,10 +27,10 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
                 <input type='number' name='total_price' min='0.01' max='9999.99' step='0.01' >
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("shopping");
+    );
+    createHTMLTable("shopping");
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='truck'>
                 <label for='truck_id'>truck_id: </label>
                 <input type='number' name='truck_id' min='0' max='99999' required>
@@ -27,10 +40,10 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
                 <input type='number' name='availability_code' min='0' max='1' >
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("truck");
+    );
+    createHTMLTable("truck");
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='trip'>
                 <label for='trip_id'>trip_id: </label>
                 <input type='number' name='trip_id' min='0' max='99999' required>
@@ -46,10 +59,10 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
                 <input type='number' name='price' min='0.01' max='9999.99' step='0.01' >
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("trip");
+    );
+    createHTMLTable("trip");
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='user'>
                 <label for='user_id'>user_id: </label>
                 <input type='number' name='user_id' min='0' max='99999' required>
@@ -75,10 +88,10 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
                 <input type='number' name='balance' min='0.01' max='999999999.99' step='0.01' >
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("user");
+    );
+    createHTMLTable("user");
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='item'>
                 <label for='item_id'>item_id: </label>
                 <input type='number' name='item_id' min='0' max='99999' required>
@@ -93,28 +106,32 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
 
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("item");
+    );
+    createHTMLTable("item");
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='review'>
                 <label for='review_id'>review_id: </label>
                 <input type='number' name='review_id' min='0' max='99999' required>
                 <label for='item_id'>item_id: </label>
                 <input type='number' name='item_id' min='0' max='99999'>
+                <label for='user_id'>user_id: </label>
+                <input type='number' name='user_id' min='0' max='99999'>
                 <label for='RN'>Rating: </label>
                 <input type='number' name='RN' min='1' max='5'>
                 <label for='review'>review: </label>
                 <input type='text' name='review' minlength='0' maxlength='250' style='height: 50px; width: 300px;'>
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("review");
+    );
+    createHTMLTable("review");
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='payment'>
                 <label for='payment_id'>payment_id: </label>
                 <input type='number' name='payment_id' min='0' max='99999' required>
+                <label for='user_id'>user_id: </label>
+                <input type='number' name='user_id' min='0' max='99999'>
                 <label for='cardholder_name'>cardholder_name: </label>
                 <input type='text' name='cardholder_name' minlength='0' maxlength='50'>
                 <label for='card_number'>card_number: </label>
@@ -126,10 +143,10 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
 
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("payment");
+    );
+    createHTMLTable("payment");
 
-print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
+    print("<form action='updatePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='order'>
                 <label for='order_id'>order_id: </label>
                 <input type='number' name='order_id' min='0' max='99999' required>
@@ -149,6 +166,9 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
                 <input type='number' name='receipt_id' min='1' max='999999' >
                 <input type='submit'>
             </form>"
-);
-createHTMLTable("order");
-?>
+    );
+    createHTMLTable("order");
+    ?>
+</body>
+
+</html>
