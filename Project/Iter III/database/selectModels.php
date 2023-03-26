@@ -1,5 +1,5 @@
 <?php
-    include_once "../dbConnection.php";
+    include_once "dbConnection.php";
     include_once "submitQuery.php";
     /**
      * Return an associative array of Shopping objects where the key is the receipt_id (PRIMARY KEY) and the value is the Shopping object
