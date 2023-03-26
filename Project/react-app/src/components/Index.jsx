@@ -42,12 +42,15 @@ const Index = () => {
     },[])
     
     useEffect(() => {
-        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
-            setCartItems(response.data);
-            console.log(JSON.stringify(cookies.items));
-            console.log(response.data);
-            calculateTotal();
-        });
+        setCartItems([]);
+        if (cookies.items && cookies.items.length > 0) {
+            axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+                setCartItems(response.data);
+                console.log(JSON.stringify(cookies.items));
+                console.log(response.data);
+                calculateTotal();
+            });
+        }
     }, []);
 
     function allowDrop(ev) {

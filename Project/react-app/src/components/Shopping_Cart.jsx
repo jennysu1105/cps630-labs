@@ -37,7 +37,7 @@ const Shopping_Cart = () => {
             </div>
             <div class="container">
                 <div class="row">
-                    <div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light"><span id="items">0</span> Items | Total: $<span id="price">0</span></div>
+                    <div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light text-start"><span id="items">0</span> Items | Total: $<span id="price">0</span></div>
                     <button type="submit" onclick="window.location.href = 'checkout.php'" class="col-sm-3 p-3 mb-2 btn btn-secondary" >Checkout</button>
                 </div>
                 {cartItems.map((item,index) => (
