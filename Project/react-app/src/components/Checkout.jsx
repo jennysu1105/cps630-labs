@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import shirt from '../static/img/shirt.jpg';
 import {useCookies} from 'react-cookie';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
-const Shopping_Cart = () => {
+const Checkout = () => {
+    let navigate = useNavigate();
     const [cookies, setCookie] = useCookies(['items']);
     const [cartItems, setCartItems] = useState([]);
     const [total, calculateTotal] = useState([])
+
+    const routeChange = () => {
+        let path = '/checkout';
+        navigate(path);
+    }
 
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
@@ -33,22 +39,11 @@ const Shopping_Cart = () => {
     return (
         <div class="container">
             <div class="row mt-4">
-                <h3>Shopping Cart</h3>
-                <h6>View your current shopping cart</h6>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light text-start"><span id="items">0</span> Items | Total: $<span id="price">0</span></div>
-                    <button class="col-sm-3 p-3 mb-2 btn btn-secondary"><Link to={'/checkout'} style={{ color: '#FFF', textDecoration: 'none' }}>Checkout</Link></button>
-                </div>
-                {cartItems.map((item,index) => (
-                        <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
-                          <p><img id={index} src={shirt} height="50px" />    {item.item_name} - ${item.item_price}</p>
-                      </div>
-                ))}
+                <h3>Checkout</h3>
+                <h6>Final steps to complete your order</h6>
             </div>
         </div>
     );
 }
 
-export default Shopping_Cart;
+export default Checkout;

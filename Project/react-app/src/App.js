@@ -14,6 +14,7 @@ import Update from './components/Update';
 import Delete from './components/Delete';
 import Sign_up from './components/Sign_up';
 import Sign_in from './components/Sign_in';
+import Checkout from './components/Checkout';
 
 function App() {
   const divStyle = {
@@ -37,6 +38,7 @@ function App() {
           <Route path="/delete" element={<Delete />}></Route>
           <Route path="/sign_up" element={<Sign_up />}></Route>
           <Route path="/sign_in" element={<Sign_in />}></Route>
+          <Route path="/checkout" element={<Checkout/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>
