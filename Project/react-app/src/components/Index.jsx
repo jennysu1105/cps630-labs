@@ -1,13 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import shirt from '../static/img/shirt.jpg';
+import {useCookies} from 'react-cookie';
 
 const Index = () => {
     const [items, setItems] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
+
+    const [cookies, setCookie] = useCookies(['items']);
+    function addItemsCookie(item_name) { 
+        axios.get("http://localhost:8000/getItemID.php", {params: {name: item_name}}).then((response) => {
+            console.log(cookies);
+            let cart = [];
+            if (cookies.items && cookies.items.length > 0) {
+                cart = cookies.items;
+              }
+            console.log(response.data);
+            cart.push(response.data);
+            console.log(cart);
+            setCookie("items", cart, {path: '/'});
+            console.log(cookies);
+        });
+    }
 
     useEffect(() => {
         axios.get("http://localhost:8000/getItems.php").then((response) => {
             setItems(response.data);
+            console.log(response.data);
+        });
+    }, []);
+    
+    useEffect(() => {
+        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+            setCartItems(response.data);
+            console.log(JSON.stringify(cookies.items));
             console.log(response.data);
         });
     }, []);
@@ -38,7 +64,8 @@ const Index = () => {
         catch {
             cart_total.innerHTML = price;
         }
-
+        
+        addItemsCookie(item.innerHTML);
         //cookie contains item_ids
         // $.ajax({
         //     url: 'setCookie.php',
@@ -71,6 +98,9 @@ const Index = () => {
                         <span id="cart_total"></span>
                         <br />
                         <hr />
+                        {cartItems.map((item,index) => (
+                            <p>{item.item_name} - ${item.item_price}</p>
+                        ))}
                     </div>
                 </div>
             </div>
