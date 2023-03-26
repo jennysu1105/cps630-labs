@@ -6,6 +6,7 @@ import {useCookies} from 'react-cookie';
 const Index = () => {
     const [items, setItems] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const [total, calculateTotal] = useState([])
 
     const [cookies, setCookie] = useCookies(['items']);
     function addItemsCookie(item_name) { 
@@ -22,7 +23,6 @@ const Index = () => {
             console.log(cookies);
         });
     }
-
     useEffect(() => {
         axios.get("http://localhost:8000/getItems.php").then((response) => {
             setItems(response.data);
@@ -32,9 +32,21 @@ const Index = () => {
     
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+            let results = response.data;
+            console.log(results);
+            let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
+            var cart_total = document.getElementById("cart_total");
+            console.log(price)
+            cart_total.innerHTML = parseFloat(price).toFixed(2);
+        });
+    },[])
+    
+    useEffect(() => {
+        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
             setCartItems(response.data);
             console.log(JSON.stringify(cookies.items));
             console.log(response.data);
+            calculateTotal();
         });
     }, []);
 
@@ -73,7 +85,7 @@ const Index = () => {
         //     data: { name: item.innerHTML }
         // });
     }
-
+    
     return (
         <div class="container">
             <div class="row">
