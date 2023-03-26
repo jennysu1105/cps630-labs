@@ -85,7 +85,7 @@
 
         $reviewList = array();
         foreach($records as $row) {
-            $review = new Review($row["review_id"], $row["item_id"], $row["RN"], $row["review"]);
+            $review = new Review($row["review_id"], $row["user_id"], $row["item_id"], $row["RN"], $row["review"]);
             $reviewList[$row["review_id"]] = $review;
         }
         return $reviewList;
@@ -100,7 +100,7 @@
 
         $paymentList = array();
         foreach($records as $row) {
-            $payment = new Payment($row["payment_id"], $row["cardholder_name"], $row["card_number"], $row["expiration_date"], $row["cvv_code"]);
+            $payment = new Payment($row["payment_id"],  $row["user_id"], $row["cardholder_name"], $row["card_number"], $row["expiration_date"], $row["cvv_code"]);
             $paymentList[$row["payment_id"]] = $payment;
         }
         return $paymentList;

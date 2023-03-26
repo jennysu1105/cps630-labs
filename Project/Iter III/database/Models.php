@@ -50,7 +50,7 @@ class Shopping extends Table implements Database
 
     /**
      * Enter 2 parameter ($store_code, $total_price) for creating the object from user input.
-     * Enter 3 parameter ($receipt_id, $store_code, $total_price) for creating the obejct from database.
+     * Enter 3 parameter ($receipt_id, $store_code, $total_price) for creating the object from database.
      */
     public function __construct()
     {
@@ -133,7 +133,7 @@ class Truck extends Table implements Database
 
     /**
      * Enter 2 parameter ($truck_code, $availability_code) for creating the object from user input.
-     * Enter 3 parameter ($truck_id, $truck_code, $availability_code) for creating the obejct from database.
+     * Enter 3 parameter ($truck_id, $truck_code, $availability_code) for creating the object from database.
      */
     public function __construct()
     {
@@ -219,7 +219,7 @@ class Trip extends Table implements Database
 
     /**
      * Enter 5 parameter ($source_code, $destination_code, $distance, $truck_id, $price) for creating the object from user input.
-     * Enter 6 parameter ($trip_id, $source_code, $destination_code, $distance, $truck_id, $price) for creating the obejct from database.
+     * Enter 6 parameter ($trip_id, $source_code, $destination_code, $distance, $truck_id, $price) for creating the object from database.
      */
     public function __construct()
     {
@@ -339,7 +339,7 @@ class User extends Table implements Database
 
     /**
      * Enter 8 parameter ($full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance) for creating the object from user input.
-     * Enter 9 parameter ($user_id, $full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance) for creating the obejct from database.
+     * Enter 9 parameter ($user_id, $full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance) for creating the object from database.
      */
     public function __construct()
     {
@@ -488,7 +488,7 @@ class Item extends Table implements Database
 
     /**
      * Enter 4 parameter ($item_name, $item_price, $made_in, $department_code) for creating the object from user input.
-     * Enter 5 parameter ($item_id, $item_name, $item_price, $made_in, $department_code) for creating the obejct from database.
+     * Enter 5 parameter ($item_id, $item_name, $item_price, $made_in, $department_code) for creating the object from database.
      */
     public function __construct()
     {
@@ -602,7 +602,7 @@ class ItemSale extends Table implements Database
 
     /**
      * Enter 3 parameter ($item_id, $sale_price, $expiry_time) for creating the object from user input.
-     * Enter 4 parameter ($item_sale_id, $item_id, $sale_price, $expiry_time) for creating the obejct from database.
+     * Enter 4 parameter ($item_sale_id, $item_id, $sale_price, $expiry_time) for creating the object from database.
      */
     public function __construct()
     {
@@ -698,8 +698,8 @@ class Review extends Table implements Database
     public $review;
 
     /**
-     * Enter 3 parameter ($item_id, $RN, $review) for creating the object from user input.
-     * Enter 4 parameter ($review_id, $item_id, $RN, $review) for creating the obejct from database.
+     * Enter 4 parameter ($item_id, $user_id, $RN, $review) for creating the object from user input.
+     * Enter 5 parameter ($review_id, $item_id, $user_id, $RN, $review) for creating the object from database.
      */
     public function __construct()
     {
@@ -808,8 +808,8 @@ class Payment extends Table implements Database
     public $cvv_code;
 
     /**
-     * Enter 4 parameter ($cardholder_name, $card_number, $expiration_date, $cvv_code) for creating the object from user input.
-     * Enter 5 parameter ($payment_id, $cardholder_name, $card_number, $expiration_date, $cvv_code) for creating the obejct from database.
+     * Enter 5 parameter ($user_id, $cardholder_name, $card_number, $expiration_date, $cvv_code) for creating the object from user input.
+     * Enter 6 parameter ($payment_id, $user_id, $cardholder_name, $card_number, $expiration_date, $cvv_code) for creating the object from database.
      */
     public function __construct()
     {
@@ -843,8 +843,8 @@ class Payment extends Table implements Database
     public function insert()
     {
         if ($this->payment_id == null) {
-            $updateItem = "INSERT INTO paymentTable (user_id, cardholder_name, card_number, expiration_date, cvv_code) VALUES ($this->user_id, '$this->cardholder_name', '$this->card_number', '$this->expiration_date', '$this->cvv_code')";
-            return submitQuery($updateItem);
+            $insertItem = "INSERT INTO paymentTable (user_id, cardholder_name, card_number, expiration_date, cvv_code) VALUES ($this->user_id, '$this->cardholder_name', '$this->card_number', '$this->expiration_date', '$this->cvv_code')";
+            return submitQuery($insertItem);
         }
     }
 
@@ -929,7 +929,7 @@ class Order extends Table implements Database
 
     /**
      * Enter 7 parameter ($date_issued, $date_received, $total_price, $payment_id, $user_id, $trip_id, $receipt_id) for creating the object from user input.
-     * Enter 8 parameter ($order_id, $date_issued, $date_received, $total_price, $payment_id, $user_id, $trip_id, $receipt_id) for creating the obejct from database.
+     * Enter 8 parameter ($order_id, $date_issued, $date_received, $total_price, $payment_id, $user_id, $trip_id, $receipt_id) for creating the object from database.
      */
     public function __construct()
     {

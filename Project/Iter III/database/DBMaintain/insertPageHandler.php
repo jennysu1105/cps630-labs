@@ -27,11 +27,11 @@ if(isset($_POST["identifier"])) {
         $item->insert();
     } 
     else if($identifier == "review") {
-        $review = new Review($_POST["item_id"], $_POST["RN"], $_POST["review"]);
+        $review = new Review($_POST["item_id"], $_POST["user_id"], $_POST["RN"], $_POST["review"]);
         $review->insert();
     } 
     else if($identifier == "payment") {
-        $payment = new Payment($_POST["cardholder_name"], $_POST["card_number"], $_POST["expiration_date"], $_POST["cvv_code"]);
+        $payment = new Payment($_POST["user_id"], $_POST["cardholder_name"], $_POST["card_number"], $_POST["expiration_date"], $_POST["cvv_code"]);
         $payment->insert();
     } 
     else if($identifier == "order") {

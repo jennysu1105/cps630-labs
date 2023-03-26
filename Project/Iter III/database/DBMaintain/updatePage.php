@@ -115,6 +115,8 @@
                 <input type='number' name='review_id' min='0' max='99999' required>
                 <label for='item_id'>item_id: </label>
                 <input type='number' name='item_id' min='0' max='99999'>
+                <label for='user_id'>user_id: </label>
+                <input type='number' name='user_id' min='0' max='99999'>
                 <label for='RN'>Rating: </label>
                 <input type='number' name='RN' min='1' max='5'>
                 <label for='review'>review: </label>
@@ -128,6 +130,8 @@
                 <input hidden name='identifier' value='payment'>
                 <label for='payment_id'>payment_id: </label>
                 <input type='number' name='payment_id' min='0' max='99999' required>
+                <label for='user_id'>user_id: </label>
+                <input type='number' name='user_id' min='0' max='99999'>
                 <label for='cardholder_name'>cardholder_name: </label>
                 <input type='text' name='cardholder_name' minlength='0' maxlength='50'>
                 <label for='card_number'>card_number: </label>

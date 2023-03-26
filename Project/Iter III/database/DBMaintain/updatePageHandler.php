@@ -90,6 +90,9 @@ if (isset($_POST["identifier"])) {
             if (!empty($_POST["item_id"])) {
                 $object->setItem_id($_POST["item_id"]);
             }
+            if (!empty($_POST["user_id"])) {
+                $object->setUser_id($_POST["user_id"]);
+            }
             if (!empty($_POST["RN"])) {
                 $object->setRN($_POST["RN"]);
             }
@@ -100,6 +103,9 @@ if (isset($_POST["identifier"])) {
         }
 
         else if ($identifier == "payment") {
+            if (!empty($_POST["user_id"])) {
+                $object->setUser_id($_POST["user_id"]);
+            }
             if (!empty($_POST["cardholder_name"])) {
                 $object->setCardholder_name($_POST["cardholder_name"]);
             }

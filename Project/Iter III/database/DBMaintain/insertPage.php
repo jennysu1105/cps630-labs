@@ -102,6 +102,8 @@
                 <input hidden name='identifier' value='review'>
                 <label for='item_id'>item_id: </label>
                 <input type='number' name='item_id' min='0' max='99999' required>
+                <label for='user_id'>user_id: </label>
+                <input type='number' name='user_id' min='0' max='99999' required>
                 <label for='RN'>Rating: </label>
                 <input type='number' name='RN' min='1' max='5' required>
                 <label for='review'>review: </label>
@@ -113,6 +115,8 @@
 
         print("<form action='insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='payment'>
+                <label for='user_id'>user_id: </label>
+                <input type='number' name='user_id' min='0' max='99999' required>
                 <label for='cardholder_name'>cardholder_name: </label>
                 <input type='text' name='cardholder_name' minlength='0' maxlength='50' required>
                 <label for='card_number'>card_number: </label>

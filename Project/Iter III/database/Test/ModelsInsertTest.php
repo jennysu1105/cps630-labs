@@ -16,15 +16,16 @@
     $user1 = new User("John Doe", "4163334444", "johndoe@gmail.com", "10 Adeline St", "416", "jdoe", "password", 500);
     $user2 = new User("Alex Stuart", "7063334444", "astuart@gmail.com", "22 Yonge St", "706", "astuart", "password123", 200);
 
-    $item1 = new Item("Jeans", 24.99, "Vietnam", "FASHION");
-    $item2 = new Item("Tshirt", 14.99, "Japan", "FASHION");
+    $item1 = new Item("Jeans Green", 40.99, "Vietnam", "FASHION");
+    $item2 = new Item("Tshirt Yellow", 12.99, "Japan", "FASHION");
+    $item3 = new Item("Sock Orange", 8.99, "China", "FASHION");
 
-    $review1 = new Review(1, 4, "looks good");
-    $review2 = new Review(2, 1, "bad quality");
-    $review3 = new Review(1, 3, "meh");
+    $review1 = new Review(1, 1, 4, "looks good");
+    $review2 = new Review(2, 2, 1, "bad quality");
+    $review3 = new Review(1, 1, 3, "meh");
 
-    $payment1 = new Payment("M WIDIANT", "1111222233334444", "2023-03-01", "111");
-    $payment2 = new Payment("J JOHN", "5555666677778888", "2023-03-01", "222");
+    $payment1 = new Payment(1, "JOHN D", "5555666677778888", "2023-03-01", "222");
+    $payment2 = new Payment(2, "ALEX S", "1111222233334444", "2023-03-01", "111");
 
     $order1 = new Order("2023-03-14", "2023-03-14", 24.99, 1, 1, 1, 1);
     $order2 = new Order("2023-03-21", "2023-03-21", 14.99, 2, 2, 2, 2);
@@ -33,7 +34,7 @@
     $truck1->insert();$truck2->insert();
     $trip1->insert();$trip2->insert();
     $user1->insert();$user2->insert();
-    $item1->insert();$item2->insert();
+    $item1->insert();$item2->insert();$item3->insert();
     $review1->insert();$review2->insert();$review3->insert();
     $payment1->insert();$payment2->insert();
     $order1->insert();$order2->insert();
