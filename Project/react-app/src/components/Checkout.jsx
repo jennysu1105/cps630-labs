@@ -4,7 +4,40 @@ import {useCookies} from 'react-cookie';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
+var data = [
+    {
+        payment: "new",
+        save: 0,
+        card_num: "",
+        card_name: "",
+        card_expiry: "",
+        cvv: "",
+
+        address_1: "",
+        address_2: "",
+        city: "",
+        region: "",
+        country: "",
+        postal_code: ""
+    }
+]
 const Checkout = () => {
+
+    const save = event => {
+        if (data[0]['save'] > 0){
+            data[0]['save'] = 0;
+        }
+        else{
+            data[0]['save'] = 1;
+        }
+        console.log(data[0]);
+    }
+
+    const handleChange = event => {
+        data[0][event.target.name] = event.target.value;
+        console.log(data[0]);
+    }
+
     const [cookies, setCookie] = useCookies(['items']);
     const [cartItems, setCartItems] = useState([]);
     const [total, calculateTotal] = useState([])
@@ -42,24 +75,26 @@ const Checkout = () => {
                 </div>
                 <div class = "col-md-6 text-start">
                     <form method="post" action="reviewOrder.php">
-                        <input type="radio" id="new" name = "payment" value = "new"/>
+                        <input type="radio" id="new" name = "payment" value = "new" onChange={handleChange} checked="checked"/>
                         <label for="new">
                             <div class="card text-start" style={{padding:'10px'}}>
-                            Card Number: <input type="text" name="card_num" style={{width: "450px"}}></input>
-                            Name: <input type="text" name="card_name" style={{width:"150px"}}></input>
-                            Expiry Date: MM/YY <input type="text" name="card_expiry" style={{width:"100px"}}></input>
-                            CVV: <input type="text" name="cvv" style={{width:"50px"}}></input>
+                            Card Number: <input type="text" name="card_num" style={{width: "450px"}} onChange={handleChange}></input>
+                            Name: <input type="text" name="card_name" style={{width:"150px"}} onChange={handleChange}></input>
+                            Expiry Date: MM/YY <input type="text" name="card_expiry" style={{width:"100px"}} onChange={handleChange}></input>
+                            CVV: <input type="text" name="cvv" style={{width:"50px"}} onChange={handleChange}></input>
                             </div>
                         </label>
-                        <br/><input type="checkbox" name="save_card" value="save"/><label for="save_card"> Save this card</label><br/>
+                        <br/>
+                        <br/><input type="checkbox" name="save_card" value="save" onChange={save}/><label for="save_card"> Save this card</label><br/>
                         <hr/>
                         <p><b>Shipping Details</b></p>
                         <div class="card" style={{padding:"10px"}}>
-                            Address Line 1: <input type="text" name="address_1" ></input>
-                            Address Line 2: <input type="text" name="address_2" ></input>
-                            City: <input type="text" name="city" style={{width:"150px"}}></input>
-                            Province: <input type="text" name="province" style={{width:"150px"}}></input>
-                            Postal Code: <input type="text" name="postal_code" style={{width:"150px"}}></input>
+                            Address Line 1: <input type="text" name="address_1" onChange={handleChange}></input>
+                            Address Line 2: <input type="text" name="address_2" onChange={handleChange}></input>
+                            City: <input type="text" name="city" style={{width:"150px"}} onChange={handleChange}></input>
+                            Province/State: <input type="text" name="region" style={{width:"150px"}} onChange={handleChange}></input>
+                            Country: <input type="text" name="country" style={{width:"150px"}} onChange={handleChange}></input>
+                            Postal Code: <input type="text" name="postal_code" style={{width:"150px"}} onChange={handleChange}></input>
                         </div>
                         <hr/><button type="submit" class="bg-light text-dark">Place Order</button>
                     </form>
