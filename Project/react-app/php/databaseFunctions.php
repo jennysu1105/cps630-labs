@@ -12,7 +12,19 @@ function checkUserCredentials($login_id, $password)
 {
     $sql = "SELECT * FROM userTable WHERE login_id='$login_id' AND user_password='$password'";
     $array = submitSelectQuery($sql);
-    return empty($array);
+    if (empty($array) == "") {
+        echo '<script type="text/javascript">
+                window.location = "http://localhost:3000"
+            </script>';
+    } else {
+        print(" <div>
+                    Login failed - incorrect username or password. 
+                <div>
+                <form method='' action='http://localhost:3000/sign_in'>
+                    <button type='submit'/>Try again</button>
+                </form>"
+        );
+    }
 }
 
 /**

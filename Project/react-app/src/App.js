@@ -13,6 +13,7 @@ import Insert from './components/Insert';
 import Update from './components/Update';
 import Delete from './components/Delete';
 import Sign_up from './components/Sign_up';
+import Sign_in from './components/Sign_in';
 
 function App() {
   const divStyle = {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/update" element={<Update />}></Route>
           <Route path="/delete" element={<Delete />}></Route>
           <Route path="/sign_up" element={<Sign_up />}></Route>
+          <Route path="/sign_in" element={<Sign_in />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
