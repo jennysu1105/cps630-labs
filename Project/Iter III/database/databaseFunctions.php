@@ -92,4 +92,24 @@
         }
         return $reviews;
     }
+    
+    /**
+     * Return an associative array of items purchased by $user_id that is not yet reviewed. Key is item_id, and value is item_name
+     */
+    function getRevewableItemByUser($user_id) {
+        $sqlPurhased = "SELECT itemtable.item_id, itemtable.item_name FROM purchaseditemtable INNER JOIN itemtable ON purchaseditemtable.item_id = itemtable.item_id WHERE purchaseditemtable.user_id = $user_id";
+        $sqlReviewed = "SELECT itemtable.item_id, itemtable.item_name FROM reviewtable INNER JOIN itemtable ON reviewtable.item_id = itemtable.item_id WHERE reviewtable.user_id = $user_id";
+        $arr = submitSelectQuery($sqlPurhased);
+        $purhasedItem = array();
+        foreach($arr as $key=>$value) {
+            $purhasedItem[$value['item_id']] = $value['item_name'];
+        }
+        $arr = submitSelectQuery($sqlReviewed);
+        $reviewedItem = array();
+        foreach($arr as $key=>$value) {
+            $reviewedItem[$value['item_id']] = $value['item_name'];
+        }
+        $reviewableItem = array_diff($purhasedItem, $reviewedItem);
+        return $reviewableItem;
+    }
 ?>

@@ -1056,3 +1056,32 @@ class Order extends Table implements Database
         $this->receipt_id = $receipt_id;
     }
 }
+
+class PurchasedItem extends Table implements Database 
+{
+    public $purchasedItem_id;
+    public $item_id;
+    public $user_id;
+
+    public function __construct($item_id, $user_id)
+    {
+        $this->item_id = $item_id;
+        $this->user_id = $user_id;
+    }
+
+    public function insert()
+    {
+        if ($this->purchasedItem_id == null) {
+            $insertShopping = "INSERT INTO purchasedItemTable (item_id, user_id) VALUES ($this->item_id, $this->user_id)";
+            return submitQuery($insertShopping);
+        }
+    }
+
+    public function update()
+    {
+    }
+
+    public function delete()
+    {
+    }
+}

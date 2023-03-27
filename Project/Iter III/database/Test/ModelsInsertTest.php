@@ -21,14 +21,18 @@
     $item3 = new Item("Sock Orange", 8.99, "China", "FASHION");
 
     $review1 = new Review(1, 1, 4, "looks good");
-    $review2 = new Review(2, 2, 1, "bad quality");
-    $review3 = new Review(1, 1, 3, "meh");
+    $review2 = new Review(2, 1, 1, "bad quality");
+    $review3 = new Review(3, 2, 3, "meh");
 
     $payment1 = new Payment(1, "JOHN D", "5555666677778888", "2023-03-01", "222");
     $payment2 = new Payment(2, "ALEX S", "1111222233334444", "2023-03-01", "111");
 
     $order1 = new Order("2023-03-14", "2023-03-14", 24.99, 1, 1, 1, 1);
     $order2 = new Order("2023-03-21", "2023-03-21", 14.99, 2, 2, 2, 2);
+
+    $purchasedItem1 = new PurchasedItem(1, 1);
+    $purchasedItem2 = new PurchasedItem(2, 1);
+    $purchasedItem3 = new PurchasedItem(3, 2);
 
     $shopping1->insert();$shopping2->insert();
     $truck1->insert();$truck2->insert();
@@ -38,7 +42,7 @@
     $review1->insert();$review2->insert();$review3->insert();
     $payment1->insert();$payment2->insert();
     $order1->insert();$order2->insert();
-    
+    $purchasedItem1->insert();$purchasedItem2->insert();$purchasedItem3->insert();
     
     // Select / Show Database
     echo "<h1>Select Test (run only once, else records will be duplicated)</h1>";

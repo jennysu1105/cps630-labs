@@ -6,7 +6,7 @@
 
 <?php
 include_once "../dbConnection.php";
-$sql = "DROP TABLE orderTable, paymentTable, reviewTable, itemSaleTable, itemTable, userTable, tripTable, truckTable, shoppingTable";
+$sql = "DROP TABLE purchasedItemTable, orderTable, paymentTable, reviewTable, itemSaleTable, itemTable, userTable, tripTable, truckTable, shoppingTable";
 
 if ($connect->query($sql) === TRUE) {
     echo "All table dropped successfully";

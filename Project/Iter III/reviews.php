@@ -4,6 +4,7 @@
     include_once "database/selectModels.php";
     include_once "database/submitQuery.php";
     include_once "database/databaseFunctions.php";
+    include_once "setCookieLogin.php";
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +25,30 @@
     <nav-bar></nav-bar>
     <div>
         <!--To create reviews-->
+        <?php //Only show this part if a user sign
+            //setLoginCookie("astuart", "password123");
+            $user = fetchLoginCookie();
+            if(!empty($user)) {
+                $reviewableItem = getRevewableItemByUser($user->getUser_id());
+                print(
+                    "<form action='reviewPageHandler.php' method='POST'>
+                        <label for='item_id'>Product: </label>
+                        <select name='item_id' required>"
+                );
+                foreach($reviewableItem as $item_id=>$item_name) {
+                    print("<option value='$item_id'>$item_name</option>");
+                }
+                print("
+                        </select>
+                        <label for='RN'>Rating: </label>
+                        <input type='number' name='RN' min='1' max='5' required>
+                        <label for='review'>Review: </label>
+                        <input type='text' name='review' minlength='0' maxlength='250' style='height: 50px; width: 300px;' required>
+                        <input type='submit'>
+                    </form>
+                ");
+            }
+        ?>
     </div>
     <div>
         <!--To view reviews-->
