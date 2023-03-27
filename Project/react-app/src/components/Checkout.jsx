@@ -38,9 +38,10 @@ const Checkout = () => {
         console.log(data[0]);
     }
 
-    const [cookies, setCookie] = useCookies(['items']);
+    const [cookies, setCookie] = useCookies();
     const [cartItems, setCartItems] = useState([]);
-    const [total, calculateTotal] = useState([])
+    const [total, calculateTotal] = useState([]);
+    const [cards, setExistingCards] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
@@ -56,10 +57,23 @@ const Checkout = () => {
     },[])
 
     useEffect(() => {
+        console.log(cookies.user);
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
             setCartItems(response.data);
             console.log(JSON.stringify(cookies.items));
             console.log(response.data);
+        });
+    }, []);
+
+    useEffect(() =>{
+        axios.get("http://localhost:8000/getExistingCards.php", {params: {user_id: cookies.user}}).then((response) => {
+            console.log(response.data);
+            if (response.data.length > 0){
+                setExistingCards(response.data);
+            }
+            else{
+                setExistingCards([]);
+            }
         });
     }, []);
 
@@ -75,13 +89,24 @@ const Checkout = () => {
                 </div>
                 <div class = "col-md-6 text-start">
                     <form >
+                        {cards.map((card, index) => (
+                            <div class="container">
+                                <input type="radio" id={index} name="payment" value={card.payment_id}/>
+                                <label for={index}>
+                                    <div class="card" style={{padding:"10px"}}> ************ {card.card_number.substring(12)}
+                                    <br/> {card.cardholder_name} | {card.expiration_date.substring(5,7)}/{card.expiration_date.substring(2, 4)}
+                                    </div>
+                                </label>
+                                <br/>
+                            </div>
+                        ))}
                         <input type="radio" id="new" name = "payment" value = "new" onChange={handleChange} checked="checked"/>
                         <label for="new">
                             <div class="card text-start" style={{padding:'10px'}}>
-                            Card Number: <input type="text" name="card_num" style={{width: "450px"}} onChange={handleChange}></input>
+                            Card Number: <input type="text" name="card_num" style={{width: "450px"}} onChange={handleChange} maxLength="16"></input>
                             Name: <input type="text" name="card_name" style={{width:"150px"}} onChange={handleChange}></input>
-                            Expiry Date: MM/YY <input type="text" name="card_expiry" style={{width:"100px"}} onChange={handleChange}></input>
-                            CVV: <input type="text" name="cvv" style={{width:"50px"}} onChange={handleChange}></input>
+                            Expiry Date: MM/YY <input type="text" name="card_expiry" style={{width:"100px"}} onChange={handleChange} maxLength="5"></input>
+                            CVV: <input type="text" name="cvv" style={{width:"50px"}} onChange={handleChange} maxLength="3"></input>
                             </div>
                         </label>
                         <br/>

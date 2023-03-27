@@ -9,7 +9,7 @@ const Review_order = () => {
     const {data} = location.state;
     const info = data[0];
 
-    const [cookies, setCookie] = useCookies(['items']);
+    const [cookies, setCookie] = useCookies();
     const [cartItems, setCartItems] = useState([]);
     const [total, calculateTotal] = useState([])
     const [payment, setPayment] = useState([]);
@@ -28,14 +28,11 @@ const Review_order = () => {
     },[])
 
     useEffect(() => {
-        if (info['save'] === 'save'){
-            axios.get("http://localhost:8000/addPayment.php", {params: {info: JSON.stringify(info)}}).then((response) => {
-                setPayment([{card_num: info['card_num'],
-                card_name: info['card_name'],
-                card_expiry: info['card_expiry'],
-                cvv: info['cvv'],}])
-            });
-        }
+        axios.get("http://localhost:8000/addPayment.php", {params: {info: JSON.stringify(info), user: cookies.user}}).then((response) => {
+            console.log(JSON.stringify(info));
+            console.log(response.data);
+            setPayment([{card_num: info['card_num'], card_name: info['card_name'], card_expiry: info['card_expiry'],cvv: info['cvv'],}])
+        });
     },[])
 
     useEffect(() => {
