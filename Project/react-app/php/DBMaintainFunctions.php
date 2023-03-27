@@ -8,27 +8,33 @@ $truck = new Truck();
 $trip = new Trip();
 $user = new User();
 $item = new Item();
+$item_sale = new ItemSale();
 $review = new Review();
 $payment = new Payment();
 $order = new Order();
+$purhased_item = new PurchasedItem();
 
 $shoppingList = selectShopping(); 
 $truckList = selectTruck(); 
 $tripList = selectTrip(); 
 $userList = selectUser();
 $itemList = selectItem();
+$item_saleList = selectItemSale();
 $reviewList = selectReview();
 $paymentList = selectPayment();
 $orderList = selectOrder();
+$purchased_itemList = selectPurchasedItem();
 
 $shoppingTitle = "Shopping Table"; 
 $truckTitle = "Truck Table"; 
 $tripTitle = "Trip Table"; 
 $userTitle = "User Table";
 $itemTitle = "Item Table";
+$item_saleTitle = "Item Sale Table"; 
 $reviewTitle = "Review Table";
 $paymentTitle = "Payment Table";
 $orderTitle = "Order Table";
+$purchased_itemTitle = "Purchased Item Table"; 
 
 function getObjectList($id) {
     return $GLOBALS[$id."List"];

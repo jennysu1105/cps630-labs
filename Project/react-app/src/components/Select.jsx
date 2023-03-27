@@ -53,6 +53,14 @@ const Select = () => {
         }
     })
 
+    $("input#item_sale").change(function () {
+        if (this.checked) {
+            $("div#item_sale").css('display', 'block');
+        } else {
+            $("div#item_sale").css('display', 'none');
+        }
+    })
+
     $("input#review").change(function () {
         if (this.checked) {
             $("div#review").css('display', 'block');
@@ -77,6 +85,14 @@ const Select = () => {
         }
     })
 
+    $("input#purchased_item").change(function () {
+        if (this.checked) {
+            $("div#purchased_item").css('display', 'block');
+        } else {
+            $("div#purchased_item").css('display', 'none');
+        }
+    })
+
     return (
         <div class="container">
             <div class="row">
@@ -92,12 +108,16 @@ const Select = () => {
             <label for="user">&nbsp;User Table</label>
             <input type="checkbox" id="item" name="item" />
             <label for="item">&nbsp;Item Table</label>
+            <input type="checkbox" id="item_sale" name="item_sale" />
+            <label for="item_sale">&nbsp;Item Sale Table</label>
             <input type="checkbox" id="review" name="review" />
             <label for="review">&nbsp;Review Table</label>
             <input type="checkbox" id="payment" name="payment" />
             <label for="payment">&nbsp;Payment Table</label>
             <input type="checkbox" id="order" name="order" />
             <label for="order">&nbsp;Order Table</label>
+            <input type="checkbox" id="purchased_item" name="purchased_item" />
+            <label for="purchased_item">&nbsp;Purchased Item Table</label>
             <div
                 dangerouslySetInnerHTML={{ __html: data }}
             />

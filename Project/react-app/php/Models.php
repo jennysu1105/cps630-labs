@@ -632,24 +632,24 @@ class ItemSale extends Table implements Database
     public function insert()
     {
         if ($this->item_sale_id == null) {
-            $insertReview = "INSERT INTO itemSaleTable (item_id, sale_price, expiry_time) VALUES ($this->item_id, $this->sale_price, '$this->expiry_time')";
-            return submitQuery($insertReview);
+            $insertItemSale = "INSERT INTO itemSaleTable (item_id, sale_price, expiry_time) VALUES ($this->item_id, $this->sale_price, '$this->expiry_time')";
+            return submitQuery($insertItemSale);
         }
     }
 
     public function update()
     {
         if ($this->item_sale_id != null) {
-            $updateReview = "UPDATE itemSaleTable SET item_id=$this->item_id, sale_price=$this->sale_price, expiry_time='$this->expiry_time' WHERE item_sale_id=$this->item_sale_id";
-            return submitQuery($updateReview);
+            $updateItemSale = "UPDATE itemSaleTable SET item_id=$this->item_id, sale_price=$this->sale_price, expiry_time='$this->expiry_time' WHERE item_sale_id=$this->item_sale_id";
+            return submitQuery($updateItemSale);
         }
     }
 
     public function delete()
     {
         if ($this->item_sale_id != null) {
-            $deleteReview = "DELETE FROM itemSaleTable WHERE item_sale_id=$this->item_sale_id";
-            return submitQuery($deleteReview);
+            $deleteItemSale = "DELETE FROM itemSaleTable WHERE item_sale_id=$this->item_sale_id";
+            return submitQuery($deleteItemSale);
         }
     }
 
@@ -1054,5 +1054,85 @@ class Order extends Table implements Database
     public function setReceipt_id($receipt_id)
     {
         $this->receipt_id = $receipt_id;
+    }
+}
+
+class PurchasedItem extends Table implements Database 
+{
+    public $purchased_item_id;
+    public $item_id;
+    public $user_id;
+
+
+    /**
+     * Enter 2 parameter ($item_id, $user_id) for creating the object from user input.
+     * Enter 3 parameter ($purchased_item_id, $item_id, $user_id) for creating the object from database.
+     */
+    public function __construct()
+    {
+        $arguments = func_get_args();
+        $numberOfArguments = func_num_args();
+
+        if (method_exists($this, $function = '__construct' . $numberOfArguments)) {
+            call_user_func_array(array($this, $function), $arguments);
+        }
+    }
+
+    public function __construct2($item_id, $user_id)
+    {
+        $this->item_id = $item_id;
+        $this->user_id = $user_id;
+    }
+
+    public function __construct3($purchased_item_id, $item_id, $user_id)
+    {
+        $this->purchased_item_id = $purchased_item_id;
+        $this->item_id = $item_id;
+        $this->user_id = $user_id;
+    }
+
+
+    public function insert()
+    {
+        if ($this->purchased_item_id == null) {
+            $insertPurchasedItem = "INSERT INTO purchasedItemTable (item_id, user_id) VALUES ($this->item_id, $this->user_id)";
+            return submitQuery($insertPurchasedItem);
+        }
+    }
+
+    public function update()
+    {
+        if ($this->purchased_item_id != null) {
+            $updatePurchasedItem = "UPDATE purchasedItemTable SET item_id=$this->item_id, user_id=$this->user_id WHERE purchased_item_id=$this->purchased_item_id";
+            return submitQuery($updatePurchasedItem);
+        }
+    }
+
+    public function delete()
+    {
+        if ($this->purchased_item_id != null) {
+            $deletePurchasedItem = "DELETE FROM purchasedItemTable WHERE purchased_item_id=$this->purchased_item_id";
+            return submitQuery($deletePurchasedItem);
+        }
+    }
+
+    public function getItem_id()
+    {
+        return $this->item_id;
+    }
+
+    public function setItem_id($item_id)
+    {
+        $this->item_id = $item_id;
+    }
+
+    public function getUser_id()
+    {
+        return $this->user_id;
+    }
+
+    public function setUser_id($user_id)
+    {
+        $this->user_id = $user_id;
     }
 }

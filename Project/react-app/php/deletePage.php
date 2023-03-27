@@ -50,6 +50,15 @@ print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
 createHTMLTable("item");
 
 print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
+    <input hidden name='identifier' value='item_sale'>
+    <label for='item_sale_id'>item_sale_id: </label>
+    <input type='number' name='item_sale_id' min='0' max='99999' required>
+    <input type='submit'>
+</form>"
+);
+createHTMLTable("item_sale");
+
+print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='review'>
                 <label for='review_id'>review_id: </label>
                 <input type='number' name='review_id' min='0' max='99999' required>
@@ -75,6 +84,15 @@ print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("order");
+
+print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
+    <input hidden name='identifier' value='purchased_item'>
+    <label for='purchased_item_id'>purchased_item_id: </label>
+    <input type='number' name='purchased_item_id' min='0' max='99999' required>
+    <input type='submit'>
+</form>"
+);
+createHTMLTable("purchased_item");
 
 include_once "browserDetection.php";
 ?>

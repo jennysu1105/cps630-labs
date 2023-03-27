@@ -84,6 +84,17 @@ if (isset($_POST["identifier"])) {
                 $object->setDepartment_code($_POST["department_code"]);
             }
             $object->update();
+        } else if ($identifier == "item_sale") {
+            if (!empty($_POST["item_id"])) {
+                $object->setItem_id($_POST["item_id"]);
+            }
+            if (!empty($_POST["sale_price"])) {
+                $object->setSale_price($_POST["sale_price"]);
+            }
+            if (!empty($_POST["expiry_time"])) {
+                $object->setExpiry_time($_POST["expiry_time"]);
+            }
+            $object->update();
         } else if ($identifier == "review") {
             if (!empty($_POST["item_id"])) {
                 $object->setItem_id($_POST["item_id"]);
@@ -136,6 +147,14 @@ if (isset($_POST["identifier"])) {
             }
             if (!empty($_POST["receipt_id"])) {
                 $object->setReceipt_id($_POST["receipt_id"]);
+            }
+            $object->update();
+        } else if ($identifier == "purchased_item") {
+            if (!empty($_POST["item_id"])) {
+                $object->setItem_id($_POST["item_id"]);
+            }
+            if (!empty($_POST["user_id"])) {
+                $object->setUser_id($_POST["user_id"]);
             }
             $object->update();
         }
