@@ -8,17 +8,19 @@ include_once "submitQuery.php";
 include_once "databaseFunctions.php";
 
 $reviews = getReviewsWithUserAndItem();
+print("<h3 class='mt-4'>Item Reviews</h3>");
 foreach ($reviews as $itemName => $item) {
-    print("<div><h4>$itemName</h4>");
+    print("<div class='row'><div class='col-md-6 offset-md-3'>
+            <div class='card m-4' style='padding:15px'><h4 class='m-3'>$itemName</h4><hr>");
     foreach ($item as $review) {
         $username = $review["login_id"];
         $rating = $review["RN"];
         $userReview = $review["review"];
-        print("<p>Review By: $username</p><br>
-                        <p>Rating: $rating</p><br>
-                        <p>Review: $userReview</p><br>"
+        print("<p>Item Rating: $rating</p>
+                <p>Reviewer: $username</p>
+                <p>Review: $userReview</p><hr>"
         );
     }
-    print("/<div>");
+    print("</div></div></div></div>");
 }
 ?>
