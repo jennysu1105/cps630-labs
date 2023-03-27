@@ -6,6 +6,7 @@
 
 <?php
 include_once "../dbConnection.php";
+
 $shoppingTable = "CREATE TABLE shoppingTable ( 
     receipt_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     store_code INT NOT NULL,
@@ -152,6 +153,20 @@ if ($connect->query($orderTable) === TRUE) {
     echo "Order Table created successfully <br>";
 } else {
     echo "Error creating Order Table: " . $connect->error . "<br>";
+}
+
+$purchasedItemTable = "CREATE TABLE purchasedItemTable (
+    purchased_item_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    item_id INT(6) UNSIGNED,
+    user_id INT(6) UNSIGNED,
+    FOREIGN KEY (item_id) REFERENCES itemTable(item_id),
+    FOREIGN KEY (user_id) REFERENCES userTable(user_id)
+)";
+
+if ($connect->query($purchasedItemTable) === TRUE) {
+    echo "Purchased Item Table created successfully <br>";
+} else {
+    echo "Error creating Purchased Item Table: " . $connect->error . "<br>";
 }
 
 $connect->close();
