@@ -18,6 +18,7 @@ import Sign_in from './components/Sign_in';
 import Checkout from './components/Checkout';
 import BrowserDetection from './components/BrowserDetection';
 import Review_order from './components/Review_order';
+import LoggedIn from './components/LoggedIn';
 
 function App() {
   const divStyle = {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/sign_in" element={<Sign_in />}></Route>
           <Route path="/checkout" element={<Checkout/>}></Route>
           <Route path="/review_order" element={<Review_order/>}></Route>
+          <Route path="/loggedIn" element={<LoggedIn/>}></Route>
         </Routes>
       </BrowserRouter>
       <BrowserDetection></BrowserDetection>
