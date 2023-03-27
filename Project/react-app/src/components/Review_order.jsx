@@ -13,6 +13,7 @@ const Review_order = () => {
     const [cartItems, setCartItems] = useState([]);
     const [total, calculateTotal] = useState([])
     const [payment, setPayment] = useState([]);
+    const [order_id, setOrderId] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
@@ -23,9 +24,25 @@ const Review_order = () => {
             items.innerHTML = results.length;
             var cart_total = document.getElementById("price");
             console.log(price)
+            calculateTotal(price);
+            console.log(total);
             cart_total.innerHTML = parseFloat(price).toFixed(2);
         });
     },[])
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+            let results = response.data;
+            let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
+            console.log(price);
+            console.log(info['payment']);
+            console.log(cookies.user);
+            axios.get("http://localhost:8000/submitOrder.php", {params: {total: price, user: cookies.user, payment: info['payment']}}).then((response) => {
+                console.log(response.data);
+                setOrderId(response.data);
+            });
+        });
+    }, [])
 
     useEffect(() => {
         axios.get("http://localhost:8000/addPayment.php", {params: {info: JSON.stringify(info), user: cookies.user}}).then((response) => {
@@ -47,7 +64,7 @@ const Review_order = () => {
         <div class="container">
             <div class="row mt-4">
                 <h3>Your order has been sent!</h3>
-                <h6>Your order number is #00000001</h6>
+                <h6>Your order number is #{order_id}</h6>
             </div>
             <div class="row mt-4">
                 <div class="col-1">
