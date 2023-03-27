@@ -91,7 +91,7 @@ const Checkout = () => {
                     <form >
                         {cards.map((card, index) => (
                             <div class="container">
-                                <input type="radio" id={index} name="payment" value={card.payment_id}/>
+                                <input type="radio" id={index} name="payment" value={card.payment_id} onChange={handleChange}/>
                                 <label for={index}>
                                     <div class="card" style={{padding:"10px"}}> ************ {card.card_number.substring(12)}
                                     <br/> {card.cardholder_name} | {card.expiration_date.substring(5,7)}/{card.expiration_date.substring(2, 4)}
@@ -100,7 +100,7 @@ const Checkout = () => {
                                 <br/>
                             </div>
                         ))}
-                        <input type="radio" id="new" name = "payment" value = "new" onChange={handleChange} checked="checked"/>
+                        <input type="radio" id="new" name = "payment" value = "new" onChange={handleChange}/>
                         <label for="new">
                             <div class="card text-start" style={{padding:'10px'}}>
                             Card Number: <input type="text" name="card_num" style={{width: "450px"}} onChange={handleChange} maxLength="16"></input>

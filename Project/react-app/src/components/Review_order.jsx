@@ -31,7 +31,7 @@ const Review_order = () => {
         axios.get("http://localhost:8000/addPayment.php", {params: {info: JSON.stringify(info), user: cookies.user}}).then((response) => {
             console.log(JSON.stringify(info));
             console.log(response.data);
-            setPayment([{card_num: info['card_num'], card_name: info['card_name'], card_expiry: info['card_expiry'],cvv: info['cvv'],}])
+            setPayment(response.data);
         });
     },[])
 
@@ -58,7 +58,7 @@ const Review_order = () => {
                     <hr/>
                     <div class="row p-3 mb-2 mr-2 bg-dark text-light">
                         Payment Method:
-                        <br/>************ {info['card_num'].substring(12)}
+                        <br/>{payment}
                         <hr/>Shipping to: <br/>
                         <br/>{info['address_2']} {info['address_1']}
                         <br/>{info['city']}
