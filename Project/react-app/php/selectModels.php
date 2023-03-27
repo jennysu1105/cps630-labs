@@ -77,6 +77,21 @@
     }
 
     /**
+     * Return an associative array of ItemSale objects where the key is the item_sale_id (PRIMARY KEY) and the value is the ItemSale object
+     */
+    function selectItemSale () {
+        $selectItemSale="SELECT * FROM itemSaleTable";
+        $records = submitSelectQuery ($selectItemSale);
+
+        $itemSaleList = array();
+        foreach($records as $row) {
+            $itemSale = new ItemSale($row["item_sale_id"], $row["item_id"], $row["sale_price"], $row["expiry_time"]);
+            $itemSaleList[$row["item_sale_id"]] = $itemSale;
+        }
+        return $itemSaleList;
+    }
+    
+    /**
      * Return an associative array of Review objects where the key is the review_id (PRIMARY KEY) and the value is the Review object
      */
     function selectReview () {
@@ -119,5 +134,20 @@
             $orderList[$row["order_id"]] = $order;
         }
         return $orderList;
+    }
+
+    /**
+     * Return an associative array of purchasedItem_idobjects where the key is the purchasedItem_id (PRIMARY KEY) and the value is the PurchasedItem object
+     */
+    function selectPurchasedItem () {
+        $selectPurchasedItem="SELECT * FROM purchasedItemTable";
+        $records = submitSelectQuery ($selectPurchasedItem);
+
+        $purchasedItemList = array();
+        foreach($records as $row) {
+            $purchasedItem = new PurchasedItem($row["purchased_item_id"], $row["item_id"], $row["user_id"]);
+            $purchasedItemList[$row["purchased_item_id"]] = $purchasedItem;
+        }
+        return $purchasedItemList;
     }
 ?>

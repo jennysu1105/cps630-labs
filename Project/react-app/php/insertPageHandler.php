@@ -27,6 +27,10 @@ if(isset($_POST["identifier"])) {
         $item = new Item($_POST["item_name"], $_POST["item_price"], $_POST["made_in"], $_POST["department_code"]);
         $item->insert();
     } 
+    else if($identifier == "item_sale") {
+        $itemSale = new ItemSale($_POST["item_id"], $_POST["sale_price"], $_POST["expiry_time"]);
+        $itemSale->insert();
+    } 
     else if($identifier == "review") {
         $review = new Review($_POST["item_id"], $_POST["user_id"], $_POST["RN"], $_POST["review"]);
         $review->insert();
@@ -38,6 +42,10 @@ if(isset($_POST["identifier"])) {
     else if($identifier == "order") {
         $order = new Order($_POST["date_issued"], $_POST["date_received"], $_POST["total_price"], $_POST["payment_id"], $_POST["user_id"], $_POST["trip_id"], $_POST["receipt_id"]);
         $order->insert();
+    } 
+    else if($identifier == "purchased_item") {
+        $purchasedItem = new PurchasedItem($_POST["item_id"], $_POST["user_id"]);
+        $purchasedItem->insert();
     } 
 }
 

@@ -15,6 +15,7 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("shopping");
+
 print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='truck'>
                 <label for='truck_code'>truck_code: </label>
@@ -25,6 +26,7 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("truck");
+
 print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='trip'>
                 <label for='source_code'>source_code: </label>
@@ -41,6 +43,7 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("trip");
+
 print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='user'>
                 <label for='full_name'>full_name: </label>
@@ -67,6 +70,7 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("user");
+
 print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='item'>
                 <label for='item_name'>item_name: </label>
@@ -81,6 +85,19 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("item");
+
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
+    <input hidden name='identifier' value='item_sale'>
+    <label for='item_id'>item_id: </label>
+    <input type='number' name='item_id' min='0' max='99999' required>
+    <label for='sale_price'>sale_price: </label>
+    <input type='number' name='sale_price' min='0.01' max='9999.99' step='0.01' required>
+    <label for='expiry_time'>expiry_time: </label>
+    <input type='date' name='expiry_time' required>
+    <input type='submit'>
+</form>"
+);
+createHTMLTable("item_sale");
 
 print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='review'>
@@ -134,4 +151,15 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
             </form>"
 );
 createHTMLTable("order");
+
+print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
+    <input hidden name='identifier' value='purchased_item'>
+    <label for='item_id'>item_id: </label>
+    <input type='number' name='item_id' min='0' max='99999' required>
+    <label for='user_id'>user_id: </label>
+    <input type='number' name='user_id' min='0' max='99999' required>
+    <input type='submit'>
+</form>"
+);
+createHTMLTable("purchased_item");
 ?>

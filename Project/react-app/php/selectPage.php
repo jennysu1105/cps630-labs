@@ -11,8 +11,10 @@ createSelectHTMLTable("truck");
 createSelectHTMLTable("trip");
 createSelectHTMLTable("user");
 createSelectHTMLTable("item");
+createSelectHTMLTable("item_sale");
 createSelectHTMLTable("review");
 createSelectHTMLTable("payment");
 createSelectHTMLTable("order");
+createSelectHTMLTable("purchased_item");
 print("</div>");
 ?>
