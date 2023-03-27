@@ -7,9 +7,28 @@ include_once "selectModels.php";
 include_once "submitQuery.php";
 include_once "databaseFunctions.php";
 
-$user_id = json_decode($_GET['user']);
-$user = selectUser()[$user_id];
-print_r($user);
+if(isset($_GET['user'])) {
+    $user_id = json_decode($_GET['user']);
+    $reviewableItem = getRevewableItemByUser($user_id);
+    print(
+        "<form action='http://localhost:8000/reviewPageHandler.php' method='POST'>
+            <label for='item_id'>Product: </label>
+            <select name='item_id' required>"
+    );
+    foreach($reviewableItem as $item_id=>$item_name) {
+        print("<option value='$item_id'>$item_name</option>");
+    }
+    print("
+            </select>
+            <input hidden name='user_id' value='$user_id'>
+            <label for='RN'>Rating: </label>
+            <input type='number' name='RN' min='1' max='5' required>
+            <label for='review'>Review: </label>
+            <input type='text' name='review' minlength='0' maxlength='250' style='height: 50px; width: 300px;' required>
+            <input type='submit'>
+        </form>
+    ");
+}
 
 $reviews = getReviewsWithUserAndItem();
 print("<h3 class='mt-4'>Item Reviews</h3>");

@@ -81,6 +81,7 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
     }
 }
 
+/*
 function getItemWithReviews()
 {
     //$sql = "SELECT itemTable.item_name, reviewTable.RN, reviewTable.review FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id ORDER";
@@ -92,9 +93,11 @@ function getItemWithReviews()
     }
     return $itemsWithReview;
 }
+*/
 
 /**
  * Return an array of item_name of items with reviews
+ * Used when viweing reviews
  */
 function getReviewedItemNames()
 {
@@ -111,6 +114,8 @@ function getReviewedItemNames()
  * Return an associative array where:
  *    (1) key is item_name
  *    (2) value: array containing reviews of item_name. Each review is an associative array where the keys are login_id, RN, review. 
+ * 
+ * Used when viweing reviews
  */
 function getReviewsWithUserAndItem()
 {
@@ -133,4 +138,26 @@ function getReviewsWithUserAndItem()
     }
     return $reviews;
 }
+
+/**
+     * Return an associative array of items purchased by $user_id that is not yet reviewed. Key is item_id, and value is item_name
+     * 
+     * Used when creating reviews
+     */
+    function getRevewableItemByUser($user_id) {
+        $sqlPurhased = "SELECT itemtable.item_id, itemtable.item_name FROM purchaseditemtable INNER JOIN itemtable ON purchaseditemtable.item_id = itemtable.item_id WHERE purchaseditemtable.user_id = $user_id";
+        $sqlReviewed = "SELECT itemtable.item_id, itemtable.item_name FROM reviewtable INNER JOIN itemtable ON reviewtable.item_id = itemtable.item_id WHERE reviewtable.user_id = $user_id";
+        $arr = submitSelectQuery($sqlPurhased);
+        $purhasedItem = array();
+        foreach($arr as $key=>$value) {
+            $purhasedItem[$value['item_id']] = $value['item_name'];
+        }
+        $arr = submitSelectQuery($sqlReviewed);
+        $reviewedItem = array();
+        foreach($arr as $key=>$value) {
+            $reviewedItem[$value['item_id']] = $value['item_name'];
+        }
+        $reviewableItem = array_diff($purhasedItem, $reviewedItem);
+        return $reviewableItem;
+    }
 ?>
