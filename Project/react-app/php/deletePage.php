@@ -4,6 +4,7 @@ header("Access-Control-Allow-Headers: *");
 
 include_once "DBMaintainFunctions.php";
 
+print("<div class='mainContainer'>");
 print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
                 <input hidden name='identifier' value='shopping'>
                 <label for='shopping_id'>receipt_id: </label>
@@ -93,6 +94,7 @@ print("<form action='http://localhost:8000/deletePageHandler.php' method='POST'>
 </form>"
 );
 createHTMLTable("purchased_item");
+print("</div>");
 
 include_once "browserDetection.php";
 ?>

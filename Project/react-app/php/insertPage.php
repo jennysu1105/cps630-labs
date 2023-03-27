@@ -5,6 +5,7 @@ header("Access-Control-Allow-Headers: *");
 include_once "dbConnection.php";
 include_once "DBMaintainFunctions.php";
 
+print("<div class='mainContainer'>");
 print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='shopping'>
                 <label for='store_code'>store_code: </label>
@@ -162,4 +163,5 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
 </form>"
 );
 createHTMLTable("purchased_item");
+print("</div>");
 ?>
