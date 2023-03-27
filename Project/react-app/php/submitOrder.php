@@ -9,7 +9,6 @@ $payment = $_GET['payment'];
 $total = $_GET['total'];
 $user_id = $_GET['user'];
 
-
 $order = new Order('2023-03-27', '2023-03-27', $total, $payment, $user_id, 1, 1);
 $order->insert();
 $query = "SELECT MAX(order_id) FROM orderTable";
