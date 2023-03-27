@@ -7,6 +7,10 @@ include_once "selectModels.php";
 include_once "submitQuery.php";
 include_once "databaseFunctions.php";
 
+$user_id = json_decode($_GET['user']);
+$user = selectUser()[$user_id];
+print_r($user);
+
 $reviews = getReviewsWithUserAndItem();
 print("<h3 class='mt-4'>Item Reviews</h3>");
 foreach ($reviews as $itemName => $item) {
