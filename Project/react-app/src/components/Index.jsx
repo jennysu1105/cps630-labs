@@ -97,7 +97,7 @@ const Index = () => {
             </div>
             <div class="row mt-4 mb-5">
                 <div class="col-md-9">
-                    {items.map((item, index) => (
+                    {items.slice(1).map((item, index) => (
                         <div class="card card_container mb-4">
                             <img id={index} src={shirt} draggable="true" onDragStart={event => drag(event)} />
                             <hr />

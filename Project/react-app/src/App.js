@@ -21,12 +21,10 @@ import Review_order from './components/Review_order';
 import LoggedIn from './components/LoggedIn';
 
 function App() {
-  const divStyle = {
-    backgroundColor: '#b2edc2'
-  };
+  document.body.style = 'background: #b2edc2;';
 
   return (
-    <div className="App" style={divStyle}>
+    <div className="App">
       <Navigation></Navigation>
       <BrowserRouter>
         <Routes>
