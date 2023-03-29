@@ -2,14 +2,16 @@
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: *");
 
-include_once "Models.php";
-include_once "selectModels.php";
-include_once "submitQuery.php";
 include_once "databaseFunctions.php";
 
 if(isset($_GET['user'])) {
     $user_id = json_decode($_GET['user']);
     $reviewableItem = getRevewableItemByUser($user_id);
+    print(
+        "<form action='http://localhost:3000/edit_reviews' method=''>
+            <input type='submit' value='Edit Reviews'>
+        </form>"
+    );
     print(
         "<form action='http://localhost:8000/reviewPageHandler.php' method='POST'>
             <label for='item_id'>Product / Service: </label>

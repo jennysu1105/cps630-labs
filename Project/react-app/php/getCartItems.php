@@ -6,7 +6,7 @@ $item_ids = json_decode($_GET['items'], true);
 $items = array();
 for ($i = 0; $i < count($item_ids); $i++){
     $item_id = $item_ids[$i];
-    $query = "select * from itemTable where item_id=" . $item_id;
+    $query = "SELECT * FROM itemTable WHERE item_id=" . $item_id;
 	$result = submitSelectQuery($query)[0];
     array_push($items, $result);
 }

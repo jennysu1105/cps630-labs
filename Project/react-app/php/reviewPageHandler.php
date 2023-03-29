@@ -20,5 +20,5 @@
         <form method='' action='http://localhost:3000/reviews'>
             <button type='submit'/>Return to review page</button>
         </form>"
-);
+    );
 ?>

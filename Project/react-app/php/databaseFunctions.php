@@ -82,25 +82,11 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
     }
 }
 
-/*
-function getItemWithReviews()
-{
-    //$sql = "SELECT itemTable.item_name, reviewTable.RN, reviewTable.review FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id ORDER";
-    $itemsWithReviewSQL = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id GROUP BY itemTable.item_name";
-    $itemsWithReview = array();
-    $record = submitSelectQuery($itemsWithReviewSQL);
-    foreach ($record as $row) {
-        array_push($itemsWithReview, $row["item_name"]);
-    }
-    return $itemsWithReview;
-}
-*/
-
 /**
  * Return an array of item_name of items with reviews
  * Used when viweing reviews
  */
-function getReviewedItemNames()
+function getItemReviewNames()
 {
     $sql = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id WHERE itemTable.item_id <> 1 GROUP BY itemTable.item_name";
     $items = array();
@@ -122,7 +108,7 @@ function getItemReviews()
 {
     $sql = "SELECT itemTable.item_name, userTable.login_id, reviewTable.RN, reviewTable.review FROM itemTable INNER JOIN reviewTable ON itemTable.item_id=reviewTable.item_id INNER JOIN userTable ON reviewTable.user_id=userTable.user_id WHERE itemTable.item_id <> 1 ORDER BY itemTable.item_name";
     $reviews = array();
-    $items = getReviewedItemNames();
+    $items = getItemReviewNames();
     $record = submitSelectQuery($sql);
     foreach ($items as $item) {
         $itemReview = array();
@@ -181,5 +167,39 @@ function getServiceReviews()
         }
         $reviewableItem = array_diff($purhasedItem, $reviewedItem);
         return $reviewableItem;
+    }
+
+    /**
+     * Return an array of reviews made by user (both service and item)
+     */
+    function getUserReview($user_id) {
+        $sql = "SELECT itemTable.item_name, reviewTable.RN, reviewTable.review FROM itemTable INNER JOIN reviewTable ON itemTable.item_id=reviewTable.item_id INNER JOIN userTable ON reviewTable.user_id=userTable.user_id WHERE userTable.user_id = $user_id ORDER BY itemTable.item_name";
+        $arr = submitSelectQuery($sql);
+        return $arr;
+    }
+
+    /**
+    * Return an array of item_name of all reviews
+    */
+    function getAllReviewNames()
+    {
+        $sql = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id GROUP BY itemTable.item_name";
+        $reviewNames = array();
+        $record = submitSelectQuery($sql);
+        foreach ($record as $row) {
+            array_push($reviewNames, $row["item_name"]);
+        }
+        return $reviewNames;
+    }
+
+    /**
+    * Return an array of id's where the first index 0 is review_id and index 1 is item_id
+    */
+    function getReviewIdItemId($itemName, $user_id, $RN, $review) {
+        $sql = "SELECT itemTable.item_id FROM itemTable WHERE itemTable.item_name = '$itemName'";
+        $item_id = submitSelectQuery($sql)[0]["item_id"];
+        $sql = "SELECT reviewTable.review_id FROM reviewTable WHERE reviewTable.item_id = $item_id AND reviewTable.user_id = $user_id AND reviewTable.RN = $RN AND reviewTable.review = '$review'";
+        $review_id = submitSelectQuery($sql)[0]["review_id"];
+        return array($review_id, $item_id);
     }
 ?>

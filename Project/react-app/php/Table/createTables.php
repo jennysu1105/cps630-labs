@@ -71,7 +71,7 @@ if ($connect->query($userTable) === TRUE) {
 
 $itemTable = "CREATE TABLE itemTable ( 
     item_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    item_name VARCHAR(30) NOT NULL,
+    item_name VARCHAR(30) NOT NULL UNIQUE,
     item_price DECIMAL(6, 2) NOT NULL,
     made_in VARCHAR(30) NOT NULL,
     department_code VARCHAR(10) NOT NULL
