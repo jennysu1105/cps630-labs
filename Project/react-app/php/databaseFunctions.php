@@ -101,7 +101,7 @@ function getItemWithReviews()
  */
 function getReviewedItemNames()
 {
-    $sql = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id GROUP BY itemTable.item_name";
+    $sql = "SELECT itemTable.item_name FROM reviewTable INNER JOIN itemTable ON reviewTable.item_id=itemTable.item_id WHERE itemTable.item_id <> 1 GROUP BY itemTable.item_name";
     $items = array();
     $record = submitSelectQuery($sql);
     foreach ($record as $row) {
@@ -113,13 +113,13 @@ function getReviewedItemNames()
 /**
  * Return an associative array where:
  *    (1) key is item_name
- *    (2) value: array containing reviews of item_name. Each review is an associative array where the keys are login_id, RN, review. 
+ *    (2) value: array containing reviews of item only. Each review is an associative array where the keys are login_id, RN, review. 
  * 
- * Used when viweing reviews
+ * Used when viewing item reviews
  */
-function getReviewsWithUserAndItem()
+function getItemReviews()
 {
-    $sql = "SELECT itemTable.item_name, userTable.login_id, reviewTable.RN, reviewTable.review FROM itemTable INNER JOIN reviewTable ON itemTable.item_id=reviewTable.item_id INNER JOIN userTable ON reviewTable.user_id=userTable.user_id ORDER BY itemTable.item_name";
+    $sql = "SELECT itemTable.item_name, userTable.login_id, reviewTable.RN, reviewTable.review FROM itemTable INNER JOIN reviewTable ON itemTable.item_id=reviewTable.item_id INNER JOIN userTable ON reviewTable.user_id=userTable.user_id WHERE itemTable.item_id <> 1 ORDER BY itemTable.item_name";
     $reviews = array();
     $items = getReviewedItemNames();
     $record = submitSelectQuery($sql);
@@ -136,6 +136,27 @@ function getReviewsWithUserAndItem()
         }
         $reviews[$item] = $itemReview;
     }
+    return $reviews;
+}
+
+/**
+ * Return an associative array where:
+ *    (1) key is Services
+ *    (2) value: array containing reviews of service only. Each review is an associative array where the keys are login_id, RN, review. 
+ * 
+ * Used when viewing service reviews
+ */
+function getServiceReviews()
+{
+    $sql = "SELECT itemTable.item_name, userTable.login_id, reviewTable.RN, reviewTable.review FROM itemTable INNER JOIN reviewTable ON itemTable.item_id=reviewTable.item_id INNER JOIN userTable ON reviewTable.user_id=userTable.user_id WHERE itemTable.item_id = 1 ORDER BY itemTable.item_name";
+    $reviews = array();
+    $record = submitSelectQuery($sql);
+    $serviceReview = array();
+    foreach ($record as $review) {
+        array_push($serviceReview, array_slice($review, 1));
+        //Add everything other than item_name column into itemReview
+    }
+    $reviews["Service"] = $serviceReview;
     return $reviews;
 }
 

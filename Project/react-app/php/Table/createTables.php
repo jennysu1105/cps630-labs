@@ -9,7 +9,7 @@ include_once "../dbConnection.php";
 
 $shoppingTable = "CREATE TABLE shoppingTable ( 
     receipt_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    store_code INT NOT NULL,
+    store_code INT NOT NULL UNIQUE,
     total_price DECIMAL(6,2) NOT NULL
     /* DECIMAL(4,2) -> 0000.00 */
 )";
@@ -22,7 +22,7 @@ if ($connect->query($shoppingTable) === TRUE) {
 
 $truckTable = "CREATE TABLE truckTable ( 
     truck_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    truck_code INT NOT NULL,
+    truck_code INT NOT NULL UNIQUE,
     availability_code BOOLEAN NOT NULL
     /* 0 = false, 1 = true */
 )";
@@ -53,11 +53,11 @@ if ($connect->query($tripTable) === TRUE) {
 $userTable = "CREATE TABLE userTable(
     user_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(50) NOT NULL,
-    telephone VARCHAR(10) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    telephone VARCHAR(10) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL UNIQUE,
     home_address VARCHAR(50) NOT NULL,
     city_code VARCHAR(3),
-    login_id VARCHAR(50) NOT NULL,
+    login_id VARCHAR(50) NOT NULL UNIQUE,
     user_password VARCHAR(16) NOT NULL,
     balance DECIMAL(11, 2)
     /* For city_code, im assuming its area code like 416 647 437*/

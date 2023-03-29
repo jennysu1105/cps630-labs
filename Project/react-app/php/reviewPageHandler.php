@@ -6,7 +6,7 @@
     include_once "Models.php";
     include_once "databaseFunctions.php";
 
-    $item_id = $_POST["RN"];
+    $item_id = $_POST["item_id"];
     $user_id = $_POST["user_id"];
     $RN = $_POST["RN"];
     $review = $_POST["review"];
