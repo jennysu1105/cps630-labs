@@ -63,13 +63,14 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
     if (checkExistingEmail($email) && checkExistingLoginId($login_id)) {
         $user = new User($full_name, $telephone, $email, $home_address, "", $login_id, $user_password, 0);
         $user->insert();
-        print(" <div>
-                    Successfully registered. 
-                <div>
-                <form method='' action='http://localhost:3000'>
-                    <button type='submit'/>Return to home page</button>
-                </form>"
-        );
+        // print(" <div>
+        //             Successfully registered. 
+        //         <div>
+        //         <form method='' action='http://localhost:3000'>
+        //             <button type='submit'/>Return to home page</button>
+        //         </form>"
+        // );
+        echo '<script type="text/javascript">window.location = "http://localhost:3000/registered"</script>';
     } else {
         print(" <div>
                     Registration failed - username or email already in use. 

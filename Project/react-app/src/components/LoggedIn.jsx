@@ -17,7 +17,7 @@ const LoggedIn = () => {
         <div class="container">
             <div class="row mt-4">
                 <h3>Successfully Logged In as user: {parameters.get('login_id')}</h3>
-                <Link to={'/'}><button>Go Shopping</button></Link>
+                <Link to={'/home'}><button>Go Shopping</button></Link>
                 <br/>
             </div>
         </div>

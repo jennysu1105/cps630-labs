@@ -21,7 +21,7 @@ const Navigation = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/home">Home</Nav.Link>
                         <Nav.Link href="/about_us">About us</Nav.Link>
                         <Nav.Link href="/contact_us">Contact us</Nav.Link>
                         <Nav.Link href="/types_of_services">Types of services</Nav.Link>
@@ -35,8 +35,7 @@ const Navigation = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="/sign_in">Sign in</Nav.Link>
-                        <Nav.Link href="/sign_up">Sign up</Nav.Link>
+                        <Nav.Link href="/">Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

@@ -1,7 +1,11 @@
 import './App.css';
 import './static/css/style.css'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navigation from './components/Navigation'
+import { BrowserRouter, Routes, Route, withRouter } from "react-router-dom";
+import WithNav from './withNav';
+import WithoutNav from './withoutNav';
+import Login_Register from './components/Login_Register';
+import LoggedIn from './components/LoggedIn';
+import Registered from './components/Registered';
 import Index from './components/Index';
 import About_us from './components/About_us';
 import Contact_us from './components/Contact_us';
@@ -13,37 +17,37 @@ import Select from './components/Select';
 import Insert from './components/Insert';
 import Update from './components/Update';
 import Delete from './components/Delete';
-import Sign_up from './components/Sign_up';
-import Sign_in from './components/Sign_in';
 import Checkout from './components/Checkout';
-import BrowserDetection from './components/BrowserDetection';
 import Review_order from './components/Review_order';
-import LoggedIn from './components/LoggedIn';
+import BrowserDetection from './components/BrowserDetection';
 
 function App() {
   document.body.style = 'background: #b2edc2;';
 
   return (
     <div className="App">
-      <Navigation></Navigation>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />}></Route>
-          <Route path="/about_us" element={<About_us />}></Route>
-          <Route path="/contact_us" element={<Contact_us />}></Route>
-          <Route path="/types_of_services" element={<Types_of_Services />}></Route>
-          <Route path="/reviews" element={<Reviews />}></Route>
-          <Route path="/shopping_cart" element={<Shopping_Cart />}></Route>
-          <Route path="/map" element={<Map />}></Route>
-          <Route path="/select" element={<Select />}></Route>
-          <Route path="/insert" element={<Insert />}></Route>
-          <Route path="/update" element={<Update />}></Route>
-          <Route path="/delete" element={<Delete />}></Route>
-          <Route path="/sign_up" element={<Sign_up />}></Route>
-          <Route path="/sign_in" element={<Sign_in />}></Route>
-          <Route path="/checkout" element={<Checkout/>}></Route>
-          <Route path="/review_order" element={<Review_order/>}></Route>
-          <Route path="/loggedIn" element={<LoggedIn/>}></Route>
+          <Route element={<WithNav />}>
+            <Route path="/home" element={<Index />}></Route>
+            <Route path="/about_us" element={<About_us />}></Route>
+            <Route path="/contact_us" element={<Contact_us />}></Route>
+            <Route path="/types_of_services" element={<Types_of_Services />}></Route>
+            <Route path="/reviews" element={<Reviews />}></Route>
+            <Route path="/shopping_cart" element={<Shopping_Cart />}></Route>
+            <Route path="/map" element={<Map />}></Route>
+            <Route path="/select" element={<Select />}></Route>
+            <Route path="/insert" element={<Insert />}></Route>
+            <Route path="/update" element={<Update />}></Route>
+            <Route path="/delete" element={<Delete />}></Route>
+            <Route path="/checkout" element={<Checkout />}></Route>
+            <Route path="/review_order" element={<Review_order />}></Route>
+          </Route>
+          <Route element={<WithoutNav />}>
+            <Route path="/" element={<Login_Register />}></Route>
+            <Route path="/loggedIn" element={<LoggedIn />}></Route>
+            <Route path="/registered" element={<Registered />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
       <BrowserDetection></BrowserDetection>
