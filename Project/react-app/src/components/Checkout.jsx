@@ -57,12 +57,15 @@ const Checkout = () => {
     },[])
 
     useEffect(() => {
-        console.log(cookies.user);
-        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
-            setCartItems(response.data);
-            console.log(JSON.stringify(cookies.items));
-            console.log(response.data);
-        });
+        setCartItems([]);
+        if (cookies.items && cookies.items.length > 0) {
+            console.log(cookies.user);
+            axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+                setCartItems(response.data);
+                console.log(JSON.stringify(cookies.items));
+                console.log(response.data);
+            });
+        }
     }, []);
 
     useEffect(() =>{
