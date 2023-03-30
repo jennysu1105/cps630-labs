@@ -2,6 +2,23 @@
 include_once "submitQuery.php";
 include_once "Models.php";
 
+/////////////////////////////////////////////// Sign In and Sign Up Functions ///////////////////////////////////////////////
+
+function generateSalt() {
+    $length = random_bytes('8');
+    return bin2hex($length);
+}
+
+function hashPassword($password) {
+    return md5($password);
+}
+
+function getUserSalt($login_id) {
+    $sql = "SELECT userTable.salt FROM userTable WHERE login_id='$login_id'";
+    $salt = submitSelectQuery($sql)[0]["salt"];
+    return $salt;
+}
+
 /**
  * returns true (1) if user does not exists in database
  * returns false ("") if user exists in database
@@ -10,7 +27,9 @@ include_once "Models.php";
  */
 function checkUserCredentials($login_id, $password)
 {
-    $sql = "SELECT * FROM userTable WHERE login_id='$login_id' AND user_password='$password'";
+    $userSalt = getUserSalt($login_id);
+    $userHash = hashPassword($password.$userSalt);
+    $sql = "SELECT * FROM userTable WHERE login_id='$login_id' AND user_password='$userHash'";
     $array = submitSelectQuery($sql);
     if (empty($array) == "") {
         echo '<script type="text/javascript">window.location = "http://localhost:3000/loggedIn?user_id='. $array[0]['user_id']. '&login_id=' . $login_id . '"</script>';
@@ -61,7 +80,9 @@ function checkExistingLoginId($login_id)
 function createNewUser($full_name, $telephone, $email, $home_address, $login_id, $user_password)
 {
     if (checkExistingEmail($email) && checkExistingLoginId($login_id)) {
-        $user = new User($full_name, $telephone, $email, $home_address, "", $login_id, $user_password, 0);
+        $salt = generateSalt();
+        $hash = hashPassword($user_password.$salt);
+        $user = new User($full_name, $telephone, $email, $home_address, "", $login_id, $hash, 0);
         $user->insert();
         // print(" <div>
         //             Successfully registered. 
@@ -81,6 +102,8 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
         );
     }
 }
+
+/////////////////////////////////////////////// Review and Edit Review Functions ///////////////////////////////////////////////
 
 /**
  * Return an array of item_name of items with reviews

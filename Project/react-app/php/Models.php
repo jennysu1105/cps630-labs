@@ -334,12 +334,13 @@ class User extends Table implements Database
     public $home_address;
     public $city_code;
     public $login_id;
+    public $salt;
     public $user_password;
     public $balance;
 
     /**
-     * Enter 8 parameter ($full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance) for creating the object from user input.
-     * Enter 9 parameter ($user_id, $full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance) for creating the object from database.
+     * Enter 9 parameter ($full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance) for creating the object from user input.
+     * Enter 10 parameter ($user_id, $full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance) for creating the object from database.
      */
     public function __construct()
     {
@@ -351,7 +352,7 @@ class User extends Table implements Database
         }
     }
 
-    public function __construct8($full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance)
+    public function __construct9($full_name, $telephone, $email, $home_address, $city_code, $login_id, $salt, $user_password, $balance)
     {
         $this->full_name = $full_name;
         $this->telephone = $telephone;
@@ -359,11 +360,12 @@ class User extends Table implements Database
         $this->home_address = $home_address;
         $this->city_code = $city_code;
         $this->login_id = $login_id;
+        $this->salt = $salt;
         $this->user_password = $user_password;
         $this->balance = $balance;
     }
 
-    public function __construct9($user_id, $full_name, $telephone, $email, $home_address, $city_code, $login_id, $user_password, $balance)
+    public function __construct10($user_id, $full_name, $telephone, $email, $home_address, $city_code, $login_id, $salt, $user_password, $balance)
     {
         $this->user_id = $user_id;
         $this->full_name = $full_name;
@@ -372,6 +374,7 @@ class User extends Table implements Database
         $this->home_address = $home_address;
         $this->city_code = $city_code;
         $this->login_id = $login_id;
+        $this->salt = $salt;
         $this->user_password = $user_password;
         $this->balance = $balance;
     }
@@ -379,7 +382,7 @@ class User extends Table implements Database
     public function insert()
     {
         if ($this->user_id == null) {
-            $insertUser = "INSERT INTO userTable (full_name, telephone, email, home_address, city_code, login_id, user_password, balance) VALUES ('$this->full_name', '$this->telephone', '$this->email', '$this->home_address', '$this->city_code', '$this->login_id', '$this->user_password', $this->balance)";
+            $insertUser = "INSERT INTO userTable (full_name, telephone, email, home_address, city_code, login_id, salt, user_password, balance) VALUES ('$this->full_name', '$this->telephone', '$this->email', '$this->home_address', '$this->city_code', '$this->login_id', '$this->salt', '$this->user_password', $this->balance)";
             return submitQuery($insertUser);
         }
     }
@@ -387,7 +390,7 @@ class User extends Table implements Database
     public function update()
     {
         if ($this->user_id != null) {
-            $updateUser = "UPDATE userTable SET full_name='$this->full_name', telephone='$this->telephone', email='$this->email', home_address='$this->home_address', city_code='$this->city_code', login_id='$this->login_id', user_password='$this->user_password', balance=$this->balance  WHERE user_id=$this->user_id";
+            $updateUser = "UPDATE userTable SET full_name='$this->full_name', telephone='$this->telephone', email='$this->email', home_address='$this->home_address', city_code='$this->city_code', login_id='$this->login_id', salt='$this->salt', user_password='$this->user_password', balance=$this->balance WHERE user_id=$this->user_id";
             return submitQuery($updateUser);
         }
     }
@@ -455,6 +458,15 @@ class User extends Table implements Database
         return $this->login_id;
     }
     public function setLogin_id($login_id)
+    {
+        $this->login_id = $login_id;
+    }
+
+    public function getSalt()
+    {
+        return $this->login_id;
+    }
+    public function setSalt($login_id)
     {
         $this->login_id = $login_id;
     }

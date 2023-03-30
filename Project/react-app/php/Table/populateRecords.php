@@ -1,6 +1,7 @@
 <?php
     include_once "../dbConnection.php";
     include_once "../Models.php";
+    include_once "../databaseFunctions.php";
 
     $shopping1 = new Shopping(1, 10);
     $shopping2 = new Shopping(2, 30);
@@ -11,10 +12,11 @@
     $trip1 = new Trip("M5B2K3", "L5P1B2", 3.2, 1, 30.42);
     $trip2 = new Trip("L5P1B2", "M5B2K3", 3.2, 2, 60.84);
 
-    $admin = new User("Michael Widianto", "4169996666", "michael.r.widianto@torontomu.ca", "10 Yonge St", "416", "mrw19", "admin", 0);
-    $user2 = new User("John Doe", "4163334444", "johndoe@gmail.com", "10 Adeline St", "416", "jdoe", "password", 500);
-    $user3 = new User("Alex Stuart", "7063334444", "astuart@gmail.com", "22 Yonge St", "706", "astuart", "password123", 200);
-    $user4 = new User("Bill Clint", "5121112222", "bclint@gmail.com", "45 Temprest St", "512", "blint", "password456", 100);
+    $salt1 = generateSalt(); $salt2 = generateSalt(); $salt3 = generateSalt(); $salt4 = generateSalt();
+    $admin = new User("Michael Widianto", "4169996666", "michael.r.widianto@torontomu.ca", "10 Yonge St", "416", "mrw19", $salt1, hashPassword("admin".$salt1), 0);
+    $user2 = new User("John Doe", "4163334444", "johndoe@gmail.com", "10 Adeline St", "416", "jdoe", $salt2, hashPassword("password".$salt2), 500);
+    $user3 = new User("Alex Stuart", "7063334444", "astuart@gmail.com", "22 Yonge St", "706", "astuart", $salt3, hashPassword("password123".$salt3), 200);
+    $user4 = new User("Bill Clint", "5121112222", "bclint@gmail.com", "45 Temprest St", "512", "blint", $salt4, hashPassword("password456".$salt4), 100);
 
     $service = new Item("Service", 0, "", "");
     $item2 = new Item("Jeans Green", 40.99, "Vietnam", "FASHION");

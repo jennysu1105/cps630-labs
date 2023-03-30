@@ -55,7 +55,7 @@
 
         $userList = array();
         foreach($records as $row) {
-            $user = new User($row["user_id"], $row["full_name"], $row["telephone"], $row["email"], $row["home_address"], $row["city_code"], $row["login_id"], $row["user_password"], $row["balance"]);
+            $user = new User($row["user_id"], $row["full_name"], $row["telephone"], $row["email"], $row["home_address"], $row["city_code"], $row["login_id"], $row["salt"], $row["user_password"], $row["balance"]);
             $userList[$row["user_id"]] = $user;
         }
         return $userList;

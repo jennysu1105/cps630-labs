@@ -1,6 +1,15 @@
 <?php
     include_once "submitQuery.php";
 
+    function generateSalt(){
+        $length = random_bytes('8');
+        return bin2hex($length);
+    }
+
+    function hashPassword($password) {
+        return md5($password);
+    }
+
     /**
      * returns true (1) if user does not exists in database
      * returns false ("") if user exists in database

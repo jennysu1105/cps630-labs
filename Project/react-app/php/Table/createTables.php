@@ -58,7 +58,8 @@ $userTable = "CREATE TABLE userTable(
     home_address VARCHAR(50) NOT NULL,
     city_code VARCHAR(3),
     login_id VARCHAR(50) NOT NULL UNIQUE,
-    user_password VARCHAR(16) NOT NULL,
+    salt VARCHAR(16) NOT NULL,
+    user_password VARCHAR(32) NOT NULL,
     balance DECIMAL(11, 2)
     /* For city_code, im assuming its area code like 416 647 437*/
 )";
