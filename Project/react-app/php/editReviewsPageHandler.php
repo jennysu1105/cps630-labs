@@ -11,8 +11,10 @@ $ReviewName = "review" . $identifier;
 $review_id = $_POST["review_id"];
 $item_id = $_POST["item_id"];
 $user_id = $_POST["user_id"];
-$RN = $_POST[$RNname];
-$review = $_POST[$ReviewName];
+$RN = $_POST["RN"];
+$review = $_POST["review"];
+
+//echo $review_id . " " . $item_id . " " . $user_id . " " . $RN . " " . $review . " ";
 
 $reviewObj = new Review($review_id, $item_id, $user_id, $RN, $review);
 $reviewObj->update();
