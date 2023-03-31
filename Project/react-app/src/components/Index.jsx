@@ -6,52 +6,67 @@ import {useCookies} from 'react-cookie';
 const Index = () => {
     const [items, setItems] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const [cartSaleItems, setCartSaleItems] = useState([]);
     const [total, calculateTotal] = useState([])
-
     const [cookies, setCookie] = useCookies(['items']);
+
     function addItemsCookie(item_name) { 
         axios.get("http://localhost:8000/getItemID.php", {params: {name: item_name}}).then((response) => {
-            console.log(cookies);
             let cart = [];
             if (cookies.items && cookies.items.length > 0) {
                 cart = cookies.items;
               }
-            console.log(response.data);
             cart.push(response.data);
-            console.log(cart);
             setCookie("items", cart, {path: '/'});
-            console.log(cookies);
         });
     }
     useEffect(() => {
         axios.get("http://localhost:8000/getItems.php").then((response) => {
             setItems(response.data);
-            console.log(response.data);
         });
     }, []);
     
-    useEffect(() => {
-        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
-            let results = response.data;
-            console.log(results);
-            let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
-            var cart_total = document.getElementById("cart_total");
-            console.log(price)
-            cart_total.innerHTML = parseFloat(price).toFixed(2);
-        });
-    },[])
+    // useEffect(() => {
+    //     axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+    //         let results = response.data;
+    //         console.log("Getting cart items array: ", results);
+    //         let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
+    //         var cart_total = document.getElementById("cart_total");
+    //         console.log("Price total: ", price)
+    //         cart_total.innerHTML = parseFloat(price).toFixed(2);
+    //     });
+    // },[])
     
     useEffect(() => {
         setCartItems([]);
         if (cookies.items && cookies.items.length > 0) {
             axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
                 setCartItems(response.data);
-                console.log(JSON.stringify(cookies.items));
-                console.log(response.data);
                 calculateTotal();
             });
         }
     }, []);
+
+    {/* Kevin added  */}
+
+    useEffect(() => {
+        setCartItems([]);
+        if (cookies.fire_items && cookies.fire_items.length > 0) {
+            axios.get("http://localhost:8000/getItemForCart.php", {params: {sale_item:JSON.stringify(cookies.fire_items)}}).then((response) => {
+                setCartSaleItems(response.data);
+                // calculateTotal();
+            });
+        }
+    }, []);
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/calculateTotal.php", {params: {sale_item:JSON.stringify(cookies.fire_items), items:JSON.stringify(cookies.items)}}).then((response) => {
+            let results = response.data;
+            let price = results.reduce((total, currentItem) => total = total + Number(currentItem),0);
+            var cart_total = document.getElementById("cart_total");
+            cart_total.innerHTML = parseFloat(price).toFixed(2);
+        });
+    },[])
 
     function allowDrop(ev) {
         ev.preventDefault();
@@ -115,6 +130,9 @@ const Index = () => {
                         <hr />
                         {cartItems.map((item,index) => (
                             <p>{item.item_name} - ${item.item_price}</p>
+                        ))}
+                        {cartSaleItems.map((item,index) => (
+                            <p style={{color:"#45b322"}}>{item.item_name} - ${item.sale_price}</p>
                         ))}
                     </div>
                 </div>
