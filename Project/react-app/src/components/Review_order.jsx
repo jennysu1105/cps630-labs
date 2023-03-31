@@ -62,6 +62,7 @@ const Review_order = () => {
             setCartItems(response.data);
             console.log(JSON.stringify(cookies.items));
             console.log(response.data);
+            setCookie("items", [], {path: '/'});
         });
     }, []);
 
