@@ -26,8 +26,6 @@
     $item6 = new Item("Tshirt Rainbow", 19.99, "Japan", "FASHION");
     $item7 = new Item("Boots", 89.99, "China", "FASHION");
 
-    $item2->insert();$item3->insert();$item4->insert();
-
     $review1 = new Review(2, 2, 4, "looks good");
     $review2 = new Review(3, 2, 1, "bad quality");
     $review3 = new Review(4, 3, 3, "meh");
