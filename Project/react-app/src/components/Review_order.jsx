@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from 'react';
+import React, {useRef, useEffect, useState } from 'react';
 import shirt from '../static/img/shirt.jpg';
 import {useCookies} from 'react-cookie';
 import axios from 'axios';
@@ -15,6 +15,7 @@ const Review_order = () => {
     const [total, calculateTotal] = useState([])
     const [payment, setPayment] = useState([]);
     const [order_id, setOrderId] = useState([]);
+    const dataFetchedRef = useRef(false);
 
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
@@ -41,12 +42,18 @@ const Review_order = () => {
             total_price = price;
         });
     }
-    useEffect(() => {
-        getPrice();
+    const fetchOrder = () => {
         axios.get("http://localhost:8000/submitOrder.php", {params: {total: total_price, user: cookies.user, payment: info['payment']}}).then((response) => {
             console.log(response.data);
             setOrderId(response.data);
         });
+    }
+
+    useEffect(() => {
+        if (dataFetchedRef.current) return;
+        dataFetchedRef.current = true;
+        getPrice();
+        fetchOrder();
     }, [])
 
     useEffect(() => {
