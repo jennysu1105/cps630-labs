@@ -9,6 +9,16 @@ const Shopping_Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [total, calculateTotal] = useState([])
 
+    const handleClick = event => {
+        let enable = cookies.items.length > 0;
+        if(!enable) {
+            event.preventDefault();
+        }
+        else{
+
+        }
+    }
+
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
             let results = response.data;
@@ -39,7 +49,7 @@ const Shopping_Cart = () => {
             <div class="container">
                 <div class="row">
                     <div id="total" class="col-sm-10 p-3 mb-2 bg-dark text-light text-start"><span id="items">0</span> Items | Total: $<span id="price">0</span></div>
-                    <Link to={'/checkout'} style={{ color: '#FFF', textDecoration: 'none' }} class="col p-2"><button class="btn btn-secondary">Checkout</button></Link>
+                    <Link to={'/checkout'} style={{ color: '#FFF', textDecoration: 'none' }} class="col p-2"><button class="btn btn-secondary" onClick={handleClick}>Checkout</button></Link>
                 </div>
                 {cartItems.map((item,index) => (
                         <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
