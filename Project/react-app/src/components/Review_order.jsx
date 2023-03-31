@@ -8,7 +8,6 @@ const Review_order = () => {
     const location = useLocation();
     const {data} = location.state;
     const info = data[0];
-    const total_price = 0;
 
     const [cookies, setCookie] = useCookies();
     const [cartItems, setCartItems] = useState([]);
@@ -33,27 +32,22 @@ const Review_order = () => {
     },[])
 
     function getPrice() {
+    }
+
+    useEffect(() => {
+        if (dataFetchedRef.current) return;
+        dataFetchedRef.current = true;
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
             let results = response.data;
             let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
             console.log(price);
             console.log(info['payment']);
             console.log(cookies.user);
-            total_price = price;
+            axios.get("http://localhost:8000/submitOrder.php", {params: {total: price, user: cookies.user, payment: info['payment']}}).then((response) => {
+                console.log(response.data);
+                setOrderId(response.data);
+            });
         });
-    }
-    const fetchOrder = () => {
-        axios.get("http://localhost:8000/submitOrder.php", {params: {total: total_price, user: cookies.user, payment: info['payment']}}).then((response) => {
-            console.log(response.data);
-            setOrderId(response.data);
-        });
-    }
-
-    useEffect(() => {
-        if (dataFetchedRef.current) return;
-        dataFetchedRef.current = true;
-        getPrice();
-        fetchOrder();
     }, [])
 
     useEffect(() => {
