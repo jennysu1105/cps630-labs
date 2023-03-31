@@ -3,6 +3,7 @@ header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: *");
 
 include_once "Models.php";
+include_once "databaseFunctions.php";
 
 if(isset($_POST["identifier"])) {
     $identifier = $_POST["identifier"];
@@ -20,7 +21,10 @@ if(isset($_POST["identifier"])) {
         $trip->insert();
     } 
     else if($identifier == "user") {
-        $user = new User($_POST["full_name"], $_POST["telephone"], $_POST["email"], $_POST["home_address"], $_POST["city_code"], $_POST["login_id"], $_POST["user_password"], $_POST["balance"]);
+        $salt =  $_POST["salt"];
+        $password = $_POST["user_password"];
+        $hashed = hashPassword($password.$salt);
+        $user = new User($_POST["full_name"], $_POST["telephone"], $_POST["email"], $_POST["home_address"], $_POST["city_code"], $_POST["login_id"], $salt, $hashed, $_POST["balance"]);
         $user->insert();
     } 
     else if($identifier == "item") {

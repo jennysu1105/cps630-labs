@@ -464,11 +464,11 @@ class User extends Table implements Database
 
     public function getSalt()
     {
-        return $this->login_id;
+        return $this->salt;
     }
-    public function setSalt($login_id)
+    public function setSalt($salt)
     {
-        $this->login_id = $login_id;
+        $this->salt = $salt;
     }
 
     public function getUser_password()

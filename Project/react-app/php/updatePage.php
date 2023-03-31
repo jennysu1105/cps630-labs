@@ -70,6 +70,9 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
                 </select>
                 <label for='login_id'>login_id: </label>
                 <input type='text' name='login_id' minlength='1' maxlength='50' >
+                <label for='salt'>salt (enter or generate): </label>
+                <input type='text' name='salt' id='salt' minlength='1' maxlength='16'>
+                <button type='button' id='salt'>Generate Salt</button>
                 <label for='user_password'>user_password: </label>
                 <input type='text' name='user_password' minlength='1' maxlength='16' >
                 <label for='balance'>balance: </label>

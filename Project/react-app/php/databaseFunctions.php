@@ -19,6 +19,13 @@ function getUserSalt($login_id) {
     return $salt;
 }
 
+function setUserPurchaseService($login_id, $hash) {
+    $sql = "SELECT userTable.user_id FROM userTable WHERE login_id='$login_id' AND user_password='$hash'";
+    $user_id = submitSelectQuery($sql)[0]["user_id"];
+    $service = new PurchasedItem(1, $user_id);
+    $service->insert();
+}
+
 /**
  * returns true (1) if user does not exists in database
  * returns false ("") if user exists in database
@@ -82,8 +89,10 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
     if (checkExistingEmail($email) && checkExistingLoginId($login_id)) {
         $salt = generateSalt();
         $hash = hashPassword($user_password.$salt);
-        $user = new User($full_name, $telephone, $email, $home_address, "", $login_id, $hash, 0);
+        $user = new User($full_name, $telephone, $email, $home_address, "", $login_id, $salt, $hash, 0);
         $user->insert();
+
+        setUserPurchaseService($login_id, $hash);
         // print(" <div>
         //             Successfully registered. 
         //         <div>

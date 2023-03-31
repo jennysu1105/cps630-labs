@@ -4,6 +4,7 @@ header("Access-Control-Allow-Headers: *");
 
 include_once "Models.php";
 include_once "DBMaintainFunctions.php";
+include_once "databaseFunctions.php";
 
 if (isset($_POST["identifier"])) {
     $identifier = $_POST["identifier"];
@@ -63,8 +64,16 @@ if (isset($_POST["identifier"])) {
             if (!empty($_POST["login_id"])) {
                 $object->setLogin_id($_POST["login_id"]);
             }
+            if (!empty($_POST["salt"])) {
+                $object->setSalt($_POST["salt"]);
+            }
             if (!empty($_POST["user_password"])) {
-                $object->setUser_password($_POST["user_password"]);
+                $salt = $object->getSalt();
+                echo $salt; echo "<br>";
+                $newPassword = $_POST["user_password"];
+                echo $newPassword;
+                $hashedPassword = hashPassword($newPassword.$salt);
+                $object->setUser_password($hashedPassword);
             }
             if (!empty($_POST["balance"])) {
                 $object->setBalance($_POST["balance"]);

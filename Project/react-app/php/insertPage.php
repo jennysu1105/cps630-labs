@@ -5,6 +5,8 @@ header("Access-Control-Allow-Headers: *");
 include_once "dbConnection.php";
 include_once "DBMaintainFunctions.php";
 
+
+
 print("<div class='mainContainer'>");
 print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input hidden name='identifier' value='shopping'>
@@ -63,8 +65,11 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 </select>
                 <label for='login_id'>login_id: </label>
                 <input type='text' name='login_id' minlength='1' maxlength='50' required>
-                <label for='user_password'>user_password: </label>
-                <input type='text' name='user_password' minlength='1' maxlength='16' required>
+                <label for='salt'>salt (enter or generate): </label>
+                <input type='text' name='salt' id='salt' minlength='1' maxlength='16' required>
+                <button type='button' id='salt'>Generate Salt</button>
+                <label for='user_password'>user_password (original password, not hashed password): </label>
+                <input type='text' name='user_password' minlength='8' maxlength='16' required>
                 <label for='balance'>balance: </label>
                 <input type='number' name='balance' min='0.01' max='999999999.99' step='0.01' required>
                 <input type='submit'>
