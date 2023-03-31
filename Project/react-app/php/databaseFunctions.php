@@ -37,7 +37,7 @@ function checkUserCredentials($login_id, $password)
         print(" <div>
                     Login failed - incorrect username or password. 
                 <div>
-                <form method='' action='http://localhost:3000/sign_in'>
+                <form method='' action='http://localhost:3000'>
                     <button type='submit'/>Try again</button>
                 </form>"
         );
@@ -96,7 +96,7 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
         print(" <div>
                     Registration failed - username or email already in use. 
                 <div>
-                <form method='' action='http://localhost:3000/sign_up'>
+                <form method='' action='http://localhost:3000'>
                     <button type='submit'/>Try again</button>
                 </form>"
         );
