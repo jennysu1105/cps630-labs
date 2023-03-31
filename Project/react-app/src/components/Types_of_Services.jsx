@@ -6,7 +6,7 @@ import firesale from '../static/img/firesale.png'
 const Types_of_Services = () => {
     return (
         <div class="container">
-            <div class="row mt-4">
+            <div class="row mt-4" >
                 <h5>The Smart Customer Services (SCS) offers the following services</h5>
             </div>
             <div class="row mt-5 mb-5">
@@ -28,7 +28,7 @@ const Types_of_Services = () => {
                     <img src={firesale} alt="delivery_icon" id="firesale_icon" />
                     <div>
                         <h5 class="mt-5">Fire sale shopping</h5>
-                        <a href="/Google_Map" class="btn btn-success" role="button">To Fire sale</a>
+                        <a href="/fire_sale" class="btn btn-success" role="button">To Fire sale</a>
                     </div>
                 </div>
             </div>

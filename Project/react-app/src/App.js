@@ -14,6 +14,7 @@ import Reviews from './components/Reviews';
 import EditReviews from './components/EditReviews';
 import Shopping_Cart from './components/Shopping_Cart';
 import Map from './components/Map';
+import Fire_Sale from './components/Fire_sale';
 import Select from './components/Select';
 import Insert from './components/Insert';
 import Update from './components/Update';
@@ -38,6 +39,7 @@ function App() {
             <Route path="/reviews" element={<Reviews />}></Route>
             <Route path="/shopping_cart" element={<Shopping_Cart />}></Route>
             <Route path="/map" element={<Map />}></Route>
+            <Route path="/fire_sale" element={<Fire_Sale />}></Route>
             <Route path="/select" element={<Select />}></Route>
             <Route path="/insert" element={<Insert />}></Route>
             <Route path="/update" element={<Update />}></Route>
