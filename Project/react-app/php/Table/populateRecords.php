@@ -22,6 +22,11 @@
     $item2 = new Item("Jeans Green", 40.99, "Vietnam", "FASHION");
     $item3 = new Item("Tshirt Yellow", 12.99, "Japan", "FASHION");
     $item4 = new Item("Sock Orange", 8.99, "China", "FASHION");
+    $item5 = new Item("Jeans Blue", 25.99, "Vietnam", "FASHION");
+    $item6 = new Item("Tshirt Rainbow", 19.99, "Japan", "FASHION");
+    $item7 = new Item("Boots", 89.99, "China", "FASHION");
+
+    $item2->insert();$item3->insert();$item4->insert();
 
     $review1 = new Review(2, 2, 4, "looks good");
     $review2 = new Review(3, 2, 1, "bad quality");
@@ -49,6 +54,7 @@
     $admin->insert();$user2->insert();$user3->insert();$user4->insert();
     $service->insert();$item2->insert();$item3->insert();$item4->insert();
     $item2->makeSale(2, 22.99, "2023-05-01"); $item3->makeSale(3, 8.99, "2023-05-01"); $item4->makeSale(4, 5.99, "2023-05-01");
+    $item5->insert();$item6->insert();$item7->insert();
     $review1->insert();$review2->insert();$review3->insert();
     $payment1->insert();$payment2->insert();
     //$order1->insert();$order2->insert();
