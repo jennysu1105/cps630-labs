@@ -14,7 +14,7 @@ const Types_of_Services = () => {
                     <img src={shopping} alt="shopping_icon" id="shopping_icon" />
                     <div>
                         <h5 class="mt-5">Online shopping</h5>
-                        <a href="/" class="btn btn-success" role="button">To shopping</a>
+                        <a href="/home" class="btn btn-success" role="button">To shopping</a>
                     </div>
                 </div>
                 <div class="col-md-4">
