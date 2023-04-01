@@ -22,9 +22,9 @@
     $item2 = new Item("Jeans Green", 40.99, "Vietnam", "FASHION", "shirt.jpg");
     $item3 = new Item("Tshirt Yellow", 12.99, "Japan", "FASHION", "shirt.jpg");
     $item4 = new Item("Sock Orange", 8.99, "China", "FASHION", "shirt.jpg");
-    $item5 = new Item("Jeans Blue", 25.99, "Vietnam", "FASHION", "shirt.jpg");
-    $item6 = new Item("Tshirt Rainbow", 19.99, "Japan", "FASHION", "shirt.jpg");
-    $item7 = new Item("Boots", 89.99, "China", "FASHION", "shirt.jpg");
+    $item5 = new Item("T-shirt", 25.99, "Vietnam", "FASHION", "shirt.jpg");
+    $item6 = new Item("Sweater", 19.99, "Japan", "FASHION", "sweater.jpg");
+    $item7 = new Item("Jeans", 89.99, "China", "FASHION", "jeans.jpg");
 
     $review1 = new Review(2, 2, 4, "looks good");
     $review2 = new Review(3, 2, 1, "bad quality");
