@@ -27,7 +27,7 @@ const Types_of_Services = () => {
                 <div class="col-md-4">
                     <img src={firesale} alt="delivery_icon" id="firesale_icon" />
                     <div>
-                        <h5 class="mt-5">Fire sale shopping</h5>
+                        <h5 class="mt-5" style={{paddingTop:'8px'}}>Fire sale shopping</h5>
                         <a href="/fire_sale" class="btn btn-success" role="button">To Fire sale</a>
                     </div>
                 </div>

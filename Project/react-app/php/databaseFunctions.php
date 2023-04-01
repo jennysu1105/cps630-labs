@@ -41,13 +41,7 @@ function checkUserCredentials($login_id, $password)
     if (empty($array) == "") {
         echo '<script type="text/javascript">window.location = "http://localhost:3000/loggedIn?user_id='. $array[0]['user_id']. '&login_id=' . $login_id . '"</script>';
     } else {
-        print(" <div>
-                    Login failed - incorrect username or password. 
-                <div>
-                <form method='' action='http://localhost:3000'>
-                    <button type='submit'/>Try again</button>
-                </form>"
-        );
+        echo '<script type="text/javascript">window.location = "http://localhost:3000/login_fail"</script>';
     }
 }
 
@@ -93,22 +87,9 @@ function createNewUser($full_name, $telephone, $email, $home_address, $login_id,
         $user->insert();
 
         setUserPurchaseService($login_id, $hash);
-        // print(" <div>
-        //             Successfully registered. 
-        //         <div>
-        //         <form method='' action='http://localhost:3000'>
-        //             <button type='submit'/>Return to home page</button>
-        //         </form>"
-        // );
         echo '<script type="text/javascript">window.location = "http://localhost:3000/registered"</script>';
     } else {
-        print(" <div>
-                    Registration failed - username or email already in use. 
-                <div>
-                <form method='' action='http://localhost:3000'>
-                    <button type='submit'/>Try again</button>
-                </form>"
-        );
+        echo '<script type="text/javascript">window.location = "http://localhost:3000/registered_fail"</script>';
     }
 }
 
