@@ -24,7 +24,7 @@ const Login_Register = () => {
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="registerPassword">Password</label>
                                             <input type="password" name="registerPassword" id="registerPassword" minlength="8"
-                                                maxlength="32" class="form-control" required />
+                                                maxlength="16" class="form-control" required />
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="registerName">Name</label>
@@ -68,7 +68,7 @@ const Login_Register = () => {
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="loginPassword">Password</label>
-                                            <input type="password" name="loginPassword" id="loginPassword" minlength="8" maxlength="32"
+                                            <input type="password" name="loginPassword" id="loginPassword" minlength="8" maxlength="16"
                                                 class="form-control" required />
                                         </div>
                                         <input class="btn btn-primary mt-3 mb-4" type="submit" name='sign_in' value="Sign in" />
