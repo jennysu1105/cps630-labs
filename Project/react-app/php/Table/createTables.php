@@ -75,7 +75,8 @@ $itemTable = "CREATE TABLE itemTable (
     item_name VARCHAR(30) NOT NULL UNIQUE,
     item_price DECIMAL(6, 2) NOT NULL,
     made_in VARCHAR(30) NOT NULL,
-    department_code VARCHAR(10) NOT NULL
+    department_code VARCHAR(10) NOT NULL,
+    image_name VARCHAR(50) NOT NULL
 )";
 
 if ($connect->query($itemTable) === TRUE) {

@@ -18,13 +18,13 @@
     $user3 = new User("Alex Stuart", "7063334444", "astuart@gmail.com", "22 Yonge St", "706", "astuart", $salt3, hashPassword("password123".$salt3), 200);
     $user4 = new User("Bill Clint", "5121112222", "bclint@gmail.com", "45 Temprest St", "512", "blint", $salt4, hashPassword("password456".$salt4), 100);
 
-    $service = new Item("Service", 0, "", "");
-    $item2 = new Item("Jeans Green", 40.99, "Vietnam", "FASHION");
-    $item3 = new Item("Tshirt Yellow", 12.99, "Japan", "FASHION");
-    $item4 = new Item("Sock Orange", 8.99, "China", "FASHION");
-    $item5 = new Item("Jeans Blue", 25.99, "Vietnam", "FASHION");
-    $item6 = new Item("Tshirt Rainbow", 19.99, "Japan", "FASHION");
-    $item7 = new Item("Boots", 89.99, "China", "FASHION");
+    $service = new Item("Service", 0, "", "", "");
+    $item2 = new Item("Jeans Green", 40.99, "Vietnam", "FASHION", "shirt.jpg");
+    $item3 = new Item("Tshirt Yellow", 12.99, "Japan", "FASHION", "shirt.jpg");
+    $item4 = new Item("Sock Orange", 8.99, "China", "FASHION", "shirt.jpg");
+    $item5 = new Item("Jeans Blue", 25.99, "Vietnam", "FASHION", "shirt.jpg");
+    $item6 = new Item("Tshirt Rainbow", 19.99, "Japan", "FASHION", "shirt.jpg");
+    $item7 = new Item("Boots", 89.99, "China", "FASHION", "shirt.jpg");
 
     $review1 = new Review(2, 2, 4, "looks good");
     $review2 = new Review(3, 2, 1, "bad quality");

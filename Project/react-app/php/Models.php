@@ -497,10 +497,11 @@ class Item extends Table implements Database
     public $item_price;
     public $made_in;
     public $department_code;
+    public $image_name;
 
     /**
-     * Enter 4 parameter ($item_name, $item_price, $made_in, $department_code) for creating the object from user input.
-     * Enter 5 parameter ($item_id, $item_name, $item_price, $made_in, $department_code) for creating the object from database.
+     * Enter 5 parameter ($item_name, $item_price, $made_in, $department_code, $image_name) for creating the object from user input.
+     * Enter 6 parameter ($item_id, $item_name, $item_price, $made_in, $department_code, $image_name) for creating the object from database.
      */
     public function __construct()
     {
@@ -512,27 +513,29 @@ class Item extends Table implements Database
         }
     }
 
-    public function __construct4($item_name, $item_price, $made_in, $department_code)
+    public function __construct5($item_name, $item_price, $made_in, $department_code, $image_name)
     {
         $this->item_name = $item_name;
         $this->item_price = $item_price;
         $this->made_in = $made_in;
         $this->department_code = $department_code;
+        $this->image_name = $image_name;
     }
 
-    public function __construct5($item_id, $item_name, $item_price, $made_in, $department_code)
+    public function __construct6($item_id, $item_name, $item_price, $made_in, $department_code, $image_name)
     {
         $this->item_id = $item_id;
         $this->item_name = $item_name;
         $this->item_price = $item_price;
         $this->made_in = $made_in;
         $this->department_code = $department_code;
+        $this->image_name = $image_name;
     }
 
     public function insert()
     {
         if ($this->item_id == null) {
-            $updateItem = "INSERT INTO itemTable (item_name, item_price, made_in, department_code) VALUES ('$this->item_name', $this->item_price, '$this->made_in', '$this->department_code')";
+            $updateItem = "INSERT INTO itemTable (item_name, item_price, made_in, department_code, image_name) VALUES ('$this->item_name', $this->item_price, '$this->made_in', '$this->department_code', '$this->image_name')";
             return submitQuery($updateItem);
         }
     }
@@ -540,7 +543,7 @@ class Item extends Table implements Database
     public function update()
     {
         if ($this->item_id != null) {
-            $updateItem = "UPDATE itemTable SET item_name='$this->item_name', item_price=$this->item_price, made_in='$this->made_in', department_code='$this->department_code' WHERE item_id=$this->item_id";
+            $updateItem = "UPDATE itemTable SET item_name='$this->item_name', item_price=$this->item_price, made_in='$this->made_in', department_code='$this->department_code', image_name='$this->image_name' WHERE item_id=$this->item_id";
             return submitQuery($updateItem);
         }
     }
@@ -602,6 +605,15 @@ class Item extends Table implements Database
     public function setDepartment_code($department_code)
     {
         $this->department_code = $department_code;
+    }
+
+    public function getImage_name()
+    {
+        return $this->image_name;
+    }
+    public function setImage_name($image_name)
+    {
+        $this->image_name = $image_name;
     }
 }
 
