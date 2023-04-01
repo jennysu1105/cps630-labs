@@ -7,29 +7,22 @@ include_once "Models.php";
 
 $info = json_decode($_GET['info'],true);
 $payment = $info['payment'];
-$save = $info['save'];
 if($payment == "new"){
     $card_num = $info['card_num'];
-    if ($save == '1') {
-        $card_num = $info['card_num'];
-        $card_name = $info['card_name'];
-        $card_expiry = $info['card_expiry'];
-        $cvv = $info['cvv'];
+    $card_name = $info['card_name'];
+    $card_expiry = $info['card_expiry'];
+    $cvv = $info['cvv'];
 
-        $user_id = $_GET['user'];
+    $user_id = $_GET['user'];
 
-        $date = "20" . $card_expiry[3] . $card_expiry[4] . "-" . $card_expiry[0] . $card_expiry[1] . "-01";
-        $query = "SELECT * from paymentTable where card_number = '" . $card_num . "'";
-        $result = submitSelectQuery($query);
-        if (count($result) == 0){
-            $payment = new Payment($user_id, $card_name, $card_num, $date, $cvv);
-            $payment->insert();
-        }
-        echo '************'. substr($card_num, 12);
+    $date = "20" . $card_expiry[3] . $card_expiry[4] . "-" . $card_expiry[0] . $card_expiry[1] . "-01";
+    $query = "SELECT * from paymentTable where card_number = '" . $card_num . "'";
+    $result = submitSelectQuery($query);
+    if (count($result) == 0){
+        $payment = new Payment($user_id, $card_name, $card_num, $date, $cvv);
+        $payment->insert();
     }
-    else{
-        echo '************'. substr($card_num, 12);
-    }
+    echo '************'. substr($card_num, 12);
 }
 else {
     $query = "SELECT * FROM paymentTable WHERE payment_id='" . $payment . "'";

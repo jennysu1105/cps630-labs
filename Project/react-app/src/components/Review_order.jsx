@@ -30,9 +30,14 @@ const Review_order = () => {
             cart_total.innerHTML = parseFloat(price).toFixed(2);
         });
     },[])
-
-    function getPrice() {
-    }
+    
+    useEffect(() => {
+        axios.get("http://localhost:8000/addPayment.php", {params: {info: JSON.stringify(info), user: cookies.user}}).then((response) => {
+            console.log(JSON.stringify(info));
+            console.log(response.data);
+            setPayment(response.data);
+        });
+    },[])
 
     useEffect(() => {
         if (dataFetchedRef.current) return;
@@ -43,20 +48,12 @@ const Review_order = () => {
             console.log(price);
             console.log(info['payment']);
             console.log(cookies.user);
-            axios.get("http://localhost:8000/submitOrder.php", {params: {total: price, user: cookies.user, payment: info['payment']}}).then((response) => {
+            axios.get("http://localhost:8000/submitOrder.php", {params: {total: price, user: cookies.user, payment: info['card_num'], postal: info['postal_code']}}).then((response) => {
                 console.log(response.data);
                 setOrderId(response.data);
             });
         });
     }, [])
-
-    useEffect(() => {
-        axios.get("http://localhost:8000/addPayment.php", {params: {info: JSON.stringify(info), user: cookies.user}}).then((response) => {
-            console.log(JSON.stringify(info));
-            console.log(response.data);
-            setPayment(response.data);
-        });
-    },[])
 
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {

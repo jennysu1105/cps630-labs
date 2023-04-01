@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 var data = [
     {
         payment: "new",
-        save: 0,
         card_num: "",
         card_name: "",
         card_expiry: "",
@@ -22,17 +21,6 @@ var data = [
     }
 ]
 const Checkout = () => {
-
-    const save = event => {
-        if (data[0]['save'] > 0){
-            data[0]['save'] = 0;
-        }
-        else{
-            data[0]['save'] = 1;
-        }
-        console.log(data[0]);
-    }
-
     const handleChange = event => {
         data[0][event.target.name] = event.target.value;
         console.log(data[0]);
@@ -131,7 +119,6 @@ const Checkout = () => {
                         </label>
                         * Required for new cards
                         <br/>
-                        <br/><input type="checkbox" name="save_card" value="save" onChange={save}/><label for="save_card"> Save this card</label><br/>
                         <hr/>
                         <p><b>Shipping Details</b></p>
                         <div class="card" style={{padding:"10px"}}>

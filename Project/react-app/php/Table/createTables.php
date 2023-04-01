@@ -9,7 +9,7 @@ include_once "../dbConnection.php";
 
 $shoppingTable = "CREATE TABLE shoppingTable ( 
     receipt_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    store_code INT NOT NULL UNIQUE,
+    store_code INT NOT NULL,
     total_price DECIMAL(6,2) NOT NULL
     /* DECIMAL(4,2) -> 0000.00 */
 )";
