@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import shirt from '../static/img/shirt.jpg';
 import {useCookies} from 'react-cookie';
 import { param } from 'jquery';
 
@@ -116,7 +115,7 @@ const Fire_Sale = () => {
                 <div className="col-md-9">
                     {items.map((item, index) => (
                         <div className="card card_container mb-4">
-                            <img id={index} src={shirt} draggable="true" onDragStart={event => drag(event)} />
+                            <img id={index} src={require(`../static/img/${item.image_name}`)} draggable="true" onDragStart={event => drag(event)} />
                             <hr />
                             <h5 id={"item_" + index}>{item.item_name}</h5>
                             <p id={"price_" + index}>{item.sale_price}</p>

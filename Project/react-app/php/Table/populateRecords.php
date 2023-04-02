@@ -19,9 +19,9 @@
     $user4 = new User("Bill Clint", "5121112222", "bclint@gmail.com", "45 Temprest St", "512", "blint", $salt4, hashPassword("password456".$salt4), 100);
 
     $service = new Item("Service", 0, "", "", "");
-    $item2 = new Item("Jeans Green", 40.99, "Vietnam", "FASHION", "shirt.jpg");
-    $item3 = new Item("Tshirt Yellow", 12.99, "Japan", "FASHION", "shirt.jpg");
-    $item4 = new Item("Sock Orange", 8.99, "China", "FASHION", "shirt.jpg");
+    $item2 = new Item("Blouse", 40.99, "Vietnam", "FASHION", "blouse.jpg");
+    $item3 = new Item("Hat", 12.99, "Japan", "FASHION", "hat.jpg");
+    $item4 = new Item("Socks", 8.99, "China", "FASHION", "socks.jpg");
     $item5 = new Item("T-shirt", 25.99, "Vietnam", "FASHION", "shirt.jpg");
     $item6 = new Item("Sweater", 19.99, "Japan", "FASHION", "sweater.jpg");
     $item7 = new Item("Jeans", 89.99, "China", "FASHION", "jeans.jpg");
