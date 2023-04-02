@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import shirt from '../static/img/shirt.jpg';
 import {useCookies} from 'react-cookie';
 
 const Index = () => {
