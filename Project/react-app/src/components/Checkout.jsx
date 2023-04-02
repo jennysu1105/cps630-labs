@@ -143,7 +143,7 @@ const Checkout = () => {
                         <div id="total" class="col-sm-9 p-3 mb-2 mr-2 bg-dark text-light"><span id="items">0</span> Items <hr/> Total: $<span id="price">0</span><hr/>
                             {cartItems.map((item,index) => (
                                 <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
-                                <p><img id={index} src={shirt} height="50px" />    {item.item_name} - ${item.item_price}</p>
+                                <p><img id={index} src={require(`../static/img/${item.image_name}`)} height="50px" />    {item.item_name} - ${item.item_price}</p>
                                 </div>
                             ))}
                         </div>

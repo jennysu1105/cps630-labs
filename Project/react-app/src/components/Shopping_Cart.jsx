@@ -53,7 +53,7 @@ const Shopping_Cart = () => {
                 </div>
                 {cartItems.map((item,index) => (
                         <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
-                          <p><img id={index} src={shirt} height="50px" />    {item.item_name} - ${item.item_price}</p>
+                          <p><img id={index} src={require(`../static/img/${item.image_name}`)} height="50px" />    {item.item_name} - ${item.item_price}</p>
                       </div>
                 ))}
             </div>

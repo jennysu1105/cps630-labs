@@ -30,7 +30,7 @@ const Review_order = () => {
             cart_total.innerHTML = parseFloat(price).toFixed(2);
         });
     },[])
-    
+
     useEffect(() => {
         axios.get("http://localhost:8000/addPayment.php", {params: {info: JSON.stringify(info), user: cookies.user}}).then((response) => {
             console.log(JSON.stringify(info));
@@ -93,7 +93,7 @@ const Review_order = () => {
                         </div>
                         {cartItems.map((item,index) => (
                             <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
-                                <p><img id={index} src={shirt} height="50px" />    {item.item_name} - ${item.item_price}</p>
+                                <p><img id={index} src={require(`../static/img/${item.image_name}`)} height="50px" />    {item.item_name} - ${item.item_price}</p>
                             </div>
                         ))}
                     </div>
