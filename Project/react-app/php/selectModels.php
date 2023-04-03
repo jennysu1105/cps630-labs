@@ -70,7 +70,7 @@
 
         $itemList = array();
         foreach($records as $row) {
-            $item = new Item($row["item_id"], $row["item_name"], $row["item_price"], $row["made_in"], $row["department_code"]);
+            $item = new Item($row["item_id"], $row["item_name"], $row["item_price"], $row["made_in"], $row["department_code"], $row["image_name"]);
             $itemList[$row["item_id"]] = $item;
         }
         return $itemList;
