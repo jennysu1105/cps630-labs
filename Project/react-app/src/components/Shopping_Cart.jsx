@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Shopping_Cart = () => {
     const [cookies, setCookie] = useCookies(['items']);
     const [cartItems, setCartItems] = useState([]);
+    const [cartSaleItems, setSaleItems] = useState([]);
     const [total, calculateTotal] = useState([])
 
     const handleClick = event => {
@@ -19,18 +20,18 @@ const Shopping_Cart = () => {
         }
     }
 
-    useEffect(() => {
-        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
-            let results = response.data;
-            console.log(results);
-            let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
-            var items = document.getElementById("items");
-            items.innerHTML = results.length;
-            var cart_total = document.getElementById("price");
-            console.log(price)
-            cart_total.innerHTML = parseFloat(price).toFixed(2);
-        });
-    },[])
+    // useEffect(() => {
+    //     axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+    //         let results = response.data;
+    //         console.log(results);
+    //         let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
+    //         var items = document.getElementById("items");
+    //         items.innerHTML = results.length;
+    //         var cart_total = document.getElementById("price");
+    //         console.log(price)
+    //         cart_total.innerHTML = parseFloat(price).toFixed(2);
+    //     });
+    // },[])
 
     useEffect(() => {
         axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
@@ -39,6 +40,33 @@ const Shopping_Cart = () => {
             console.log(response.data);
         });
     }, []);
+
+    // Kevin added
+
+	
+    useEffect(() => {
+        if (cookies.fire_items && cookies.fire_items.length > 0) {
+            axios.get("http://localhost:8000/getItemForCart.php", {params: {sale_item:JSON.stringify(cookies.fire_items)}}).then((response) => {
+                setSaleItems(response.data);
+                // calculateTotal();
+            });
+        }
+    }, []);
+    useEffect(() => {
+        axios.get("http://localhost:8000/calculateTotal.php", {params: {sale_item:JSON.stringify(cookies.fire_items), items:JSON.stringify(cookies.items)}}).then((response) => {
+            console.log("x: ", response.data);
+            let results = response.data;
+            let price = results.reduce((total, currentItem) => total = total + Number(currentItem),0);
+            var items = document.getElementById("items");
+            items.innerHTML = results.length;
+            var cart_total = document.getElementById("price");
+            cart_total.innerHTML = parseFloat(price).toFixed(2);
+        });
+    },[])
+
+
+    // Kevin end
+
 
     return (
         <div class="container">
@@ -52,9 +80,15 @@ const Shopping_Cart = () => {
                     <Link to={'/checkout'} style={{ color: '#FFF', textDecoration: 'none' }} class="col p-2"><button class="btn btn-secondary" onClick={handleClick}>Checkout</button></Link>
                 </div>
                 {cartItems.map((item,index) => (
-                        <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
-                          <p><img id={index} src={require(`../static/img/${item.image_name}`)} height="50px" />    {item.item_name} - ${item.item_price}</p>
-                      </div>
+                    <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
+                        <p><img id={index} src={require(`../static/img/${item.image_name}`)} height="50px" />    {item.item_name} - ${item.item_price}</p>
+                    </div>
+                ))}
+	
+                {cartSaleItems.map((item,index) => (
+                    <div class="col-sm-12 p-3 mb-2 bg-light text-dark text-start">
+                        <p style={{color:"#45b322"}}><img id={index} src={require(`../static/img/${item.image_name}`)} height="50px" />    {item.item_name} - ${item.sale_price}</p>
+                    </div>
                 ))}
             </div>
         </div>
