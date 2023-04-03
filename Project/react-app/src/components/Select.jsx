@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import $ from 'jquery';
+import { useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
 import '../static/css/DBMaintain.css';
 
 const Select = () => {
+    const navigate = useNavigate();
     const [data, setData] = useState("");
+    const [cookies, setCookie] = useCookies(['user']);
 
     useEffect(() => {
         axios.get("http://localhost:8000/selectPage.php").then((response) => {
@@ -12,6 +16,10 @@ const Select = () => {
             console.log(response.data);
         });
     }, []);
+
+    if (cookies.user != 1) {
+        navigate("/home");
+    }
 
     $("input#shopping").change(function () {
         if (this.checked) {
