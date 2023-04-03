@@ -26,12 +26,12 @@
     $item6 = new Item("Sweater", 19.99, "Japan", "FASHION", "sweater.jpg");
     $item7 = new Item("Jeans", 89.99, "China", "FASHION", "jeans.jpg");
 
-    $review1 = new Review(2, 2, 4, "looks good");
-    $review2 = new Review(3, 2, 1, "bad quality");
-    $review3 = new Review(4, 3, 3, "meh");
+    //$review1 = new Review(2, 2, 4, "looks good");
+    //$review2 = new Review(3, 2, 1, "bad quality");
+    //$review3 = new Review(4, 3, 3, "meh");
 
-    $payment1 = new Payment(2, "JOHN D", "5555666677778888", "2023-03-01", "222");
-    $payment2 = new Payment(3, "ALEX S", "1111222233334444", "2023-03-01", "111");
+    //$payment1 = new Payment(2, "JOHN D", "5555666677778888", "2023-03-01", "222");
+    //$payment2 = new Payment(3, "ALEX S", "1111222233334444", "2023-03-01", "111");
 
     //$order1 = new Order("2023-03-14", "2023-03-14", 24.99, 1, 1, 2, 1);
     //$order2 = new Order("2023-03-21", "2023-03-21", 14.99, 2, 2, 3, 2);
