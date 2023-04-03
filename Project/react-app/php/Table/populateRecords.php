@@ -53,9 +53,9 @@
     $service->insert();$item2->insert();$item3->insert();$item4->insert();
     $item2->makeSale(2, 22.99, "2023-05-01"); $item3->makeSale(3, 8.99, "2023-05-01"); $item4->makeSale(4, 5.99, "2023-05-01");
     $item5->insert();$item6->insert();$item7->insert();
-    $review1->insert();$review2->insert();$review3->insert();
-    $payment1->insert();$payment2->insert();
-    //$order1->insert();$order2->insert();
+    // $review1->insert();$review2->insert();$review3->insert();
+    // $payment1->insert();$payment2->insert();
+    // $order1->insert();$order2->insert();
     $purchasedItem1->insert();$purchasedItem2->insert();$purchasedItem3->insert();
     $purchasedService1->insert();$purchasedService2->insert();$purchasedService3->insert();$purchasedService4->insert();
 
