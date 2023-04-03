@@ -165,6 +165,7 @@ const Review_order = () => {
                         <br/>{info['region']}
                         <br/>{info['country']}
                         <br/>{info['postal_code']}
+                        <br/> <br/>Shipping From: <br/>
                         <br/>{info['branch']}
                     </div>
                     <div class="container">
