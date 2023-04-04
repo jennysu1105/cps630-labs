@@ -9,6 +9,11 @@ import { useCookies } from 'react-cookie';
 const Navigation = () => {
     const [cookies, setCookie] = useCookies(['user']);
 
+    const handleLogoutClick = event => {
+        setCookie("user", 0, {path: '/'});
+        setCookie("items", [], {path: '/'});
+    }
+
     if (cookies.user != 1) {
         return (
             <Navbar bg="light" expand="lg">
@@ -33,7 +38,7 @@ const Navigation = () => {
                             <Nav.Link href="/shopping_cart">Shopping cart</Nav.Link>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="/">Logout</Nav.Link>
+                            <Nav.Link href="/" onClick={handleLogoutClick}>Logout</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
