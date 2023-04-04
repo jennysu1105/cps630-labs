@@ -1,6 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import {useCookies} from 'react-cookie';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Login_Register = () => {
+    const [visible, setVisible ] = useState(false);
+    const [cookie, setCookie] = useCookies();
+    const navigate = useNavigate();
+
+    const handleClick = async event => {
+        event.preventDefault();
+        let login = document.getElementById("loginID").value;
+        let password = document.getElementById("loginPassword").value;
+        let incorrect = true;
+        let user_id = -1;
+        await axios.get("http://localhost:8000/signIn.php", {params: {loginID: login, loginPassword: password}}).then((response) => {
+            if (response.data !== "fail") {
+                user_id = response.data;
+                incorrect = false;
+            }
+        });
+        if (incorrect){
+            setVisible(true);
+        }
+        else{
+            await setCookie("user", user_id, {path: '/'});
+            navigate("/home");
+        }
+    }
     return (
         <div class="container">
             <div class="row m-5">
@@ -15,7 +43,7 @@ const Login_Register = () => {
                                     <h4>Sign up</h4>
                                 </div>
                                 <div class="card-body registration">
-                                    <form method="POST" action="http://localhost:8000/signUp.php">
+                                    <form method="POST" action="http://localhost:8000/home.php">
                                         <div class="form-outline mt-4 mb-4">
                                             <label class="form-label" for="registerID">Login ID</label>
                                             <input type="text" name="registerID" id="registerID" maxlength="32" class="form-control"
@@ -60,7 +88,7 @@ const Login_Register = () => {
                                     <h4>Sign in</h4>
                                 </div>
                                 <div class="card-body registration">
-                                    <form method="POST" action="http://localhost:8000/signIn.php">
+                                    <form>
                                         <div class="form-outline mt-4 mb-4">
                                             <label class="form-label" for="loginID">Login ID</label>
                                             <input type="text" name="loginID" id="loginID" maxlength="32" class="form-control"
@@ -71,9 +99,10 @@ const Login_Register = () => {
                                             <input type="password" name="loginPassword" id="loginPassword" minlength="8" maxlength="16"
                                                 class="form-control" required />
                                         </div>
-                                        <input class="btn btn-primary mt-3 mb-4" type="submit" name='sign_in' value="Sign in" />
+                                        <Link to='/' onClick={handleClick}><input class="btn btn-primary mt-3 mb-4" name='sign_in' value="Sign in"/></Link>
                                     </form>
                                 </div>
+                                <p style={{visibility: !visible? "hidden" : "visible",color: "red"}}>Incorrect username and/or password</p>
                             </div>
                         </div>
                     </div>

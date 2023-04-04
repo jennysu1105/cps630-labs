@@ -39,9 +39,9 @@ function checkUserCredentials($login_id, $password)
     $sql = "SELECT * FROM userTable WHERE login_id='$login_id' AND user_password='$userHash'";
     $array = submitSelectQuery($sql);
     if (empty($array) == "") {
-        echo '<script type="text/javascript">window.location = "http://localhost:3000/loggedIn?user_id='. $array[0]['user_id']. '&login_id=' . $login_id . '"</script>';
+        echo $array[0]['user_id'];
     } else {
-        echo '<script type="text/javascript">window.location = "http://localhost:3000/login_fail"</script>';
+        echo 'fail';
     }
 }
 

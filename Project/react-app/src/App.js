@@ -4,8 +4,6 @@ import { BrowserRouter, Routes, Route, withRouter } from "react-router-dom";
 import WithNav from './withNav';
 import WithoutNav from './withoutNav';
 import Login_Register from './components/Login_Register';
-import LoggedIn from './components/LoggedIn';
-import LoggedIn_Failed from './components/LoggedIn_Failed';
 import Registered from './components/Registered';
 import Registered_Failed from './components/Registered_Failed';
 import Index from './components/Index';
@@ -51,8 +49,6 @@ function App() {
           </Route>
           <Route element={<WithoutNav />}>
             <Route path="/" element={<Login_Register />}></Route>
-            <Route path="/loggedIn" element={<LoggedIn />}></Route>
-            <Route path="/login_fail" element={<LoggedIn_Failed />}></Route>
             <Route path="/registered" element={<Registered />}></Route>
             <Route path="/registered_fail" element={<Registered_Failed />}></Route>
           </Route>
