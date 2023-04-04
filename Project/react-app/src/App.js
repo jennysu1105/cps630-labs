@@ -22,6 +22,7 @@ import Delete from './components/Delete';
 import Checkout from './components/Checkout';
 import Review_order from './components/Review_order';
 import BrowserDetection from './components/BrowserDetection';
+import Profile from "./components/Profile"
 
 function App() {
   document.body.style = 'background: #b2edc2;';
@@ -46,6 +47,7 @@ function App() {
             <Route path="/delete" element={<Delete />}></Route>
             <Route path="/checkout" element={<Checkout />}></Route>
             <Route path="/review_order" element={<Review_order />}></Route>
+            <Route path="/profile" element={<Profile/>}></Route>
           </Route>
           <Route element={<WithoutNav />}>
             <Route path="/" element={<Login_Register />}></Route>

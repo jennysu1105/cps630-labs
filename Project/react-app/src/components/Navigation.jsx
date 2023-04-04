@@ -1,18 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../static/img/system_logo.jpg'
 import { useCookies } from 'react-cookie';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const Navigation = () => {
     const [cookies, setCookie] = useCookies(['user']);
+    const [username, setUsername] = useState();
 
     const handleLogoutClick = event => {
         setCookie("user", 0, {path: '/'});
         setCookie("items", [], {path: '/'});
     }
+    useEffect(() => {
+        axios.get("http://localhost:8000/getUsername.php", {params: {id: cookies.user}}).then((response) => {
+            console.log(response.data);
+            setUsername(response.data);
+        })
+    }, []);
 
     if (cookies.user != 1) {
         return (
@@ -38,6 +47,7 @@ const Navigation = () => {
                             <Nav.Link href="/shopping_cart">Shopping cart</Nav.Link>
                         </Nav>
                         <Nav>
+                            <Nav.Link href="/profile">{username}</Nav.Link>
                             <Nav.Link href="/" onClick={handleLogoutClick}>Logout</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
@@ -75,7 +85,8 @@ const Navigation = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="/">Logout</Nav.Link>
+                        <Nav.Link href="/profile">{username}</Nav.Link>
+                        <Nav.Link href="/" onClick={handleLogoutClick}>Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
