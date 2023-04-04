@@ -16,11 +16,16 @@ $total = $_GET['total'];
 $user_id = $_GET['user'];
 $postal = $_GET['postal'];
 $date = date('Y-m-d');
-$items = $_GET['items'];
+$pay_id = $_GET['payment_id'];
 
-$query = "SELECT * FROM paymentTable WHERE card_number='". $payment . "'";
-$result = submitSelectQuery($query);
-$payment_id = $result[0]['payment_id'];
+if ($pay_id == "new"){
+    $query = "SELECT * FROM paymentTable WHERE card_number='". $payment . "'";
+    $result = submitSelectQuery($query);
+    $payment_id = $result[0]['payment_id'];
+}
+else {
+    $payment_id = $pay_id;
+}
 
 $tripidQuery = "SELECT * from tripTable where destination_code='" . $postal . "'";
 $tripids = submitSelectQuery($tripidQuery);
@@ -47,10 +52,4 @@ $order->insert();
 $query = "SELECT MAX(order_id) FROM orderTable";
 $result = submitSelectQuery($query);
 echo $result[0]["MAX(order_id)"];
-
-foreach($items as $item_id) {
-    $purchasedItem = new PurchasedItem($item_id, $user_id);
-    $purchasedItem->insert();
-}
-
 ?>
