@@ -18,7 +18,7 @@ const Navigation = () => {
     }
     useEffect(() => {
         axios.get("http://localhost:8000/getUsername.php", {params: {id: cookies.user}}).then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             setUsername(response.data);
         })
     }, []);

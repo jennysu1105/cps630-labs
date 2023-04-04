@@ -7,28 +7,26 @@ const Profile = () => {
     const [cookies, setCookie] = useCookies();
 
     useEffect(() => {
-        setOrders([]);
         axios.get("http://localhost:8000/getOrders.php", {params: {id: cookies.user, criteria: ""}}).then((response) => {
-            console.log(response.data);
-            setOrders(JSON.parse(response.data));
+            if(response.data === ""){
+                setOrders([]);
+            }
+            else {
+                setOrders(response.data);
+            }
         })
     },[]);
 
     const handleChange = event => {
-        setOrders([]);
-        let search = event.target.value;
-        if (search === ""){
-            axios.get("http://localhost:8000/getOrders.php", {params: {id: cookies.user, criteria: ""}}).then((response) => {
-                console.log(response.data);
-                setOrders(JSON.parse(response.data));
-            })
-        }
-        else {
-            axios.get("http://localhost:8000/getOrders.php", {params: {id: cookies.user, criteria: search}}).then((response) => {
-                console.log(response.data);
-                setOrders(JSON.parse(response.data));
-            })
-        }
+        axios.get("http://localhost:8000/getOrders.php", {params: {id: cookies.user, criteria: event.target.value}}).then((response) => {
+            //console.log(response.data);
+            if(response.data === ""){
+                setOrders([]);
+            }
+            else {
+                setOrders(response.data);
+            }
+        })
     }
 
     return (
@@ -39,7 +37,7 @@ const Profile = () => {
             </div>
             <hr/>
             <div class="row">
-                Search: <input type="text" onChange={handleChange}></input>
+                Search By Order Number: <input type="text" onChange={handleChange}></input>
             </div>
             <hr/>
             <div class="row">
@@ -47,14 +45,18 @@ const Profile = () => {
                     <tr>
                         <th style={{width: "10%"}}>Order Number</th>
                         <th style={{width: "10%"}}>Order Date</th>
+                        <th style={{width: "10%"}}>Destination Code</th>
                         <th style={{width: "10%"}}>Total Price</th>
+                        <th style={{width: "10%"}}>Payment</th>
                         <th>Items Purchased</th>
                     </tr>
                     {orders.map((order,index) => (
                     <tr>
                         <td>{order.order_id}</td>
                         <td>{order.date_received}</td>
+                        <td>{order.destination_code}</td>
                         <td>{order.total_price}</td>
+                        <td style={{textAlign: "left"}}>************{order.card_number.substring(12)}</td>
                         <td></td>
                     </tr>
                     ))}

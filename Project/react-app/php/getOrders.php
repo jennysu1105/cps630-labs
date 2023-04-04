@@ -5,12 +5,14 @@ include_once "submitQuery.php";
 $id = $_GET['id'];
 $criteria = $_GET['criteria'];
 
+$startQ = "SELECT orderTable.order_id, orderTable.date_received, orderTable.total_price, paymentTable.card_number, tripTable.destination_code FROM orderTable, paymentTable, tripTable WHERE tripTable.trip_id = orderTable.trip_id AND paymentTable.payment_id = orderTable.payment_id AND orderTable.user_id=";
+$endQ = " ORDER BY orderTable.order_id DESC";
 if ($criteria == ""){
-    $query = "SELECT order_id, date_received, total_price FROM orderTable WHERE user_id=" . $id;
+    $query = $startQ . $id . $endQ;
     $result = submitSelectQuery($query);
 }
 else {
-    $query = "SELECT order_id, date_received, total_price FROM orderTable WHERE user_id=" . $id . "AND order_id=" . $criteria;
+    $query = $startQ . $id . " AND order_id=" . $criteria  . $endQ;
     $result = submitSelectQuery($query);
 }
 echo json_encode($result);

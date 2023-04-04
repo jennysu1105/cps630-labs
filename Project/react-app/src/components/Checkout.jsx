@@ -286,7 +286,7 @@ const Checkout = () => {
                             CVV: * <input type="text" name="cvv" style={{width:"50px"}} onChange={handleChange} maxLength="3"></input>
                             </div>
                         </label>
-                        * Required for new cards
+                        <br/>* Required for new cards
                         <br/>
                         <hr/>
                         <p><b>Shipping Details</b></p>
