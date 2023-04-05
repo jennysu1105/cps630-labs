@@ -87,8 +87,6 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input type='text' name='made_in' minlength='1' maxlength='30' required>
                 <label for='department_code'>department_code: </label>
                 <input type='text' name='department_code' minlength=1 maxlength='10' required>
-                <label for='image_name'>image_name (leave blank if unknown): </label>
-                <input type='text' name='image_name'>
                 <input type='submit'>
             </form>"
 );
