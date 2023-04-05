@@ -2,9 +2,9 @@
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: *");
 include_once "submitQuery.php";
-$order_id = $_GET['order_id'];
+$user = $_GET['user'];
 
-$query = "SELECT COUNT(purchasedItemTable.purchased_item_id) AS num, itemTable.item_name as item_name FROM itemTable, purchasedItemTable WHERE itemTable.item_id = purchasedItemTable.item_id AND purchasedItemTable.order_id = " . $order_id . " GROUP BY item_name";
+$query = "SELECT purchasedItemTable.order_id as order_id, COUNT(purchasedItemTable.purchased_item_id) AS num, itemTable.item_name as item_name, itemTable.item_price AS item_price FROM itemTable, purchasedItemTable WHERE itemTable.item_id = purchasedItemTable.item_id AND purchasedItemTable.item_id != 1 AND purchasedItemTable.user_id=" . $user . " GROUP BY item_name";
 $result = submitSelectQuery($query);
 
 echo json_encode($result);

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {useCookies} from 'react-cookie';
 import axios from 'axios';
+import { each } from 'jquery';
 
 const Profile = () => {
     const [orders, setOrders] = useState([]);
     const [cookies, setCookie] = useCookies();
-    
-    var items = {}
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
         axios.get("http://localhost:8000/getOrders.php", {params: {id: cookies.user, criteria: ""}}).then((response) => {
@@ -15,6 +15,36 @@ const Profile = () => {
             }
             else {
                 setOrders(response.data);
+            }
+        })
+    },[]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/getItemsForOrder.php", {params: {user: cookies.user}}).then((response) => {
+            if(response.data === ""){
+                setItems([]);
+            }
+            else {
+                let item = {}
+                for (let i = 0; i < response.data.length; i++){
+                    if (i == response.data.length - 1){
+                        if (item[response.data[i]['order_id']] == undefined){
+                            item[response.data[i]['order_id']] = response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price']
+                        }
+                        else{
+                            item[response.data[i]['order_id']] = item[response.data[i]['order_id']] + response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price']
+                        }
+                    }
+                    else {
+                        if (item[response.data[i]['order_id']] == undefined){
+                            item[response.data[i]['order_id']] = response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price'] + ", "
+                        }
+                        else{
+                            item[response.data[i]['order_id']] = item[response.data[i]['order_id']] + response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price'] + ", "
+                        }
+                    }
+                }
+                setItems(item);
             }
         })
     },[]);
@@ -30,21 +60,6 @@ const Profile = () => {
             }
         })
     }
-    useEffect(() => {
-        orders.map((order, index) => (
-            axios.get("http://localhost:8000/getItemsForOrder.php", {params: {order_id: order.order_id}}).then((response) => {
-                let string = "";
-                console.log(order.order_id)
-                console.log(response.data)
-                response.data.map((item, index) => (
-                    string += item.num + "x " + item.item_name + ", "
-                ))
-                string = string.substring(0, string.length-2)
-                items[order.order_id] = string
-            })
-        ))
-        console.log(items)
-    },[])
 
     return (
         <div class="container">

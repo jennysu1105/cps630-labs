@@ -38,8 +38,8 @@
     $purchasedService4 = new PurchasedItem(1, 4);
     //Need to add this when user sign up
 
-    $purchasedItem1 = new PurchasedItem(2, 2, 1);
-    $purchasedItem2 = new PurchasedItem(3, 2, 1);
+    $purchasedItem1 = new PurchasedItem(2, 1, 1);
+    $purchasedItem2 = new PurchasedItem(3, 1, 1);
     $purchasedItem3 = new PurchasedItem(4, 3, 2);
 
     $shopping1->insert();$shopping2->insert();
