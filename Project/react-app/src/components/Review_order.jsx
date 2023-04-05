@@ -60,7 +60,7 @@ const Review_order = () => {
             // console.log(price);
             // console.log(info['payment']);
             // console.log(cookies.user);
-            axios.get("http://localhost:8000/submitOrder.php", {params: {total: price, user: cookies.user, payment_id: info['payment'], payment: info['card_num'], postal: info['postal_code'], items: cookies.items}}).then((response) => {
+            axios.get("http://localhost:8000/submitOrder.php", {params: {total: price, user: cookies.user, payment_id: info['payment'], payment: info['card_num'], postal: info['postal_code'], items: cookies.items, items_sale: cookies.fire_items}}).then((response) => {
                 console.log(response.data);
                 setOrderId(response.data);
             });
