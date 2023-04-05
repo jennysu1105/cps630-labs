@@ -519,7 +519,12 @@ class Item extends Table implements Database
         $this->item_price = $item_price;
         $this->made_in = $made_in;
         $this->department_code = $department_code;
-        $this->image_name = $image_name;
+        if(empty($image_name)) {
+            $this->image_name = "default.jpg";
+        }
+        else {
+            $this->image_name = $image_name;
+        }
     }
 
     public function __construct6($item_id, $item_name, $item_price, $made_in, $department_code, $image_name)
@@ -1086,11 +1091,11 @@ class PurchasedItem extends Table implements Database
     public $purchased_item_id;
     public $item_id;
     public $user_id;
-
+    public $order_id;
 
     /**
-     * Enter 2 parameter ($item_id, $user_id) for creating the object from user input.
-     * Enter 3 parameter ($purchased_item_id, $item_id, $user_id) for creating the object from database.
+     * Enter 3 parameter ($item_id, $user_id, $order_id) for creating the object from user input.
+     * Enter 4 parameter ($purchased_item_id, $item_id, $user_id, $order_id) for creating the object from database.
      */
     public function __construct()
     {
@@ -1108,18 +1113,30 @@ class PurchasedItem extends Table implements Database
         $this->user_id = $user_id;
     }
 
-    public function __construct3($purchased_item_id, $item_id, $user_id)
+    public function __construct3($item_id, $user_id, $order_id)
+    {
+        $this->item_id = $item_id;
+        $this->user_id = $user_id;
+        $this->order_id = $order_id;
+    }
+
+    public function __construct4($purchased_item_id, $item_id, $user_id, $order_id)
     {
         $this->purchased_item_id = $purchased_item_id;
         $this->item_id = $item_id;
         $this->user_id = $user_id;
+        $this->order_id = $order_id;
     }
 
 
     public function insert()
     {
         if ($this->purchased_item_id == null) {
-            $insertPurchasedItem = "INSERT INTO purchasedItemTable (item_id, user_id) VALUES ($this->item_id, $this->user_id)";
+            if(empty($this->order_id)) {
+                $insertPurchasedItem = "INSERT INTO purchasedItemTable (item_id, user_id, order_id) VALUES ($this->item_id, $this->user_id, NULL)";
+                return submitQuery($insertPurchasedItem);
+            }
+            $insertPurchasedItem = "INSERT INTO purchasedItemTable (item_id, user_id, order_id) VALUES ($this->item_id, $this->user_id, $this->order_id)";
             return submitQuery($insertPurchasedItem);
         }
     }
@@ -1127,7 +1144,7 @@ class PurchasedItem extends Table implements Database
     public function update()
     {
         if ($this->purchased_item_id != null) {
-            $updatePurchasedItem = "UPDATE purchasedItemTable SET item_id=$this->item_id, user_id=$this->user_id WHERE purchased_item_id=$this->purchased_item_id";
+            $updatePurchasedItem = "UPDATE purchasedItemTable SET item_id=$this->item_id, user_id=$this->user_id, order_id=$this->order_id WHERE purchased_item_id=$this->purchased_item_id";
             return submitQuery($updatePurchasedItem);
         }
     }
@@ -1138,6 +1155,11 @@ class PurchasedItem extends Table implements Database
             $deletePurchasedItem = "DELETE FROM purchasedItemTable WHERE purchased_item_id=$this->purchased_item_id";
             return submitQuery($deletePurchasedItem);
         }
+    }
+
+    public function getPurchased_item_id() 
+    {
+        return $this->purchased_item_id;
     }
 
     public function getItem_id()
@@ -1158,5 +1180,15 @@ class PurchasedItem extends Table implements Database
     public function setUser_id($user_id)
     {
         $this->user_id = $user_id;
+    }
+
+    public function getOrder_id()
+    {
+        return $this->order_id;
+    }
+
+    public function setOrder_id($order_id)
+    {
+        $this->order_id = $order_id;
     }
 }

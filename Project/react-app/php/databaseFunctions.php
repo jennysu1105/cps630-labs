@@ -215,4 +215,38 @@ function getServiceReviews()
         $review_id = submitSelectQuery($sql)[0]["review_id"];
         return array($review_id, $item_id);
     }
+
+    /////////////////////////////////////////////// Search Order ///////////////////////////////////////////////
+
+    /**
+     * Return a list of order_ids made by $user_id
+     */
+    function getOrdersByUserId($user_id) {
+        $sql = "SELECT orderTable.order_id FROM orderTable WHERE orderTable.user_id = $user_id";
+        $records = submitSelectQuery($sql);
+        $order_id = array();
+        foreach($records as $record) {
+            array_push($order_id, $record["order_id"]);
+        }
+        print_r($order_id);
+        return $order_id;
+    }
+
+    /**
+     * Return a list of Item objects made by $order_id
+     */
+    function getItemsByOrderId($order_id) {
+        $sql = "SELECT purchasedItemTable.item_id FROM purchasedItemTable WHERE purchasedItemTable.order_id = $order_id";
+        $records = submitSelectQuery($sql);
+        $items = array();
+        foreach($records as $record) {
+            $item_id = $record["item_id"];
+
+            $selectItem = "SELECT * FROM itemTable WHERE itemTable.item_id = $item_id";
+            $row = submitSelectQuery($selectItem)[0];
+            $item = new Item($row["item_id"], $row["item_name"], $row["item_price"], $row["made_in"], $row["department_code"], $row["image_name"]);
+            array_push($items, $item);
+        }
+        return $items;
+    }
 ?>

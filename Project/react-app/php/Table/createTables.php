@@ -161,8 +161,10 @@ $purchasedItemTable = "CREATE TABLE purchasedItemTable (
     purchased_item_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     item_id INT(6) UNSIGNED,
     user_id INT(6) UNSIGNED,
+    order_id INT(6) UNSIGNED,
     FOREIGN KEY (item_id) REFERENCES itemTable(item_id),
-    FOREIGN KEY (user_id) REFERENCES userTable(user_id)
+    FOREIGN KEY (user_id) REFERENCES userTable(user_id),
+    FOREIGN KEY (order_id) REFERENCES orderTable(order_id)
 )";
 
 if ($connect->query($purchasedItemTable) === TRUE) {

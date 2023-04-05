@@ -26,15 +26,11 @@
     $item6 = new Item("Sweater", 19.99, "Japan", "FASHION", "sweater.jpg");
     $item7 = new Item("Jeans", 89.99, "China", "FASHION", "jeans.jpg");
 
-    //$review1 = new Review(2, 2, 4, "looks good");
-    //$review2 = new Review(3, 2, 1, "bad quality");
-    //$review3 = new Review(4, 3, 3, "meh");
+    $payment1 = new Payment(2, "JOHN D", "5555666677778888", "2023-03-01", "222");
+    $payment2 = new Payment(3, "ALEX S", "1111222233334444", "2023-03-01", "111");
 
-    //$payment1 = new Payment(2, "JOHN D", "5555666677778888", "2023-03-01", "222");
-    //$payment2 = new Payment(3, "ALEX S", "1111222233334444", "2023-03-01", "111");
-
-    //$order1 = new Order("2023-03-14", "2023-03-14", 24.99, 1, 1, 2, 1);
-    //$order2 = new Order("2023-03-21", "2023-03-21", 14.99, 2, 2, 3, 2);
+    $order1 = new Order("2023-03-14", "2023-03-14", 24.99, 1, 1, 1, 1);
+    $order2 = new Order("2023-03-21", "2023-03-21", 14.99, 2, 2, 2, 2);
 
     $purchasedService1 = new PurchasedItem(1, 1);
     $purchasedService2 = new PurchasedItem(1, 2);
@@ -42,9 +38,9 @@
     $purchasedService4 = new PurchasedItem(1, 4);
     //Need to add this when user sign up
 
-    $purchasedItem1 = new PurchasedItem(2, 2);
-    $purchasedItem2 = new PurchasedItem(3, 2);
-    $purchasedItem3 = new PurchasedItem(4, 3);
+    $purchasedItem1 = new PurchasedItem(2, 2, 1);
+    $purchasedItem2 = new PurchasedItem(3, 2, 1);
+    $purchasedItem3 = new PurchasedItem(4, 3, 2);
 
     $shopping1->insert();$shopping2->insert();
     $truck1->insert();$truck2->insert();
@@ -53,9 +49,9 @@
     $service->insert();$item2->insert();$item3->insert();$item4->insert();
     $item2->makeSale(2, 22.99, "2023-05-01"); $item3->makeSale(3, 8.99, "2023-05-01"); $item4->makeSale(4, 5.99, "2023-05-01");
     $item5->insert();$item6->insert();$item7->insert();
-    // $review1->insert();$review2->insert();$review3->insert();
-    // $payment1->insert();$payment2->insert();
-    // $order1->insert();$order2->insert();
+    $payment1->insert();$payment2->insert();
+
+    $order1->insert();$order2->insert();
     $purchasedItem1->insert();$purchasedItem2->insert();$purchasedItem3->insert();
     $purchasedService1->insert();$purchasedService2->insert();$purchasedService3->insert();$purchasedService4->insert();
 

@@ -77,6 +77,8 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
                 <input type='text' name='user_password' minlength='1' maxlength='16' >
                 <label for='balance'>balance: </label>
                 <input type='number' name='balance' min='0.01' max='999999999.99' step='0.01' >
+                <label for='image_name'>image_name: </label>
+                <input type='text' name='image_name'>
                 <input type='submit'>
             </form>"
 );
@@ -181,6 +183,8 @@ print("<form action='http://localhost:8000/updatePageHandler.php' method='POST'>
     <input type='number' name='item_id' min='0' max='99999'>
     <label for='user_id'>user_id: </label>
     <input type='number' name='user_id' min='0' max='99999'>
+    <label for='order_id'>order_id: </label>
+    <input type='number' name='order_id' min='0' max='99999'>
     <input type='submit'>
 </form>"
 );

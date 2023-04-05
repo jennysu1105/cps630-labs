@@ -69,9 +69,7 @@ if (isset($_POST["identifier"])) {
             }
             if (!empty($_POST["user_password"])) {
                 $salt = $object->getSalt();
-                echo $salt; echo "<br>";
                 $newPassword = $_POST["user_password"];
-                echo $newPassword;
                 $hashedPassword = hashPassword($newPassword.$salt);
                 $object->setUser_password($hashedPassword);
             }
@@ -91,6 +89,9 @@ if (isset($_POST["identifier"])) {
             }
             if (!empty($_POST["department_code"])) {
                 $object->setDepartment_code($_POST["department_code"]);
+            }
+            if (!empty($_POST["image_name"])) {
+                $object->setImage_name($_POST["image_name"]);
             }
             $object->update();
         } else if ($identifier == "item_sale") {
@@ -164,6 +165,9 @@ if (isset($_POST["identifier"])) {
             }
             if (!empty($_POST["user_id"])) {
                 $object->setUser_id($_POST["user_id"]);
+            }
+            if (!empty($_POST["order_id"])) {
+                $object->setOrder_id($_POST["order_id"]);
             }
             $object->update();
         }

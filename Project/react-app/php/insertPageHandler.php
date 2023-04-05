@@ -28,7 +28,7 @@ if(isset($_POST["identifier"])) {
         $user->insert();
     } 
     else if($identifier == "item") {
-        $item = new Item($_POST["item_name"], $_POST["item_price"], $_POST["made_in"], $_POST["department_code"]);
+        $item = new Item($_POST["item_name"], $_POST["item_price"], $_POST["made_in"], $_POST["department_code"], $_POST["image_name"]);
         $item->insert();
     } 
     else if($identifier == "item_sale") {
@@ -48,7 +48,7 @@ if(isset($_POST["identifier"])) {
         $order->insert();
     } 
     else if($identifier == "purchased_item") {
-        $purchasedItem = new PurchasedItem($_POST["item_id"], $_POST["user_id"]);
+        $purchasedItem = new PurchasedItem($_POST["item_id"], $_POST["user_id"], $_POST["order_id"]);
         $purchasedItem->insert();
     } 
 }

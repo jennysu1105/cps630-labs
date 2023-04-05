@@ -145,7 +145,7 @@
 
         $purchasedItemList = array();
         foreach($records as $row) {
-            $purchasedItem = new PurchasedItem($row["purchased_item_id"], $row["item_id"], $row["user_id"]);
+            $purchasedItem = new PurchasedItem($row["purchased_item_id"], $row["item_id"], $row["user_id"], $row["order_id"]);
             $purchasedItemList[$row["purchased_item_id"]] = $purchasedItem;
         }
         return $purchasedItemList;
