@@ -43,7 +43,7 @@ const Login_Register = () => {
                                     <h4>Sign up</h4>
                                 </div>
                                 <div class="card-body registration">
-                                    <form method="POST" action="http://localhost:8000/home.php">
+                                    <form method="POST" action="http://localhost:8000/signUp.php">
                                         <div class="form-outline mt-4 mb-4">
                                             <label class="form-label" for="registerID">Login ID</label>
                                             <input type="text" name="registerID" id="registerID" maxlength="32" class="form-control"
