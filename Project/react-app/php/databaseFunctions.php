@@ -15,8 +15,13 @@ function hashPassword($password) {
 
 function getUserSalt($login_id) {
     $sql = "SELECT userTable.salt FROM userTable WHERE login_id='$login_id'";
-    $salt = submitSelectQuery($sql)[0]["salt"];
-    return $salt;
+    $salt = submitSelectQuery($sql);
+    if (count($salt) == 0) {
+        return "";
+    }
+    else {
+        return $salt[0]["salt"];
+    }
 }
 
 function setUserPurchaseService($login_id, $hash) {
@@ -36,11 +41,16 @@ function checkUserCredentials($login_id, $password)
 {
     $userSalt = getUserSalt($login_id);
     $userHash = hashPassword($password.$userSalt);
-    $sql = "SELECT * FROM userTable WHERE login_id='$login_id' AND user_password='$userHash'";
-    $array = submitSelectQuery($sql);
-    if (empty($array) == "") {
-        echo $array[0]['user_id'];
-    } else {
+    if ($userSalt != ""){
+        $sql = "SELECT * FROM userTable WHERE login_id='$login_id' AND user_password='$userHash'";
+        $array = submitSelectQuery($sql);
+        if (empty($array) == "") {
+            echo $array[0]['user_id'];
+        } else {
+            echo 'fail';
+        }
+    }
+    else {
         echo 'fail';
     }
 }

@@ -13,17 +13,14 @@ const Login_Register = () => {
         event.preventDefault();
         let login = document.getElementById("loginID").value;
         let password = document.getElementById("loginPassword").value;
-        let incorrect = login==="" || password === "";
+        let incorrect = true;
         let user_id = -1;
-        if (!incorrect){
-            await axios.get("http://localhost:8000/signIn.php", {params: {loginID: login, loginPassword: password}}).then((response) => {
-                console.log(response.data)
-                if (response.data !== "fail") {
-                    user_id = response.data;
-                    incorrect = false;
-                }
-            });
-        }
+        await axios.get("http://localhost:8000/signIn.php", {params: {loginID: login, loginPassword: password}}).then((response) => {
+            if (response.data !== "fail") {
+                user_id = response.data;
+                incorrect = false;
+            }
+        });
         if (incorrect){
             setVisible(true);
         }
