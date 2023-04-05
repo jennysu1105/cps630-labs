@@ -17,6 +17,7 @@ $user_id = $_GET['user'];
 $postal = $_GET['postal'];
 $date = date('Y-m-d');
 $pay_id = $_GET['payment_id'];
+$items = $_GET['items'];
 
 if ($pay_id == "new"){
     $query = "SELECT * FROM paymentTable WHERE card_number='". $payment . "'";
@@ -54,7 +55,7 @@ $result = submitSelectQuery($query);
 echo $result[0]["MAX(order_id)"];
 
 foreach($items as $item_id) {
-    $purchaseItem = new PurchasedItem($item_id, $user_id);
+    $purchasedItem = new PurchasedItem($item_id, $user_id, $result[0]["MAX(order_id)"]);
     $purchasedItem->insert();
 }
 ?>
