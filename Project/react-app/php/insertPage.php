@@ -72,8 +72,6 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input type='text' name='user_password' minlength='8' maxlength='16' required>
                 <label for='balance'>balance: </label>
                 <input type='number' name='balance' min='0.01' max='999999999.99' step='0.01' required>
-                <label for='image_name'>image_name: </label>
-                <input type='text' name='image_name'>
                 <input type='submit'>
             </form>"
 );
@@ -89,6 +87,8 @@ print("<form action='http://localhost:8000/insertPageHandler.php' method='POST'>
                 <input type='text' name='made_in' minlength='1' maxlength='30' required>
                 <label for='department_code'>department_code: </label>
                 <input type='text' name='department_code' minlength=1 maxlength='10' required>
+                <label for='image_name'>image_name (leave blank if unknown): </label>
+                <input type='text' name='image_name'>
                 <input type='submit'>
             </form>"
 );
