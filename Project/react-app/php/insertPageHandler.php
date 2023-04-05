@@ -28,7 +28,7 @@ if(isset($_POST["identifier"])) {
         $user->insert();
     } 
     else if($identifier == "item") {
-        $item = new Item($_POST["item_name"], $_POST["item_price"], $_POST["made_in"], $_POST["department_code"], $_POST["image_name"]);
+        $item = new Item($_POST["item_name"], $_POST["item_price"], $_POST["made_in"], $_POST["department_code"], "");
         $item->insert();
     } 
     else if($identifier == "item_sale") {
