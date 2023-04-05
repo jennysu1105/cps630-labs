@@ -21,6 +21,7 @@ const Profile = () => {
 
     useEffect(() => {
         axios.get("http://localhost:8000/getItemsForOrder.php", {params: {user: cookies.user}}).then((response) => {
+            console.log(response.data)
             if(response.data === ""){
                 setItems([]);
             }
@@ -28,10 +29,10 @@ const Profile = () => {
                 let item = {}
                 for (let i = 0; i < response.data.length; i++){
                     if (item[response.data[i]['order_id']] == undefined){
-                        item[response.data[i]['order_id']] = response.data[i]['num'] + "x " + response.data[i]['item_name'] + ", "
+                        item[response.data[i]['order_id']] = response.data[i]['num'] + "x " + response.data[i]['item_name'] + "\n"
                     }
                     else{
-                        item[response.data[i]['order_id']] = item[response.data[i]['order_id']] + response.data[i]['num'] + "x " + response.data[i]['item_name'] + ", "
+                        item[response.data[i]['order_id']] = item[response.data[i]['order_id']] + response.data[i]['num'] + "x " + response.data[i]['item_name'] + "\n"
                     }
                 }
                 setItems(item);
@@ -41,7 +42,7 @@ const Profile = () => {
 
     const handleChange = event => {
         axios.get("http://localhost:8000/getOrders.php", {params: {id: cookies.user, criteria: event.target.value}}).then((response) => {
-            //console.log(response.data);
+            console.log(response.data);
             if(response.data === ""){
                 setOrders([]);
             }
@@ -79,7 +80,7 @@ const Profile = () => {
                         <td>{order.destination_code}</td>
                         <td>{order.total_price}</td>
                         <td style={{textAlign: "left"}}>************{order.card_number.substring(12)}</td>
-                        <td>{items[order.order_id].substring(0, items[order.order_id].length-2)}</td>
+                        <td>{items[order.order_id]}</td>
                     </tr>
                     ))}
                 </table>
