@@ -228,7 +228,6 @@ function getServiceReviews()
         foreach($records as $record) {
             array_push($order_id, $record["order_id"]);
         }
-        print_r($order_id);
         return $order_id;
     }
 
