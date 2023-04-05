@@ -27,21 +27,11 @@ const Profile = () => {
             else {
                 let item = {}
                 for (let i = 0; i < response.data.length; i++){
-                    if (i == response.data.length - 1){
-                        if (item[response.data[i]['order_id']] == undefined){
-                            item[response.data[i]['order_id']] = response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price']
-                        }
-                        else{
-                            item[response.data[i]['order_id']] = item[response.data[i]['order_id']] + response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price']
-                        }
+                    if (item[response.data[i]['order_id']] == undefined){
+                        item[response.data[i]['order_id']] = response.data[i]['num'] + "x " + response.data[i]['item_name'] + ", "
                     }
-                    else {
-                        if (item[response.data[i]['order_id']] == undefined){
-                            item[response.data[i]['order_id']] = response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price'] + ", "
-                        }
-                        else{
-                            item[response.data[i]['order_id']] = item[response.data[i]['order_id']] + response.data[i]['num'] + "x " + response.data[i]['item_name'] + " - $" + response.data[i]['item_price'] + ", "
-                        }
+                    else{
+                        item[response.data[i]['order_id']] = item[response.data[i]['order_id']] + response.data[i]['num'] + "x " + response.data[i]['item_name'] + ", "
                     }
                 }
                 setItems(item);
@@ -89,7 +79,7 @@ const Profile = () => {
                         <td>{order.destination_code}</td>
                         <td>{order.total_price}</td>
                         <td style={{textAlign: "left"}}>************{order.card_number.substring(12)}</td>
-                        <td>{items[order.order_id]}</td>
+                        <td>{items[order.order_id].substring(0, items[order.order_id].length-2)}</td>
                     </tr>
                     ))}
                 </table>
