@@ -54,7 +54,7 @@ const Review_order = () => {
     useEffect(() => {
         if (dataFetchedRef.current) return;
         dataFetchedRef.current = true;
-        axios.get("http://localhost:8000/getCartItems.php", {params: {items: JSON.stringify(cookies.items)}}).then((response) => {
+        axios.get("http://localhost:8000/getCartItems.php", {params: {sale_item:JSON.stringify(cookies.fire_items), items: JSON.stringify(cookies.items)}}).then((response) => {
             let results = response.data;
             let price = results.reduce((total, currentItem) => total = total + Number(currentItem.item_price), 0);
             // console.log(price);

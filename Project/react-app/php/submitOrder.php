@@ -52,4 +52,9 @@ $order->insert();
 $query = "SELECT MAX(order_id) FROM orderTable";
 $result = submitSelectQuery($query);
 echo $result[0]["MAX(order_id)"];
+
+foreach($items as $item_id) {
+    $purchaseItem = new PurchasedItem($item_id, $user_id);
+    $purchasedItem->insert();
+}
 ?>

@@ -5,6 +5,8 @@ import axios from 'axios';
 const Profile = () => {
     const [orders, setOrders] = useState([]);
     const [cookies, setCookie] = useCookies();
+    
+    var items = {}
 
     useEffect(() => {
         axios.get("http://localhost:8000/getOrders.php", {params: {id: cookies.user, criteria: ""}}).then((response) => {
@@ -28,6 +30,21 @@ const Profile = () => {
             }
         })
     }
+    useEffect(() => {
+        orders.map((order, index) => (
+            axios.get("http://localhost:8000/getItemsForOrder.php", {params: {order_id: order.order_id}}).then((response) => {
+                let string = "";
+                console.log(order.order_id)
+                console.log(response.data)
+                response.data.map((item, index) => (
+                    string += item.num + "x " + item.item_name + ", "
+                ))
+                string = string.substring(0, string.length-2)
+                items[order.order_id] = string
+            })
+        ))
+        console.log(items)
+    },[])
 
     return (
         <div class="container">
@@ -57,7 +74,7 @@ const Profile = () => {
                         <td>{order.destination_code}</td>
                         <td>{order.total_price}</td>
                         <td style={{textAlign: "left"}}>************{order.card_number.substring(12)}</td>
-                        <td></td>
+                        <td>{items[order.order_id]}</td>
                     </tr>
                     ))}
                 </table>
