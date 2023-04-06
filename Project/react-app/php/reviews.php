@@ -4,21 +4,19 @@ header("Access-Control-Allow-Headers: *");
 
 include_once "databaseFunctions.php";
 
-if(isset($_GET['user'])) {
+if (isset($_GET['user'])) {
     $user_id = json_decode($_GET['user']);
     $reviewableItem = getRevewableItemByUser($user_id);
-    print(
-        "<form action='http://localhost:3000/edit_reviews' method=''>
+    print("<form action='http://localhost:3000/edit_reviews' method=''>
             <input type='submit' value='Edit Reviews'>
         </form>"
     );
-    print(
-        "<form action='http://localhost:8000/reviewPageHandler.php' method='POST'>
+    print("<form action='http://localhost:8000/reviewPageHandler.php' method='POST'>
             <label for='item_id'>Product / Service: </label>
             <select name='item_id' required>
         "
     );
-    foreach($reviewableItem as $item_id=>$item_name) {
+    foreach ($reviewableItem as $item_id => $item_name) {
         print("<option value='$item_id'>$item_name</option>");
     }
     print("
@@ -34,7 +32,21 @@ if(isset($_GET['user'])) {
 }
 
 $serviceReview = getServiceReviews();
-print("<h3 class='mt-4'>Service Reviews</h3>");
+$ratingInfo = getRatingInfoByItemName("Service");
+$avgRating = $ratingInfo[0];
+$numVote = $ratingInfo[1];
+
+if ($numVote != 0) {
+    $itemHeader = "Service Reviews | " . $avgRating . " star (" . $numVote;
+    if ($numVote > 1) {
+        $itemHeader = $itemHeader . " votes)";
+    } else {
+        $itemHeader = $itemHeader . " vote)";
+    }
+    print("<h3 class='mt-4'>$itemHeader</h3>");
+} else {
+    print("<h3 class='mt-4'>Service Reviews</h3>");
+}
 foreach ($serviceReview as $key => $value) {
     print("<div class='row'><div class='col-md-6 offset-md-3'>
             <div class='card m-4' style='padding:15px'><h4 class='m-3'>$key</h4><hr>");
@@ -53,8 +65,23 @@ foreach ($serviceReview as $key => $value) {
 $itemReview = getItemReviews();
 print("<h3 class='mt-4'>Item Reviews</h3>");
 foreach ($itemReview as $itemName => $item) {
-    print("<div class='row'><div class='col-md-6 offset-md-3'>
+    $ratingInfo = getRatingInfoByItemName($itemName);
+    $avgRating = $ratingInfo[0];
+    $numVote = $ratingInfo[1];
+
+    if ($numVote != 0) {
+        $itemHeader = $itemName . " | " . $avgRating . " star (" . $numVote;
+        if ($numVote > 1) {
+            $itemHeader = $itemHeader . " votes)";
+        } else {
+            $itemHeader = $itemHeader . " vote)";
+        }
+        print("<div class='row'><div class='col-md-6 offset-md-3'>
+            <div class='card m-4' style='padding:15px'><h4 class='m-3'>$itemHeader</h4><hr>");
+    } else {
+        print("<div class='row'><div class='col-md-6 offset-md-3'>
             <div class='card m-4' style='padding:15px'><h4 class='m-3'>$itemName</h4><hr>");
+    }
     foreach ($item as $review) {
         $username = $review["login_id"];
         $rating = $review["RN"];

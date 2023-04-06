@@ -123,7 +123,7 @@ function getItemReviewNames()
 /**
  * Return an associative array where:
  *    (1) key is item_name
- *    (2) value: array containing reviews of item only. Each review is an associative array where the keys are login_id, RN, review. 
+ *    (2) value is array containing reviews of item only. Each review is an associative array where the keys are item_id, login_id, RN, review. 
  * 
  * Used when viewing item reviews
  */
@@ -224,6 +224,15 @@ function getServiceReviews()
         $sql = "SELECT reviewTable.review_id FROM reviewTable WHERE reviewTable.item_id = $item_id AND reviewTable.user_id = $user_id AND reviewTable.RN = $RN AND reviewTable.review = '$review'";
         $review_id = submitSelectQuery($sql)[0]["review_id"];
         return array($review_id, $item_id);
+    }
+
+    function getRatingInfoByItemName($item_name) {
+        $sql = "SELECT ROUND(AVG(RN), 1) as average, COUNT(RN) as votes FROM `reviewtable` WHERE item_id = (SELECT item_id FROM `itemtable` WHERE item_name='$item_name')";
+        $ratingInfo = array();
+        $record= submitSelectQuery($sql)[0];
+        array_push($ratingInfo, $record["average"]);
+        array_push($ratingInfo, $record["votes"]);
+        return $ratingInfo;
     }
 
     /////////////////////////////////////////////// Search Order ///////////////////////////////////////////////
