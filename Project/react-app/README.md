@@ -14,7 +14,7 @@ Before running this application:
 
 Steps for running this application:
 - open XAMPP and start Apache and MySQL
-- navigate to the react-app folder and run the following two commands in terminal:
+- navigate to the react-app folder and run the following two commands in separate terminals:
     - in react-app/php folder: php -S localhost:8000
         then create the database tables and populate records by running the createTables.php and
         populateRecords.php files:
