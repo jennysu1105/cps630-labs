@@ -32,29 +32,29 @@ if (isset($_GET['user'])) {
 }
 
 $serviceReview = getServiceReviews();
-$ratingInfo = getRatingInfoByItemName("Service");
-$avgRating = $ratingInfo[0];
-$numVote = $ratingInfo[1];
-
-if ($numVote != 0) {
-    $itemHeader = "Service Reviews | " . $avgRating . " star (" . $numVote;
-    if ($numVote > 1) {
-        $itemHeader = $itemHeader . " votes)";
-    } else {
-        $itemHeader = $itemHeader . " vote)";
-    }
-    print("<h3 class='mt-4'>$itemHeader</h3>");
-} else {
-    print("<h3 class='mt-4'>Service Reviews</h3>");
-}
+print("<h3 class='mt-4'>Service Reviews</h3>");
 foreach ($serviceReview as $key => $value) {
-    print("<div class='row'><div class='col-md-6 offset-md-3'>
+    $ratingInfo = getRatingInfoByItemName($key);
+    $avgRating = $ratingInfo[0];
+    $numVote = $ratingInfo[1];
+    if ($numVote != 0) {
+        $itemHeader = $key. " | " . $avgRating . " star (" . $numVote;
+        if ($numVote > 1) {
+            $itemHeader = $itemHeader . " votes)";
+        } else {
+            $itemHeader = $itemHeader . " vote)";
+        }
+        print("<div class='row'><div class='col-md-6 offset-md-3'>
+            <div class='card m-4' style='padding:15px'><h4 class='m-3'>$itemHeader</h4><hr>");
+    } else {
+        print("<div class='row'><div class='col-md-6 offset-md-3'>
             <div class='card m-4' style='padding:15px'><h4 class='m-3'>$key</h4><hr>");
+    }
     foreach ($value as $review) {
         $username = $review["login_id"];
         $rating = $review["RN"];
         $userReview = $review["review"];
-        print("<p>Item Rating: $rating</p>
+        print("<p>Rating: $rating</p>
                 <p>Reviewer: $username</p>
                 <p>Review: $userReview</p><hr>"
         );
@@ -86,7 +86,7 @@ foreach ($itemReview as $itemName => $item) {
         $username = $review["login_id"];
         $rating = $review["RN"];
         $userReview = $review["review"];
-        print("<p>Item Rating: $rating</p>
+        print("<p>Rating: $rating</p>
                 <p>Reviewer: $username</p>
                 <p>Review: $userReview</p><hr>"
         );
