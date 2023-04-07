@@ -9,6 +9,8 @@ Before running this application:
 - open a terminal and run the 'npm install' command inside the react-app folder
 - inside the react-app folder, create a file named '.env.local' and copy and paste 
   the following line inside the .env.local file: REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyCLherBXiXAewyPuGAs-5Hs47p0-_D7VcQ
+- in react-app/php/dbConnection.php, change the connection settings to your own 
+  settings (e.g. your hostname, password, etc)
 
 
 Steps for running this application:
